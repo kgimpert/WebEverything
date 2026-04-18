@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Web Everything — AI-Powered Digital Agency</title>
+  <meta name="description" content="Web Everything is an AI-powered digital agency combining enterprise performance marketing, proprietary AdTech, and agentic AI systems. Built to win."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --p9:#2e0060;--p8:#4a0090;--p7:#6d28d9;--p6:#7c3aed;
+      --p5:#9333ea;--p4:#a855f7;--p3:#c084fc;--p2:#ddb6fe;
+      --glow:rgba(147,51,234,.35);--glows:rgba(147,51,234,.6);
+      --dark:#05050d;--dark2:#080814;--dark3:#0d0d1f;
+      --light:#ffffff;--light2:#f9f6ff;--light3:#ede8ff;
+      --tx-dark:#f0f0f8;--tx-light:#18102e;
+      --muted-dark:#9090b0;--muted-light:#5a4080;
+      --bd-dark:rgba(147,51,234,.2);--bd-light:rgba(109,40,217,.15);
+    }
+
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;overflow-x:hidden;line-height:1.65}
+
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      background:rgba(5,5,13,.92);backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--bd-dark);
+      transition:background .3s;
+    }
+    .nav-inner{
+      max-width:1280px;margin:0 auto;padding:0 2rem;
+      display:flex;align-items:center;justify-content:space-between;height:68px;
+    }
+    .nav-logo{
+      font-size:1.4rem;font-weight:900;letter-spacing:-.04em;
+      color:var(--tx-dark);cursor:pointer;text-decoration:none;
+      display:flex;align-items:center;gap:.15rem;
+    }
+    .nav-logo .logo-accent{
+      background:linear-gradient(135deg,var(--p4),var(--p6));
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .nav-logo sup{font-size:.65em;color:var(--p4);-webkit-text-fill-color:var(--p4)}
+    .nav-links{display:flex;align-items:center;gap:.25rem}
+    .nav-link{
+      position:relative;padding:.5rem 1rem;font-size:.875rem;font-weight:500;
+      color:var(--muted-dark);cursor:pointer;transition:color .2s;
+      border-radius:8px;white-space:nowrap;
+    }
+    .nav-link:hover{color:var(--tx-dark)}
+    .nav-link.has-drop:after{content:'▾';margin-left:.3rem;font-size:.7em;opacity:.6}
+    /* dropdown */
+    .drop{
+      position:absolute;top:calc(100% + 8px);left:0;
+      background:rgba(8,8,20,.97);border:1px solid var(--bd-dark);
+      border-radius:14px;padding:1rem;min-width:260px;
+      opacity:0;pointer-events:none;transform:translateY(-8px);
+      transition:opacity .2s,transform .2s;
+    }
+    .nav-link:hover .drop,.nav-link:focus-within .drop{opacity:1;pointer-events:all;transform:translateY(0)}
+    .drop-item{
+      display:block;padding:.55rem .85rem;font-size:.82rem;color:var(--muted-dark);
+      cursor:pointer;border-radius:8px;transition:background .15s,color .15s;
+      text-decoration:none;white-space:nowrap;
+    }
+    .drop-item:hover{background:rgba(147,51,234,.12);color:var(--p3)}
+    .drop-divider{height:1px;background:var(--bd-dark);margin:.5rem 0}
+    .drop-label{padding:.3rem .85rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--p6)}
+    .nav-cta{
+      margin-left:.75rem;padding:.55rem 1.35rem;
+      background:linear-gradient(135deg,var(--p6),var(--p5));
+      color:#fff;font-size:.875rem;font-weight:600;border-radius:10px;
+      text-decoration:none;transition:opacity .2s,box-shadow .2s;
+      box-shadow:0 0 20px var(--glow);
+    }
+    .nav-cta:hover{opacity:.88;box-shadow:0 0 35px var(--glows)}
+    .nav-mobile-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem}
+    .nav-mobile-btn span{display:block;width:22px;height:2px;background:var(--tx-dark);border-radius:2px;transition:.3s}
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .nav-mobile-btn{display:flex}
+      .nav-cta{display:none}
+    }
+
+    /* ── HERO ── */
+    .hero{
+      position:relative;min-height:100vh;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;overflow:hidden;
+      background:var(--dark);padding:8rem 2rem 6rem;
+    }
+    .orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(90px);animation:floatOrb 10s ease-in-out infinite}
+    .orb1{width:600px;height:600px;background:var(--p7);opacity:.08;top:-150px;right:-150px}
+    .orb2{width:400px;height:400px;background:var(--p5);opacity:.07;bottom:5%;left:-100px;animation-delay:4s}
+    .orb3{width:300px;height:300px;background:var(--p9);opacity:.12;top:40%;right:10%;animation-delay:7s}
+    @keyframes floatOrb{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(30px,-40px) scale(1.07)}70%{transform:translate(-20px,20px) scale(.95)}}
+
+    .hero-inner{position:relative;z-index:2;text-align:center;max-width:900px}
+    .hero-eyebrow{
+      display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--p4);margin-bottom:1.75rem;
+      padding:.4rem 1rem;border:1px solid rgba(168,85,247,.3);border-radius:100px;
+      background:rgba(168,85,247,.08);
+    }
+    .hero-h1{
+      font-size:clamp(3rem,7vw,6rem);font-weight:900;letter-spacing:-.04em;
+      line-height:1.02;color:var(--tx-dark);margin-bottom:1.5rem;
+    }
+    .hero-h1 .grad{
+      background:linear-gradient(135deg,var(--p2) 0%,var(--p4) 40%,var(--p6) 100%);
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .hero-sub{
+      font-size:clamp(1rem,2vw,1.2rem);color:var(--muted-dark);
+      max-width:620px;margin:0 auto 2.5rem;line-height:1.8;
+    }
+    .hero-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+    .btn-primary{
+      padding:.85rem 2.2rem;background:linear-gradient(135deg,var(--p6),var(--p5));
+      color:#fff;font-weight:700;font-size:.95rem;border-radius:12px;
+      text-decoration:none;transition:opacity .2s,box-shadow .2s;
+      box-shadow:0 0 30px var(--glow);
+    }
+    .btn-primary:hover{opacity:.88;box-shadow:0 0 50px var(--glows)}
+    .btn-outline{
+      padding:.85rem 2.2rem;border:1.5px solid rgba(168,85,247,.5);
+      color:var(--p3);font-weight:600;font-size:.95rem;border-radius:12px;
+      text-decoration:none;transition:background .2s,border-color .2s;
+    }
+    .btn-outline:hover{background:rgba(147,51,234,.1);border-color:var(--p4)}
+    .hero-scroll{
+      position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+      display:flex;flex-direction:column;align-items:center;gap:.5rem;
+      color:var(--muted-dark);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+    }
+    .hero-scroll .arrow{width:1px;height:36px;background:linear-gradient(to bottom,transparent,var(--p5));margin:0 auto;animation:scrollPulse 2s ease-in-out infinite}
+    @keyframes scrollPulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+    /* ── CONTAINER ── */
+    .container{max-width:1200px;margin:0 auto;padding:0 2rem}
+
+    /* ── SECTION SHARED ── */
+    section{padding:7rem 0}
+    .eyebrow{
+      font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--p6);margin-bottom:1.25rem;
+    }
+    .section-h2{
+      font-size:clamp(2rem,4vw,3.2rem);font-weight:800;letter-spacing:-.03em;
+      line-height:1.1;margin-bottom:1.25rem;
+    }
+    .section-body{font-size:1.05rem;color:var(--muted-light);line-height:1.8;max-width:680px}
+
+    /* ── OFFERS (Gate One-style grid) ── */
+    .offers-section{
+      background:linear-gradient(150deg,var(--p8) 0%,var(--p7) 55%,var(--p6) 100%);
+      padding:7rem 0;
+    }
+    .offers-header{text-align:center;max-width:760px;margin:0 auto 4rem}
+    .offers-label{
+      font-size:.72rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+      color:rgba(255,255,255,.7);margin-bottom:1.25rem;
+    }
+    .offers-h2{
+      font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;
+      color:#fff;line-height:1.1;margin-bottom:1.25rem;
+    }
+    .offers-sub{font-size:1rem;color:rgba(255,255,255,.72);line-height:1.8}
+    .offers-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);
+      border-top:1px solid rgba(255,255,255,.18);
+      border-left:1px solid rgba(255,255,255,.18);
+    }
+    .offer-card{
+      padding:2.5rem 2rem;
+      border-right:1px solid rgba(255,255,255,.18);
+      border-bottom:1px solid rgba(255,255,255,.18);
+      cursor:pointer;
+      transition:background .25s;
+      position:relative;overflow:hidden;
+    }
+    .offer-card::after{
+      content:'';position:absolute;inset:0;
+      background:rgba(255,255,255,0);
+      transition:background .25s;
+    }
+    .offer-card:hover{background:rgba(255,255,255,.08)}
+    .offer-card:hover .offer-title{
+      text-decoration:underline;text-underline-offset:5px;
+      text-decoration-color:rgba(255,255,255,.6);
+      color:#fff;
+    }
+    .offer-title{
+      font-size:1.05rem;font-weight:700;color:rgba(255,255,255,.95);
+      margin-bottom:.75rem;transition:color .25s;line-height:1.35;
+    }
+    .offer-body{font-size:.875rem;color:rgba(255,255,255,.68);line-height:1.75}
+    @media(max-width:768px){
+      .offers-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:500px){
+      .offers-grid{grid-template-columns:1fr}
+    }
+
+    /* ── DELIVER (5-col dark strip) ── */
+    .deliver-section{
+      background:linear-gradient(180deg,var(--dark) 0%,var(--dark3) 50%,var(--dark) 100%);
+      position:relative;overflow:hidden;padding:6rem 0;
+    }
+    .deliver-section::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse at 30% 50%,rgba(109,40,217,.18) 0%,transparent 60%),
+                 radial-gradient(ellipse at 75% 50%,rgba(147,51,234,.12) 0%,transparent 55%);
+    }
+    .deliver-inner{position:relative;z-index:1}
+    .deliver-label{
+      text-align:center;font-size:.72rem;font-weight:800;letter-spacing:.2em;
+      text-transform:uppercase;color:var(--p4);margin-bottom:3.5rem;
+    }
+    .deliver-grid{
+      display:grid;grid-template-columns:repeat(5,1fr);
+      border-top:1px solid var(--bd-dark);
+      border-left:1px solid var(--bd-dark);
+    }
+    .deliver-col{
+      padding:2.5rem 1.75rem;
+      border-right:1px solid var(--bd-dark);
+      border-bottom:1px solid var(--bd-dark);
+      cursor:pointer;
+      transition:background .25s;
+    }
+    .deliver-col:hover{background:rgba(147,51,234,.08)}
+    .deliver-col:hover .deliver-title{
+      color:var(--p3);
+      text-decoration:underline;text-underline-offset:4px;
+      text-decoration-color:rgba(192,132,252,.5);
+    }
+    .deliver-icon{
+      width:80px;height:80px;margin-bottom:1.5rem;
+      display:flex;align-items:center;justify-content:center;
+      transition:transform .3s;
+    }
+    .deliver-icon svg{overflow:visible}
+    .deliver-col:hover .deliver-icon{transform:translateY(-4px)}
+
+    /* ── SVG ANIMATIONS ── */
+    .hero-bg-svg{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+    .offer-icon{width:52px;height:52px;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:center}
+    .offer-icon svg{overflow:visible}
+    .deliver-icon svg *,.offer-icon svg *{transform-box:fill-box;transform-origin:center}
+    .hero-bg-svg *{transform-box:fill-box}
+
+    @keyframes drawIn{from{stroke-dashoffset:var(--d,300)}to{stroke-dashoffset:0}}
+    @keyframes svgPulse{0%,100%{opacity:.4;r:4}50%{opacity:1;r:6}}
+    @keyframes glowRing{0%{transform:scale(.6);opacity:.6}100%{transform:scale(1.8);opacity:0}}
+    @keyframes scanLine{0%{transform:translateY(-16px);opacity:0}15%{opacity:.8}85%{opacity:.8}100%{transform:translateY(16px);opacity:0}}
+    @keyframes riseBar{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+    @keyframes spinCW{to{transform:rotate(360deg)}}
+    @keyframes spinCCW{to{transform:rotate(-360deg)}}
+    @keyframes orbitDot{0%{transform:rotate(0deg) translateX(28px) rotate(0deg)}100%{transform:rotate(360deg) translateX(28px) rotate(-360deg)}}
+    @keyframes drawCheck{from{stroke-dashoffset:60}to{stroke-dashoffset:0}}
+    @keyframes packetTravel{0%{offset-distance:0%;opacity:0}10%{opacity:1}90%{opacity:1}100%{offset-distance:100%;opacity:0}}
+    @keyframes nodePulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+    @keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .deliver-title{
+      font-size:1rem;font-weight:700;color:var(--tx-dark);
+      margin-bottom:.5rem;transition:color .25s;
+    }
+    .deliver-body{font-size:.8rem;color:var(--muted-dark);line-height:1.7}
+    @media(max-width:900px){.deliver-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:580px){.deliver-grid{grid-template-columns:1fr 1fr}}
+
+    /* ── STATS ── */
+    .stats-section{background:linear-gradient(135deg,var(--p9) 0%,var(--p8) 50%,var(--dark3) 100%);padding:5rem 0}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+    .stat-n{
+      font-size:clamp(2.5rem,4vw,3.8rem);font-weight:900;letter-spacing:-.04em;
+      background:linear-gradient(135deg,var(--p2),var(--p4));
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+      line-height:1;margin-bottom:.5rem;
+    }
+    .stat-l{font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(192,132,252,.7)}
+    @media(max-width:768px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+
+    /* ── SERVICES ── */
+    .services-section{background:var(--light2)}
+    .services-section .section-h2{color:var(--tx-light)}
+    .svc-list{margin-top:3rem;border-top:1px solid var(--bd-light)}
+    .svc-row{
+      display:grid;grid-template-columns:90px 1fr auto;gap:0 2.5rem;
+      padding:2.25rem 0;border-bottom:1px solid var(--bd-light);
+      align-items:start;transition:background .2s;cursor:default;
+    }
+    .svc-row:hover{background:rgba(109,40,217,.035);margin:0 -1rem;padding-left:1rem;padding-right:1rem;border-radius:0}
+    .svc-row:hover .svc-num{color:var(--p5)}
+    .svc-num{font-size:3.5rem;font-weight:900;color:rgba(109,40,217,.12);line-height:1;letter-spacing:-.05em;transition:color .3s}
+    .svc-content{}
+    .svc-title{font-size:1.15rem;font-weight:700;color:var(--tx-light);margin-bottom:.5rem}
+    .svc-body{font-size:.875rem;color:var(--muted-light);line-height:1.75;max-width:600px}
+    .svc-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.85rem}
+    .svc-tag{
+      font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+      padding:.25rem .65rem;border-radius:100px;
+      background:rgba(109,40,217,.08);color:var(--p7);border:1px solid rgba(109,40,217,.15);
+    }
+    .svc-arrow{color:var(--p6);font-size:1.2rem;opacity:0;transition:opacity .2s;padding-top:.25rem}
+    .svc-row:hover .svc-arrow{opacity:1}
+    @media(max-width:640px){.svc-row{grid-template-columns:56px 1fr}.svc-arrow{display:none}.svc-num{font-size:2.5rem}}
+
+    /* ── LOGOS ── */
+    .logos-section{background:var(--light);padding:4rem 0}
+    .logos-eyebrow{text-align:center;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-light);margin-bottom:2.5rem}
+    .logos-track{display:flex;gap:3rem;align-items:center;justify-content:center;flex-wrap:wrap}
+    .logo-ph{
+      height:36px;padding:0 1.5rem;border:1px solid var(--bd-light);border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--muted-light);background:var(--light2);min-width:120px;
+    }
+
+    /* ── INSIGHTS ── */
+    .insights-section{background:var(--dark);padding:7rem 0}
+    .insights-section .eyebrow{color:var(--p4)}
+    .insights-section .section-h2{color:var(--tx-dark)}
+    .insights-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;flex-wrap:wrap;gap:1rem}
+    .insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .insight-card{
+      background:rgba(255,255,255,.04);border:1px solid var(--bd-dark);border-radius:18px;
+      overflow:hidden;transition:border-color .2s,transform .2s;cursor:pointer;
+    }
+    .insight-card:hover{border-color:rgba(147,51,234,.45);transform:translateY(-4px)}
+    .insight-img{
+      height:180px;background:linear-gradient(135deg,var(--p9),var(--p8));
+      display:flex;align-items:center;justify-content:center;
+      font-size:2.5rem;
+    }
+    .insight-body{padding:1.5rem}
+    .insight-tag{
+      display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--p4);padding:.25rem .7rem;background:rgba(168,85,247,.12);border-radius:100px;margin-bottom:1rem;
+    }
+    .insight-title{font-size:1rem;font-weight:700;color:var(--tx-dark);line-height:1.45;margin-bottom:.6rem}
+    .insight-meta{font-size:.78rem;color:var(--muted-dark)}
+    .btn-ghost{
+      padding:.7rem 1.6rem;border:1px solid var(--bd-dark);border-radius:10px;
+      color:var(--muted-dark);font-size:.875rem;font-weight:500;text-decoration:none;
+      transition:border-color .2s,color .2s;
+    }
+    .btn-ghost:hover{border-color:var(--p5);color:var(--p3)}
+    @media(max-width:900px){.insights-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.insights-grid{grid-template-columns:1fr}}
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section{background:var(--light2);padding:7rem 0}
+    .testimonials-section .section-h2{color:var(--tx-light)}
+    .testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:3.5rem}
+    .testi-card{
+      background:var(--light);border:1px solid var(--bd-light);border-radius:20px;
+      padding:2.5rem;transition:border-color .2s,box-shadow .2s;
+    }
+    .testi-card:hover{border-color:rgba(109,40,217,.3);box-shadow:0 12px 50px rgba(109,40,217,.08)}
+    .testi-card.featured{
+      grid-column:span 2;background:linear-gradient(135deg,var(--p9),var(--p8));
+      border-color:transparent;
+    }
+    .testi-quote{
+      font-size:1.05rem;line-height:1.8;color:var(--tx-light);margin-bottom:1.5rem;
+      position:relative;padding-left:1.5rem;
+    }
+    .testi-card.featured .testi-quote{color:rgba(240,240,248,.9)}
+    .testi-quote::before{
+      content:'"';position:absolute;left:0;top:-.25rem;font-size:3rem;line-height:1;
+      color:var(--p5);font-family:Georgia,serif;opacity:.6;
+    }
+    .testi-card.featured .testi-quote::before{color:var(--p3)}
+    .testi-attr{display:flex;align-items:center;gap:1rem}
+    .testi-avatar{
+      width:44px;height:44px;border-radius:50%;
+      background:linear-gradient(135deg,var(--p7),var(--p5));
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800;font-size:.9rem;color:#fff;flex-shrink:0;
+    }
+    .testi-name{font-size:.875rem;font-weight:700;color:var(--tx-light)}
+    .testi-role{font-size:.78rem;color:var(--muted-light)}
+    .testi-card.featured .testi-name{color:var(--tx-dark)}
+    .testi-card.featured .testi-role{color:var(--p3)}
+    @media(max-width:700px){.testi-grid{grid-template-columns:1fr}.testi-card.featured{grid-column:span 1}}
+
+    /* ── AI CALLOUT ── */
+    .ai-section{background:var(--dark);padding:7rem 0}
+    .ai-inner{
+      max-width:900px;margin:0 auto;text-align:center;
+      background:rgba(255,255,255,.03);border:1px solid var(--bd-dark);
+      border-radius:28px;padding:5rem 4rem;position:relative;overflow:hidden;
+    }
+    .ai-inner::before{
+      content:'';position:absolute;inset:0;border-radius:28px;
+      background:radial-gradient(circle at 50% -20%,rgba(147,51,234,.15) 0%,transparent 65%);
+    }
+    .ai-eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--p4);margin-bottom:1.25rem}
+    .ai-h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;color:var(--tx-dark);margin-bottom:1.25rem;line-height:1.1}
+    .ai-body{font-size:1.05rem;color:var(--muted-dark);line-height:1.8;max-width:640px;margin:0 auto 2.5rem}
+    .ai-badges{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem}
+    .ai-badge{
+      padding:.45rem 1.1rem;border-radius:100px;font-size:.75rem;font-weight:600;letter-spacing:.04em;
+      background:rgba(147,51,234,.12);border:1px solid rgba(147,51,234,.25);color:var(--p3);
+    }
+
+    /* ── CTA BANNER ── */
+    .cta-section{
+      background:linear-gradient(135deg,var(--p9) 0%,var(--p8) 40%,var(--p7) 100%);
+      padding:6rem 0;text-align:center;position:relative;overflow:hidden;
+    }
+    .cta-section::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse at center,rgba(168,85,247,.2) 0%,transparent 70%);
+    }
+    .cta-section .section-h2{color:#fff;max-width:700px;margin:0 auto 1rem}
+    .cta-section .section-body{color:rgba(240,240,248,.75);margin:0 auto 2.5rem;max-width:560px}
+    .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative}
+    .btn-white{
+      padding:.85rem 2.2rem;background:#fff;
+      color:var(--p7);font-weight:700;font-size:.95rem;border-radius:12px;
+      text-decoration:none;transition:opacity .2s;
+    }
+    .btn-white:hover{opacity:.9}
+    .btn-outline-white{
+      padding:.85rem 2.2rem;border:1.5px solid rgba(255,255,255,.4);
+      color:#fff;font-weight:600;font-size:.95rem;border-radius:12px;
+      text-decoration:none;transition:background .2s,border-color .2s;
+    }
+    .btn-outline-white:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7)}
+
+    /* ── CONTACT ── */
+    .contact-section{background:var(--dark3);padding:7rem 0}
+    .contact-section .eyebrow{color:var(--p4)}
+    .contact-section .section-h2{color:var(--tx-dark)}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;margin-top:3.5rem;align-items:start}
+    .contact-form{background:rgba(255,255,255,.04);border:1px solid var(--bd-dark);border-radius:20px;padding:2.5rem}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+    .form-field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+    .form-field label{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--p4)}
+    .form-field input,.form-field select,.form-field textarea{
+      background:rgba(255,255,255,.05);border:1px solid var(--bd-dark);border-radius:10px;
+      padding:.75rem 1rem;color:var(--tx-dark);font-size:.9rem;font-family:inherit;
+      transition:border-color .2s;outline:none;resize:none;
+    }
+    .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--p5)}
+    .form-field input::placeholder,.form-field textarea::placeholder{color:var(--muted-dark);opacity:.6}
+    .form-field select option{background:var(--dark3)}
+    .contact-info{}
+    .contact-info-title{font-size:1.5rem;font-weight:700;color:var(--tx-dark);margin-bottom:.75rem}
+    .contact-info-body{font-size:.95rem;color:var(--muted-dark);line-height:1.8;margin-bottom:2.5rem}
+    .contact-item{
+      display:flex;align-items:center;gap:1rem;padding:1.25rem;
+      background:rgba(255,255,255,.04);border:1px solid var(--bd-dark);border-radius:14px;
+      margin-bottom:.75rem;
+    }
+    .contact-icon{
+      width:44px;height:44px;border-radius:12px;
+      background:linear-gradient(135deg,var(--p7),var(--p5));
+      display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem;
+    }
+    .contact-item-label{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--p4);margin-bottom:.2rem}
+    .contact-item-val{font-size:.9rem;color:var(--tx-dark)}
+    @media(max-width:768px){.contact-grid{grid-template-columns:1fr;gap:3rem}.form-row{grid-template-columns:1fr}}
+
+    /* ── FOOTER ── */
+    footer{background:var(--dark);border-top:1px solid var(--bd-dark);padding:5rem 0 3rem}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:4rem}
+    .footer-brand .nav-logo{font-size:1.6rem;display:inline-flex;margin-bottom:1.25rem}
+    .footer-tagline{font-size:.875rem;color:var(--muted-dark);line-height:1.7;max-width:280px;margin-bottom:1.5rem}
+    .footer-social{display:flex;gap:.75rem}
+    .social-btn{
+      width:38px;height:38px;border-radius:10px;border:1px solid var(--bd-dark);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--muted-dark);font-size:.85rem;cursor:pointer;transition:background .2s,color .2s,border-color .2s;
+      text-decoration:none;
+    }
+    .social-btn:hover{background:rgba(147,51,234,.15);color:var(--p3);border-color:var(--p6)}
+    .footer-col-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--p5);margin-bottom:1.1rem}
+    .footer-link{display:block;font-size:.875rem;color:var(--muted-dark);margin-bottom:.6rem;text-decoration:none;transition:color .2s;cursor:pointer}
+    .footer-link:hover{color:var(--p3)}
+    .footer-bottom{border-top:1px solid var(--bd-dark);padding-top:2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:gap:1rem}
+    .footer-copy{font-size:.8rem;color:var(--muted-dark)}
+    .footer-legal{display:flex;gap:1.5rem}
+    .footer-legal a{font-size:.8rem;color:var(--muted-dark);text-decoration:none;transition:color .2s}
+    .footer-legal a:hover{color:var(--p3)}
+    @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;gap:3rem}}
+    @media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      Web<span class="logo-accent">Everything</span>
+    </a>
+    <div class="nav-links">
+      <div class="nav-link has-drop">
+        Services
+        <div class="drop">
+          <div class="drop-label">Performance</div>
+          <a class="drop-item" href="#services">Performance Marketing</a>
+          <a class="drop-item" href="#services">AdTech Development</a>
+          <a class="drop-item" href="#services">Analytics & Reporting</a>
+          <a class="drop-item" href="#services">Digital Operations</a>
+          <div class="drop-divider"></div>
+          <div class="drop-label">AI & Strategy</div>
+          <a class="drop-item" href="#services">AI Strategy & Integration</a>
+          <a class="drop-item" href="#services">Agentic AI Systems</a>
+          <a class="drop-item" href="#services">Generative Engine Optimization</a>
+          <a class="drop-item" href="#services">Marketing Transformation</a>
+          <div class="drop-divider"></div>
+          <div class="drop-label">Growth & Intelligence</div>
+          <a class="drop-item" href="#services">Customer Experience</a>
+          <a class="drop-item" href="#services">Market Intelligence</a>
+          <a class="drop-item" href="#services">Web Design & Development</a>
+          <a class="drop-item" href="#services">Digital & Data Transformation</a>
+        </div>
+      </div>
+      <div class="nav-link has-drop">
+        Industries
+        <div class="drop">
+          <a class="drop-item" href="#">Healthcare & Pharma</a>
+          <a class="drop-item" href="#">Financial Services</a>
+          <a class="drop-item" href="#">Retail & D2C</a>
+          <a class="drop-item" href="#">Automotive</a>
+          <a class="drop-item" href="#">Technology & SaaS</a>
+          <a class="drop-item" href="#">Travel & Leisure</a>
+        </div>
+      </div>
+      <a class="nav-link" href="#insights">Insights</a>
+      <a class="nav-link" href="#contact">About</a>
+    </div>
+    <a class="nav-cta" href="#contact">Start a Project</a>
+    <div class="nav-mobile-btn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <!-- HERO NETWORK SVG -->
+  <svg class="hero-bg-svg" viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="glow2"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+    <!-- Orbital ellipses -->
+    <ellipse cx="700" cy="350" rx="340" ry="145" stroke="#6d28d9" stroke-width="1" fill="none" opacity="0.2" stroke-dasharray="6 10">
+      <animateTransform attributeName="transform" type="rotate" from="0 700 350" to="360 700 350" dur="28s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="700" cy="350" rx="480" ry="210" stroke="#4a0090" stroke-width="0.6" fill="none" opacity="0.15" stroke-dasharray="3 14">
+      <animateTransform attributeName="transform" type="rotate" from="30 700 350" to="-330 700 350" dur="40s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="700" cy="350" rx="220" ry="90" stroke="#9333ea" stroke-width="0.8" fill="none" opacity="0.18" stroke-dasharray="4 8">
+      <animateTransform attributeName="transform" type="rotate" from="-20 700 350" to="340 700 350" dur="18s" repeatCount="indefinite"/>
+    </ellipse>
+    <!-- Network lines -->
+    <g stroke="#7c3aed" stroke-width="0.6" fill="none" opacity="0.25">
+      <line x1="180" y1="140" x2="420" y2="95"/><line x1="420" y1="95" x2="660" y2="75"/>
+      <line x1="660" y1="75" x2="920" y2="110"/><line x1="920" y1="110" x2="1120" y2="195"/>
+      <line x1="180" y1="140" x2="310" y2="360"/><line x1="420" y1="95" x2="310" y2="360"/>
+      <line x1="660" y1="75" x2="700" y2="355"/><line x1="920" y1="110" x2="1060" y2="375"/>
+      <line x1="1120" y1="195" x2="1060" y2="375"/><line x1="1060" y1="375" x2="1210" y2="430"/>
+      <line x1="310" y1="360" x2="240" y2="575"/><line x1="310" y1="360" x2="590" y2="555"/>
+      <line x1="700" y1="355" x2="590" y2="555"/><line x1="700" y1="355" x2="960" y2="510"/>
+      <line x1="1060" y1="375" x2="960" y2="510"/><line x1="590" y1="555" x2="960" y2="510"/>
+      <line x1="180" y1="140" x2="140" y2="395"/><line x1="140" y1="395" x2="310" y2="360"/>
+      <line x1="700" y1="355" x2="920" y2="110"/>
+    </g>
+    <!-- Animated data packets -->
+    <circle r="2.5" fill="#c084fc" filter="url(#glow)">
+      <animateMotion dur="4s" repeatCount="indefinite" begin="0s" path="M180,140 L420,95 L660,75"/>
+      <animate attributeName="opacity" values="0;1;1;0" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="2" fill="#a855f7" filter="url(#glow)">
+      <animateMotion dur="5s" repeatCount="indefinite" begin="1.5s" path="M1120,195 L920,110 L700,355"/>
+      <animate attributeName="opacity" values="0;1;1;0" dur="5s" repeatCount="indefinite" begin="1.5s"/>
+    </circle>
+    <circle r="2.5" fill="#ddb6fe" filter="url(#glow)">
+      <animateMotion dur="6s" repeatCount="indefinite" begin="0.8s" path="M590,555 L700,355 L660,75"/>
+      <animate attributeName="opacity" values="0;1;1;0" dur="6s" repeatCount="indefinite" begin="0.8s"/>
+    </circle>
+    <circle r="2" fill="#c084fc" filter="url(#glow)">
+      <animateMotion dur="4.5s" repeatCount="indefinite" begin="2s" path="M240,575 L310,360 L420,95"/>
+      <animate attributeName="opacity" values="0;1;1;0" dur="4.5s" repeatCount="indefinite" begin="2s"/>
+    </circle>
+    <circle r="2" fill="#a855f7" filter="url(#glow)">
+      <animateMotion dur="5.5s" repeatCount="indefinite" begin="0.3s" path="M1210,430 L1060,375 L960,510"/>
+      <animate attributeName="opacity" values="0;1;1;0" dur="5.5s" repeatCount="indefinite" begin="0.3s"/>
+    </circle>
+    <!-- Network nodes -->
+    <g filter="url(#glow)">
+      <!-- Major nodes (larger, pulsing rings) -->
+      <g><circle cx="700" cy="355" r="6" fill="#a855f7"><animate attributeName="r" values="5;7;5" dur="3s" repeatCount="indefinite"/></circle><circle cx="700" cy="355" r="14" stroke="#a855f7" stroke-width="0.8" fill="none"><animate attributeName="r" values="10;22;10" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0;0.7" dur="3s" repeatCount="indefinite"/></circle></g>
+      <g><circle cx="420" cy="95" r="5" fill="#9333ea"><animate attributeName="r" values="4;6;4" dur="4s" repeatCount="indefinite" begin="0.5s"/></circle><circle cx="420" cy="95" r="12" stroke="#9333ea" stroke-width="0.7" fill="none"><animate attributeName="r" values="8;18;8" dur="4s" repeatCount="indefinite" begin="0.5s"/><animate attributeName="opacity" values="0.6;0;0.6" dur="4s" repeatCount="indefinite" begin="0.5s"/></circle></g>
+      <g><circle cx="1060" cy="375" r="5" fill="#7c3aed"><animate attributeName="r" values="4;6;4" dur="3.5s" repeatCount="indefinite" begin="1s"/></circle><circle cx="1060" cy="375" r="12" stroke="#7c3aed" stroke-width="0.7" fill="none"><animate attributeName="r" values="8;18;8" dur="3.5s" repeatCount="indefinite" begin="1s"/><animate attributeName="opacity" values="0.6;0;0.6" dur="3.5s" repeatCount="indefinite" begin="1s"/></circle></g>
+      <!-- Minor nodes -->
+      <circle cx="180" cy="140" r="3.5" fill="#c084fc"><animate attributeName="opacity" values="0.5;1;0.5" dur="5s" repeatCount="indefinite"/></circle>
+      <circle cx="660" cy="75" r="3" fill="#a855f7"><animate attributeName="opacity" values="0.5;1;0.5" dur="4s" repeatCount="indefinite" begin="1s"/></circle>
+      <circle cx="920" cy="110" r="3.5" fill="#9333ea"><animate attributeName="opacity" values="0.5;1;0.5" dur="3.5s" repeatCount="indefinite" begin="2s"/></circle>
+      <circle cx="1120" cy="195" r="3" fill="#c084fc"><animate attributeName="opacity" values="0.5;1;0.5" dur="4.5s" repeatCount="indefinite" begin="0.5s"/></circle>
+      <circle cx="310" cy="360" r="3.5" fill="#a855f7"><animate attributeName="opacity" values="0.5;1;0.5" dur="4s" repeatCount="indefinite" begin="1.5s"/></circle>
+      <circle cx="140" cy="395" r="3" fill="#9333ea"><animate attributeName="opacity" values="0.5;1;0.5" dur="5s" repeatCount="indefinite" begin="0.8s"/></circle>
+      <circle cx="590" cy="555" r="3.5" fill="#a855f7"><animate attributeName="opacity" values="0.5;1;0.5" dur="3.8s" repeatCount="indefinite" begin="2.2s"/></circle>
+      <circle cx="960" cy="510" r="3.5" fill="#c084fc"><animate attributeName="opacity" values="0.5;1;0.5" dur="4.2s" repeatCount="indefinite" begin="1.2s"/></circle>
+      <circle cx="240" cy="575" r="3" fill="#7c3aed"><animate attributeName="opacity" values="0.5;1;0.5" dur="5s" repeatCount="indefinite" begin="3s"/></circle>
+      <circle cx="1210" cy="430" r="3" fill="#9333ea"><animate attributeName="opacity" values="0.5;1;0.5" dur="4s" repeatCount="indefinite" begin="0.7s"/></circle>
+    </g>
+  </svg>
+
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Award-Winning AI-Powered Digital Agency</div>
+    <h1 class="hero-h1">
+      Everything digital.<br/><span class="grad">Built to win.</span>
+    </h1>
+    <p class="hero-sub">
+      We combine 15 years of enterprise performance marketing with proprietary AI systems built on Anthropic, Google Cloud, and Cloudflare. Not just campaigns — the technology that makes them unstoppable.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#services">Explore Services</a>
+      <a class="btn-outline" href="#contact">Start a Project →</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="arrow"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ── OFFERS (Gate One-style) ── -->
+<section class="offers-section">
+  <div class="container">
+    <div class="offers-header">
+      <div class="offers-label">What We Do</div>
+      <h2 class="offers-h2">AI-native performance at enterprise scale.</h2>
+      <p class="offers-sub">Web Everything is not a traditional agency. We are builders, strategists, and technologists who design the digital systems that give businesses a compounding edge. From paid media at $100M+ scale to autonomous AI agents that replace entire workflow layers — we deliver all of it.</p>
+    </div>
+    <div class="offers-grid">
+      <!-- Bullseye target -->
+      <div class="offer-card">
+        <div class="offer-icon">
+          <svg viewBox="0 0 52 52" width="52" height="52" fill="none" overflow="visible">
+            <circle cx="26" cy="26" r="22" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-dasharray="138" stroke-dashoffset="138" style="animation:drawIn .9s ease .2s forwards;--d:138"/>
+            <circle cx="26" cy="26" r="14" stroke="rgba(255,255,255,.65)" stroke-width="1.5" stroke-dasharray="88" stroke-dashoffset="88" style="animation:drawIn .8s ease .6s forwards;--d:88"/>
+            <circle cx="26" cy="26" r="6" stroke="rgba(255,255,255,.9)" stroke-width="1.5" stroke-dasharray="38" stroke-dashoffset="38" style="animation:drawIn .6s ease 1s forwards;--d:38"/>
+            <circle cx="26" cy="26" r="2.5" fill="#fff" opacity="0" style="animation:fadeUp .3s ease 1.4s forwards,nodePulse 2s ease 1.7s infinite"/>
+            <line x1="4" y1="26" x2="20" y2="26" stroke="rgba(255,255,255,.3)" stroke-width="1" stroke-dasharray="16" stroke-dashoffset="16" style="animation:drawIn .4s ease 1.1s forwards;--d:16"/>
+            <line x1="32" y1="26" x2="48" y2="26" stroke="rgba(255,255,255,.3)" stroke-width="1" stroke-dasharray="16" stroke-dashoffset="16" style="animation:drawIn .4s ease 1.1s forwards;--d:16"/>
+          </svg>
+        </div>
+        <div class="offer-title">Performance-first thinking</div>
+        <div class="offer-body">Every engagement is measured against revenue impact. We build systems that create compounding returns — not vanity dashboards.</div>
+      </div>
+
+      <!-- Neural network nodes -->
+      <div class="offer-card">
+        <div class="offer-icon">
+          <svg viewBox="0 0 52 52" width="52" height="52" fill="none" overflow="visible">
+            <line x1="10" y1="16" x2="26" y2="26" stroke="rgba(255,255,255,.35)" stroke-width="1" stroke-dasharray="20" stroke-dashoffset="20" style="animation:drawIn .4s ease .8s forwards;--d:20"/>
+            <line x1="10" y1="36" x2="26" y2="26" stroke="rgba(255,255,255,.35)" stroke-width="1" stroke-dasharray="20" stroke-dashoffset="20" style="animation:drawIn .4s ease .9s forwards;--d:20"/>
+            <line x1="26" y1="26" x2="42" y2="16" stroke="rgba(255,255,255,.35)" stroke-width="1" stroke-dasharray="20" stroke-dashoffset="20" style="animation:drawIn .4s ease 1s forwards;--d:20"/>
+            <line x1="26" y1="26" x2="42" y2="36" stroke="rgba(255,255,255,.35)" stroke-width="1" stroke-dasharray="20" stroke-dashoffset="20" style="animation:drawIn .4s ease 1.1s forwards;--d:20"/>
+            <line x1="10" y1="16" x2="10" y2="36" stroke="rgba(255,255,255,.2)" stroke-width="1" stroke-dasharray="20" stroke-dashoffset="20" style="animation:drawIn .3s ease 1.3s forwards;--d:20"/>
+            <line x1="42" y1="16" x2="42" y2="36" stroke="rgba(255,255,255,.2)" stroke-width="1" stroke-dasharray="20" stroke-dashoffset="20" style="animation:drawIn .3s ease 1.4s forwards;--d:20"/>
+            <circle cx="10" cy="16" r="4" fill="rgba(255,255,255,.7)" opacity="0" style="animation:fadeUp .3s ease .8s forwards,nodePulse 2s ease 1.1s infinite"/>
+            <circle cx="10" cy="36" r="4" fill="rgba(255,255,255,.7)" opacity="0" style="animation:fadeUp .3s ease .95s forwards,nodePulse 2s ease 1.25s infinite"/>
+            <circle cx="26" cy="26" r="6" fill="#fff" opacity="0" style="animation:fadeUp .4s ease 1.1s forwards,nodePulse 1.8s ease 1.5s infinite"/>
+            <circle cx="42" cy="16" r="4" fill="rgba(255,255,255,.7)" opacity="0" style="animation:fadeUp .3s ease 1.2s forwards,nodePulse 2s ease 1.5s infinite"/>
+            <circle cx="42" cy="36" r="4" fill="rgba(255,255,255,.7)" opacity="0" style="animation:fadeUp .3s ease 1.35s forwards,nodePulse 2s ease 1.65s infinite"/>
+          </svg>
+        </div>
+        <div class="offer-title">AI built in, not bolted on</div>
+        <div class="offer-body">We build directly on Anthropic's Claude API and MCP protocol. Your AI capabilities are proprietary, not rented from a black box SaaS.</div>
+      </div>
+
+      <!-- Globe with orbit ring -->
+      <div class="offer-card">
+        <div class="offer-icon">
+          <svg viewBox="0 0 52 52" width="52" height="52" fill="none" overflow="visible">
+            <circle cx="26" cy="26" r="20" stroke="rgba(255,255,255,.6)" stroke-width="1.5" stroke-dasharray="126" stroke-dashoffset="126" style="animation:drawIn 1s ease .1s forwards;--d:126"/>
+            <ellipse cx="26" cy="26" rx="10" ry="20" stroke="rgba(255,255,255,.35)" stroke-width="1" stroke-dasharray="95" stroke-dashoffset="95" style="animation:drawIn .8s ease .7s forwards;--d:95"/>
+            <line x1="6" y1="26" x2="46" y2="26" stroke="rgba(255,255,255,.3)" stroke-width="1" stroke-dasharray="40" stroke-dashoffset="40" style="animation:drawIn .5s ease .9s forwards;--d:40"/>
+            <line x1="9" y1="16" x2="43" y2="16" stroke="rgba(255,255,255,.2)" stroke-width="1" stroke-dasharray="34" stroke-dashoffset="34" style="animation:drawIn .4s ease 1.1s forwards;--d:34"/>
+            <line x1="9" y1="36" x2="43" y2="36" stroke="rgba(255,255,255,.2)" stroke-width="1" stroke-dasharray="34" stroke-dashoffset="34" style="animation:drawIn .4s ease 1.2s forwards;--d:34"/>
+            <ellipse cx="26" cy="26" rx="24" ry="8" stroke="rgba(255,255,255,.4)" stroke-width="1" fill="none" stroke-dasharray="5 5" style="animation:drawIn .8s ease 1.3s forwards">
+              <animateTransform attributeName="transform" type="rotate" from="0 26 26" to="360 26 26" dur="6s" begin="1.5s" repeatCount="indefinite"/>
+            </ellipse>
+            <circle cx="50" cy="26" r="3" fill="#fff" opacity="0" style="animation:fadeUp .3s ease 1.6s forwards,nodePulse 1.5s ease 1.9s infinite"/>
+          </svg>
+        </div>
+        <div class="offer-title">Truly full-stack digital</div>
+        <div class="offer-body">Strategy to execution across every digital surface — search, AI, web, data, and operations. One partner. Everything covered.</div>
+      </div>
+
+      <!-- Rising columns -->
+      <div class="offer-card">
+        <div class="offer-icon">
+          <svg viewBox="0 0 52 52" width="52" height="52" fill="none" overflow="visible">
+            <rect x="4" y="34" width="12" height="14" rx="1.5" fill="rgba(255,255,255,.4)" style="transform:scaleY(0);transform-origin:50% 100%;animation:riseBar .5s ease .3s forwards"/>
+            <rect x="20" y="22" width="12" height="26" rx="1.5" fill="rgba(255,255,255,.6)" style="transform:scaleY(0);transform-origin:50% 100%;animation:riseBar .5s ease .55s forwards"/>
+            <rect x="36" y="8" width="12" height="40" rx="1.5" fill="rgba(255,255,255,.85)" style="transform:scaleY(0);transform-origin:50% 100%;animation:riseBar .5s ease .8s forwards"/>
+            <polyline points="10,34 26,22 42,8" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="42" stroke-dashoffset="42" style="animation:drawIn .5s ease 1.2s forwards;--d:42"/>
+            <circle cx="10" cy="34" r="2.5" fill="#fff" opacity="0" style="animation:fadeUp .3s ease 1.4s forwards,nodePulse 2s ease 1.7s infinite"/>
+            <circle cx="26" cy="22" r="2.5" fill="#fff" opacity="0" style="animation:fadeUp .3s ease 1.5s forwards,nodePulse 2s ease 1.8s infinite"/>
+            <circle cx="42" cy="8" r="2.5" fill="#fff" opacity="0" style="animation:fadeUp .3s ease 1.6s forwards,nodePulse 2s ease 1.9s infinite"/>
+          </svg>
+        </div>
+        <div class="offer-title">Enterprise-grade, startup-fast</div>
+        <div class="offer-body">We've managed portfolios at Fortune 500 scale and shipped custom tools in weeks. We know how to operate in both environments.</div>
+      </div>
+
+      <!-- Circuit chip / lock -->
+      <div class="offer-card">
+        <div class="offer-icon">
+          <svg viewBox="0 0 52 52" width="52" height="52" fill="none" overflow="visible">
+            <rect x="14" y="14" width="24" height="24" rx="3" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-dasharray="96" stroke-dashoffset="96" style="animation:drawIn .9s ease .2s forwards;--d:96"/>
+            <rect x="20" y="20" width="12" height="12" rx="1.5" stroke="rgba(255,255,255,.5)" stroke-width="1" stroke-dasharray="48" stroke-dashoffset="48" style="animation:drawIn .6s ease .8s forwards;--d:48"/>
+            <line x1="14" y1="20" x2="4" y2="20" stroke="rgba(255,255,255,.4)" stroke-width="1.5" stroke-dasharray="10" stroke-dashoffset="10" style="animation:drawIn .3s ease 1s forwards;--d:10"/>
+            <line x1="14" y1="32" x2="4" y2="32" stroke="rgba(255,255,255,.4)" stroke-width="1.5" stroke-dasharray="10" stroke-dashoffset="10" style="animation:drawIn .3s ease 1.05s forwards;--d:10"/>
+            <line x1="38" y1="20" x2="48" y2="20" stroke="rgba(255,255,255,.4)" stroke-width="1.5" stroke-dasharray="10" stroke-dashoffset="10" style="animation:drawIn .3s ease 1.1s forwards;--d:10"/>
+            <line x1="38" y1="32" x2="48" y2="32" stroke="rgba(255,255,255,.4)" stroke-width="1.5" stroke-dasharray="10" stroke-dashoffset="10" style="animation:drawIn .3s ease 1.15s forwards;--d:10"/>
+            <line x1="20" y1="14" x2="20" y2="4" stroke="rgba(255,255,255,.4)" stroke-width="1.5" stroke-dasharray="10" stroke-dashoffset="10" style="animation:drawIn .3s ease 1.2s forwards;--d:10"/>
+            <line x1="32" y1="14" x2="32" y2="4" stroke="rgba(255,255,255,.4)" stroke-width="1.5" stroke-dasharray="10" stroke-dashoffset="10" style="animation:drawIn .3s ease 1.25s forwards;--d:10"/>
+            <line x1="20" y1="38" x2="20" y2="48" stroke="rgba(255,255,255,.4)" stroke-width="1.5" stroke-dasharray="10" stroke-dashoffset="10" style="animation:drawIn .3s ease 1.3s forwards;--d:10"/>
+            <line x1="32" y1="38" x2="32" y2="48" stroke="rgba(255,255,255,.4)" stroke-width="1.5" stroke-dasharray="10" stroke-dashoffset="10" style="animation:drawIn .3s ease 1.35s forwards;--d:10"/>
+            <circle cx="26" cy="26" r="3" fill="rgba(255,255,255,.9)" opacity="0" style="animation:fadeUp .3s ease 1.4s forwards,nodePulse 1.8s ease 1.7s infinite"/>
+          </svg>
+        </div>
+        <div class="offer-title">Owned technology, not rented</div>
+        <div class="offer-body">The tools we build stay with you. No black box platforms, no vendor lock-in. You own the performance logic from day one.</div>
+      </div>
+
+      <!-- Compound growth curve -->
+      <div class="offer-card">
+        <div class="offer-icon">
+          <svg viewBox="0 0 52 52" width="52" height="52" fill="none" overflow="visible">
+            <path d="M4 46 Q14 44 20 36 Q28 24 36 14 Q40 8 48 6" stroke="rgba(255,255,255,.8)" stroke-width="2" stroke-linecap="round" fill="none" stroke-dasharray="70" stroke-dashoffset="70" style="animation:drawIn 1.2s ease .2s forwards;--d:70"/>
+            <circle cx="4" cy="46" r="2.5" fill="rgba(255,255,255,.5)" opacity="0" style="animation:fadeUp .3s ease .4s forwards"/>
+            <circle cx="20" cy="36" r="2.5" fill="rgba(255,255,255,.6)" opacity="0" style="animation:fadeUp .3s ease .8s forwards,nodePulse 2.2s ease 1.1s infinite"/>
+            <circle cx="36" cy="14" r="2.5" fill="rgba(255,255,255,.8)" opacity="0" style="animation:fadeUp .3s ease 1.1s forwards,nodePulse 2.2s ease 1.4s infinite"/>
+            <circle cx="48" cy="6" r="3.5" fill="#fff" opacity="0" style="animation:fadeUp .3s ease 1.3s forwards,nodePulse 1.8s ease 1.6s infinite"/>
+            <polyline points="44,6 48,6 48,10" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="12" stroke-dashoffset="12" style="animation:drawIn .3s ease 1.5s forwards;--d:12"/>
+            <line x1="4" y1="48" x2="50" y2="48" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+            <line x1="4" y1="4" x2="4" y2="48" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="offer-title">Results that compound</div>
+        <div class="offer-body">Every system we build is designed to get better over time — through data, AI learning, and continuous optimization built into the architecture.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHAT WE DELIVER ── -->
+<section class="deliver-section">
+  <div class="container deliver-inner">
+    <div class="deliver-label">What We Deliver</div>
+    <div class="deliver-grid">
+      <!-- INSIGHTS: magnifying glass + scan beam -->
+      <div class="deliver-col">
+        <div class="deliver-icon">
+          <svg viewBox="0 0 80 80" width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+            <defs><clipPath id="lensClip"><circle cx="32" cy="32" r="19"/></clipPath></defs>
+            <circle cx="32" cy="32" r="19" stroke="#a855f7" stroke-width="2" stroke-dasharray="120" stroke-dashoffset="120" style="animation:drawIn 1.2s ease .1s forwards;--d:120"/>
+            <line x1="46" y1="46" x2="64" y2="64" stroke="#7c3aed" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="26" stroke-dashoffset="26" style="animation:drawIn .5s ease .9s forwards;--d:26"/>
+            <g clip-path="url(#lensClip)">
+              <line x1="13" y1="32" x2="51" y2="32" stroke="#ddb6fe" stroke-width="1.5" stroke-linecap="round" style="animation:scanLine 2.4s ease-in-out 1.4s infinite"/>
+            </g>
+            <circle cx="32" cy="24" r="2" fill="#c084fc" opacity="0" style="animation:fadeUp .4s ease 1.5s forwards,nodePulse 2.5s ease 1.9s infinite"/>
+            <circle cx="24" cy="38" r="2" fill="#c084fc" opacity="0" style="animation:fadeUp .4s ease 1.7s forwards,nodePulse 2.5s ease 2.1s infinite"/>
+            <circle cx="40" cy="38" r="2" fill="#a855f7" opacity="0" style="animation:fadeUp .4s ease 1.9s forwards,nodePulse 2.5s ease 2.3s infinite"/>
+          </svg>
+        </div>
+        <div class="deliver-title">Insights</div>
+        <div class="deliver-body">Discover deeper performance insights, faster — powered by AI and real-time data pipelines.</div>
+      </div>
+
+      <!-- PERFORMANCE: rising bar chart -->
+      <div class="deliver-col">
+        <div class="deliver-icon">
+          <svg viewBox="0 0 80 80" width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+            <g style="transform-origin:bottom">
+              <rect x="8" y="52" width="14" height="20" rx="2" fill="#6d28d9" style="transform:scaleY(0);transform-origin:50% 100%;animation:riseBar .6s ease .3s forwards"/>
+              <rect x="28" y="36" width="14" height="36" rx="2" fill="#9333ea" style="transform:scaleY(0);transform-origin:50% 100%;animation:riseBar .6s ease .55s forwards"/>
+              <rect x="48" y="18" width="14" height="54" rx="2" fill="#a855f7" style="transform:scaleY(0);transform-origin:50% 100%;animation:riseBar .6s ease .8s forwards"/>
+            </g>
+            <polyline points="55,14 62,7 69,12" stroke="#ddb6fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="20" stroke-dashoffset="20" style="animation:drawIn .4s ease 1.4s forwards;--d:20"/>
+            <line x1="55" y1="14" x2="55" y2="7" stroke="#ddb6fe" stroke-width="2" stroke-linecap="round" stroke-dasharray="8" stroke-dashoffset="8" style="animation:drawIn .3s ease 1.3s forwards;--d:8"/>
+            <circle cx="15" cy="52" r="3" fill="#c084fc" opacity="0" style="animation:fadeUp .3s ease 1s forwards,nodePulse 2s ease 1.3s infinite"/>
+            <circle cx="35" cy="36" r="3" fill="#c084fc" opacity="0" style="animation:fadeUp .3s ease 1.2s forwards,nodePulse 2s ease 1.5s infinite"/>
+            <circle cx="55" cy="18" r="3" fill="#ddb6fe" opacity="0" style="animation:fadeUp .3s ease 1.4s forwards,nodePulse 2s ease 1.7s infinite"/>
+          </svg>
+        </div>
+        <div class="deliver-title">Performance</div>
+        <div class="deliver-body">Design better systems that learn from campaign data and history to keep improving.</div>
+      </div>
+
+      <!-- AUTOMATION: orbit ring + rotating nodes -->
+      <div class="deliver-col">
+        <div class="deliver-icon">
+          <svg viewBox="0 0 80 80" width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+            <circle cx="40" cy="40" r="28" stroke="#6d28d9" stroke-width="1.5" stroke-dasharray="176" stroke-dashoffset="176" style="animation:drawIn 1.2s ease .1s forwards;--d:176"/>
+            <circle cx="40" cy="40" r="18" stroke="#9333ea" stroke-width="1" stroke-dasharray="113" stroke-dashoffset="113" style="animation:drawIn 1s ease .6s forwards;--d:113" stroke-dasharray2="4 6"/>
+            <circle cx="40" cy="40" r="6" fill="#a855f7" style="animation:nodePulse 2s ease 1.4s infinite"/>
+            <circle cx="40" cy="40" r="10" stroke="#c084fc" stroke-width="0.75" fill="none" opacity="0" style="animation:glowRing 2s ease 1.6s infinite"/>
+            <!-- Orbiting dot outer -->
+            <g style="transform-box:view-box;transform-origin:40px 40px;animation:spinCW 4s linear 1.2s infinite">
+              <circle cx="68" cy="40" r="4" fill="#ddb6fe"/>
+            </g>
+            <!-- Orbiting dot inner (counter) -->
+            <g style="transform-box:view-box;transform-origin:40px 40px;animation:spinCCW 3s linear 1.2s infinite">
+              <circle cx="58" cy="40" r="2.5" fill="#a855f7"/>
+            </g>
+            <!-- Circuit arms -->
+            <line x1="40" y1="12" x2="40" y2="22" stroke="#7c3aed" stroke-width="1" stroke-dasharray="10" stroke-dashoffset="10" style="animation:drawIn .3s ease 1.8s forwards;--d:10"/>
+            <line x1="40" y1="58" x2="40" y2="68" stroke="#7c3aed" stroke-width="1" stroke-dasharray="10" stroke-dashoffset="10" style="animation:drawIn .3s ease 1.9s forwards;--d:10"/>
+            <rect x="36" y="8" width="8" height="4" rx="1" fill="#9333ea" opacity="0" style="animation:fadeUp .3s ease 2.1s forwards"/>
+            <rect x="36" y="68" width="8" height="4" rx="1" fill="#9333ea" opacity="0" style="animation:fadeUp .3s ease 2.2s forwards"/>
+          </svg>
+        </div>
+        <div class="deliver-title">Automation</div>
+        <div class="deliver-body">Transform your operations with agentic AI — autonomous systems that execute without manual overhead.</div>
+      </div>
+
+      <!-- EXPERIENCES: person + radiating network -->
+      <div class="deliver-col">
+        <div class="deliver-icon">
+          <svg viewBox="0 0 80 80" width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+            <circle cx="40" cy="24" r="10" stroke="#a855f7" stroke-width="2" stroke-dasharray="63" stroke-dashoffset="63" style="animation:drawIn .8s ease .2s forwards;--d:63"/>
+            <path d="M22 62 Q22 46 40 46 Q58 46 58 62" stroke="#9333ea" stroke-width="2" stroke-linecap="round" fill="none" stroke-dasharray="50" stroke-dashoffset="50" style="animation:drawIn .7s ease .8s forwards;--d:50"/>
+            <!-- Radiating lines to nodes -->
+            <line x1="40" y1="36" x2="12" y2="20" stroke="#7c3aed" stroke-width="1" stroke-dasharray="32" stroke-dashoffset="32" opacity="0.7" style="animation:drawIn .5s ease 1.3s forwards;--d:32"/>
+            <line x1="40" y1="36" x2="68" y2="20" stroke="#7c3aed" stroke-width="1" stroke-dasharray="32" stroke-dashoffset="32" opacity="0.7" style="animation:drawIn .5s ease 1.4s forwards;--d:32"/>
+            <line x1="40" y1="46" x2="8" y2="54" stroke="#7c3aed" stroke-width="1" stroke-dasharray="34" stroke-dashoffset="34" opacity="0.7" style="animation:drawIn .5s ease 1.5s forwards;--d:34"/>
+            <line x1="40" y1="46" x2="72" y2="54" stroke="#7c3aed" stroke-width="1" stroke-dasharray="34" stroke-dashoffset="34" opacity="0.7" style="animation:drawIn .5s ease 1.6s forwards;--d:34"/>
+            <!-- Node circles -->
+            <circle cx="12" cy="20" r="4" fill="#c084fc" opacity="0" style="animation:fadeUp .3s ease 1.8s forwards,nodePulse 2.2s ease 2.1s infinite"/>
+            <circle cx="68" cy="20" r="4" fill="#c084fc" opacity="0" style="animation:fadeUp .3s ease 1.9s forwards,nodePulse 2.2s ease 2.2s infinite"/>
+            <circle cx="8" cy="54" r="4" fill="#a855f7" opacity="0" style="animation:fadeUp .3s ease 2s forwards,nodePulse 2.2s ease 2.3s infinite"/>
+            <circle cx="72" cy="54" r="4" fill="#a855f7" opacity="0" style="animation:fadeUp .3s ease 2.1s forwards,nodePulse 2.2s ease 2.4s infinite"/>
+            <!-- Cross-connections between nodes -->
+            <line x1="12" y1="20" x2="8" y2="54" stroke="#6d28d9" stroke-width="0.75" opacity="0" style="animation:fadeUp .3s ease 2.3s forwards"/>
+            <line x1="68" y1="20" x2="72" y2="54" stroke="#6d28d9" stroke-width="0.75" opacity="0" style="animation:fadeUp .3s ease 2.4s forwards"/>
+          </svg>
+        </div>
+        <div class="deliver-title">Experiences</div>
+        <div class="deliver-body">Make digital experiences better with AI that predicts, analyses, understands, and adapts to each user.</div>
+      </div>
+
+      <!-- CONFIDENCE: shield + checkmark -->
+      <div class="deliver-col">
+        <div class="deliver-icon">
+          <svg viewBox="0 0 80 80" width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+            <path d="M40 8 L68 20 L68 42 Q68 62 40 74 Q12 62 12 42 L12 20 Z" stroke="#a855f7" stroke-width="2" stroke-linejoin="round" fill="none" stroke-dasharray="200" stroke-dashoffset="200" style="animation:drawIn 1.2s ease .1s forwards;--d:200"/>
+            <path d="M40 8 L68 20 L68 42 Q68 62 40 74 Q12 62 12 42 L12 20 Z" fill="#a855f7" opacity="0" style="animation:fadeUp .5s ease 1.1s forwards" style2="opacity:.06"/>
+            <path d="M40 8 L68 20 L68 42 Q68 62 40 74 Q12 62 12 42 L12 20 Z" fill="rgba(168,85,247,0.07)" opacity="0" style="animation:fadeUp .5s ease 1.1s forwards"/>
+            <polyline points="26,40 36,52 54,30" stroke="#ddb6fe" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="46" stroke-dashoffset="46" style="animation:drawIn .7s ease 1.4s forwards;--d:46"/>
+            <!-- Outer glow rings -->
+            <circle cx="40" cy="41" r="32" stroke="#9333ea" stroke-width="0.75" fill="none" opacity="0" style="animation:glowRing 2.5s ease 1.8s infinite"/>
+            <circle cx="40" cy="41" r="38" stroke="#7c3aed" stroke-width="0.5" fill="none" opacity="0" style="animation:glowRing 2.5s ease 2.2s infinite"/>
+          </svg>
+        </div>
+        <div class="deliver-title">Confidence</div>
+        <div class="deliver-body">Design, build, and embed responsible AI solutions — and give your team confidence in every decision.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div>
+        <div class="stat-n">$100M+</div>
+        <div class="stat-l">Managed Ad Spend</div>
+      </div>
+      <div>
+        <div class="stat-n">15</div>
+        <div class="stat-l">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-n">12</div>
+        <div class="stat-l">Service Lines</div>
+      </div>
+      <div>
+        <div class="stat-n">AI-Native</div>
+        <div class="stat-l">Built on Anthropic</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section class="services-section" id="services">
+  <div class="container">
+    <div class="eyebrow" style="color:var(--p6)">Our Services</div>
+    <h2 class="section-h2" style="color:var(--tx-light)">Everything digital, under one roof.</h2>
+    <div class="svc-list">
+
+      <div class="svc-row">
+        <div class="svc-num">01</div>
+        <div class="svc-content">
+          <div class="svc-title">AI Strategy & Integration</div>
+          <div class="svc-body">We design your AI roadmap from the ground up — identifying where AI creates durable competitive advantage and building the systems to capture it. Strategy, architecture, and deployment, end to end.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Anthropic</span>
+            <span class="svc-tag">Claude API</span>
+            <span class="svc-tag">AI Roadmap</span>
+            <span class="svc-tag">Enterprise AI</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row">
+        <div class="svc-num">02</div>
+        <div class="svc-content">
+          <div class="svc-title">Performance Marketing</div>
+          <div class="svc-body">High-scale paid search and performance media across healthcare, pharma, automotive, and D2C. $100M+ in managed portfolios. We don't just run ads — we engineer the entire acquisition system.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Google Ads</span>
+            <span class="svc-tag">Microsoft Ads</span>
+            <span class="svc-tag">Paid Search</span>
+            <span class="svc-tag">Healthcare</span>
+            <span class="svc-tag">D2C</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row">
+        <div class="svc-num">03</div>
+        <div class="svc-content">
+          <div class="svc-title">AdTech Development</div>
+          <div class="svc-body">Custom advertising technology built on Anthropic, Google Cloud, and Cloudflare. Direct API and MCP integrations that automate campaign execution and give clients full ownership of their performance logic. No black box.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Anthropic API</span>
+            <span class="svc-tag">Claude</span>
+            <span class="svc-tag">Google Cloud</span>
+            <span class="svc-tag">Cloudflare</span>
+            <span class="svc-tag">MCP</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row">
+        <div class="svc-num">04</div>
+        <div class="svc-content">
+          <div class="svc-title">Agentic AI Systems</div>
+          <div class="svc-body">We build autonomous AI agents powered by Claude that replace repetitive workflow layers — research, reporting, campaign management, content, and operations. Designed with MCP for true system integration, not prompt wrappers.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Agentic AI</span>
+            <span class="svc-tag">Claude</span>
+            <span class="svc-tag">MCP Protocol</span>
+            <span class="svc-tag">Workflow Automation</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row">
+        <div class="svc-num">05</div>
+        <div class="svc-content">
+          <div class="svc-title">Generative Engine Optimization (GEO)</div>
+          <div class="svc-body">AI visibility strategy for ChatGPT, Perplexity, and Google AI Overviews. A distinct strategic layer focused on how large language models surface and prioritize your brand — the next frontier of search.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">ChatGPT</span>
+            <span class="svc-tag">Perplexity</span>
+            <span class="svc-tag">Google AI Overviews</span>
+            <span class="svc-tag">LLM Visibility</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row">
+        <div class="svc-num">06</div>
+        <div class="svc-content">
+          <div class="svc-title">Marketing Transformation</div>
+          <div class="svc-body">End-to-end modernization of marketing operations — from martech stack consolidation to AI-augmented team design. We help organizations move from campaign-centric to customer-centric at speed.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Martech</span>
+            <span class="svc-tag">Ops Design</span>
+            <span class="svc-tag">Change Management</span>
+            <span class="svc-tag">AI Enablement</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row">
+        <div class="svc-num">07</div>
+        <div class="svc-content">
+          <div class="svc-title">Customer Experience</div>
+          <div class="svc-body">Journey design, personalization architecture, and CX strategy backed by data. We map the full customer lifecycle and identify where AI and automation create step-changes in experience quality.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">CX Strategy</span>
+            <span class="svc-tag">Personalization</span>
+            <span class="svc-tag">Journey Design</span>
+            <span class="svc-tag">AI-Augmented CX</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row">
+        <div class="svc-num">08</div>
+        <div class="svc-content">
+          <div class="svc-title">Analytics & Reporting</div>
+          <div class="svc-body">Reporting frameworks, data pipelines, and dashboards built for clarity. You should be able to read your own numbers — and act on them. We make that possible without a full-time data team.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">GA4</span>
+            <span class="svc-tag">Looker Studio</span>
+            <span class="svc-tag">Data Pipelines</span>
+            <span class="svc-tag">Dashboards</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row">
+        <div class="svc-num">09</div>
+        <div class="svc-content">
+          <div class="svc-title">Digital & Data Transformation</div>
+          <div class="svc-body">Modernizing the data foundation that makes everything else possible. From data architecture and governance to AI-ready pipelines and real-time decisioning infrastructure.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Data Architecture</span>
+            <span class="svc-tag">BigQuery</span>
+            <span class="svc-tag">Data Governance</span>
+            <span class="svc-tag">Real-time</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row">
+        <div class="svc-num">10</div>
+        <div class="svc-content">
+          <div class="svc-title">Digital Operations</div>
+          <div class="svc-body">End-to-end strategy and execution for growth-stage businesses. From search to full digital operations — Webflow, Shopify, Stripe, and the connective tissue that ties them together.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Webflow</span>
+            <span class="svc-tag">Shopify</span>
+            <span class="svc-tag">Stripe</span>
+            <span class="svc-tag">E-Commerce</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row">
+        <div class="svc-num">11</div>
+        <div class="svc-content">
+          <div class="svc-title">Market Intelligence</div>
+          <div class="svc-body">Research-backed strategic positioning for complex and emerging markets — domestic, international, and non-standard environments including Naver, Daum, and non-Google search platforms.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Naver</span>
+            <span class="svc-tag">Daum</span>
+            <span class="svc-tag">International Search</span>
+            <span class="svc-tag">Competitive Intelligence</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row">
+        <div class="svc-num">12</div>
+        <div class="svc-content">
+          <div class="svc-title">Web Design & Development</div>
+          <div class="svc-body">Performance-first web build: Webflow for marketing sites, custom builds for product — all designed with GEO and conversion in mind from the first wireframe. We build the site and the strategy behind it.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Webflow</span>
+            <span class="svc-tag">Custom Dev</span>
+            <span class="svc-tag">Conversion Design</span>
+            <span class="svc-tag">GEO-Ready</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CLIENT LOGOS ── -->
+<section class="logos-section">
+  <div class="container">
+    <div class="logos-eyebrow">Trusted by teams at</div>
+    <div class="logos-track">
+      <div class="logo-ph">Healthcare Co.</div>
+      <div class="logo-ph">Pharma Brand</div>
+      <div class="logo-ph">Auto Group</div>
+      <div class="logo-ph">D2C Retailer</div>
+      <div class="logo-ph">SaaS Platform</div>
+      <div class="logo-ph">Finance Co.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INSIGHTS ── -->
+<section class="insights-section" id="insights">
+  <div class="container">
+    <div class="insights-header">
+      <div>
+        <div class="eyebrow">Insights</div>
+        <h2 class="section-h2">Thinking on AI, performance &amp; the digital frontier.</h2>
+      </div>
+      <a class="btn-ghost" href="#">View all articles →</a>
+    </div>
+    <div class="insights-grid">
+      <div class="insight-card">
+        <div class="insight-img">🤖</div>
+        <div class="insight-body">
+          <div class="insight-tag">Agentic AI</div>
+          <div class="insight-title">Why MCP Changes Everything for Marketing Automation</div>
+          <div class="insight-meta">April 2026 · 8 min read</div>
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-img">🔍</div>
+        <div class="insight-body">
+          <div class="insight-tag">GEO</div>
+          <div class="insight-title">Your Brand in the Age of AI Search: A GEO Primer for 2026</div>
+          <div class="insight-meta">March 2026 · 6 min read</div>
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-img">📊</div>
+        <div class="insight-body">
+          <div class="insight-tag">AdTech</div>
+          <div class="insight-title">The Case for Owning Your Advertising Technology Stack</div>
+          <div class="insight-meta">February 2026 · 10 min read</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials-section" id="work">
+  <div class="container">
+    <div class="eyebrow" style="color:var(--p6)">Client Stories</div>
+    <h2 class="section-h2">What it's like to work with us.</h2>
+    <div class="testi-grid">
+      <div class="testi-card featured">
+        <div class="testi-quote">
+          The AdTech systems Kenny built gave us complete ownership of our performance logic for the first time. We stopped renting capability from platforms and started building our own. The compounding advantage is real.
+        </div>
+        <div class="testi-attr">
+          <div class="testi-avatar">VP</div>
+          <div>
+            <div class="testi-name">VP of Growth</div>
+            <div class="testi-role">Healthcare D2C Brand — $40M ARR</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">
+          Moved us from a manual reporting nightmare to a fully automated, real-time dashboard in three weeks. I can finally read my own numbers.
+        </div>
+        <div class="testi-attr">
+          <div class="testi-avatar">MD</div>
+          <div>
+            <div class="testi-name">Marketing Director</div>
+            <div class="testi-role">Automotive Group</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">
+          GEO wasn't even on our radar six months ago. Now it's a core pillar of how we think about brand visibility. The strategy was clear, the execution was faster than expected.
+        </div>
+        <div class="testi-attr">
+          <div class="testi-avatar">CD</div>
+          <div>
+            <div class="testi-name">Chief Digital Officer</div>
+            <div class="testi-role">Mid-Market Pharma</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AI CALLOUT ── -->
+<section class="ai-section">
+  <div class="container">
+    <div class="ai-inner">
+      <div class="ai-eyebrow">Powered by Anthropic</div>
+      <h2 class="ai-h2">Built on the best AI infrastructure in the world.</h2>
+      <p class="ai-body">
+        Every AI system we build runs on Anthropic's Claude — the most reliable, capable, and safe large language model available. We work directly with the API, MCP protocol, and the full Claude toolchain. No middleware, no lock-in.
+      </p>
+      <div class="ai-badges">
+        <span class="ai-badge">Claude API</span>
+        <span class="ai-badge">MCP Protocol</span>
+        <span class="ai-badge">Claude Sonnet 4</span>
+        <span class="ai-badge">Claude Opus 4</span>
+        <span class="ai-badge">Prompt Caching</span>
+        <span class="ai-badge">Tool Use</span>
+        <span class="ai-badge">Agentic Systems</span>
+      </div>
+      <a class="btn-primary" href="#contact">Build with us →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ── -->
+<section class="cta-section">
+  <div class="container" style="position:relative">
+    <h2 class="section-h2">Ready to build something that lasts?</h2>
+    <p class="section-body">
+      Whether you need a full digital transformation or a single AI system that changes everything — we're built for it.
+    </p>
+    <div class="cta-btns">
+      <a class="btn-white" href="#contact">Start a Project</a>
+      <a class="btn-outline-white" href="#services">See All Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="eyebrow">Get in Touch</div>
+    <h2 class="section-h2">Let's build your next thing.</h2>
+    <div class="contact-grid">
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-field">
+            <label>First Name</label>
+            <input type="text" placeholder="Jane"/>
+          </div>
+          <div class="form-field">
+            <label>Last Name</label>
+            <input type="text" placeholder="Smith"/>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" placeholder="jane@company.com"/>
+        </div>
+        <div class="form-field">
+          <label>Company</label>
+          <input type="text" placeholder="Acme Corp"/>
+        </div>
+        <div class="form-field">
+          <label>Service Interest</label>
+          <select>
+            <option value="" disabled selected>Select a service...</option>
+            <option>AI Strategy & Integration</option>
+            <option>Performance Marketing</option>
+            <option>AdTech Development</option>
+            <option>Agentic AI Systems</option>
+            <option>Generative Engine Optimization (GEO)</option>
+            <option>Marketing Transformation</option>
+            <option>Customer Experience</option>
+            <option>Analytics & Reporting</option>
+            <option>Digital & Data Transformation</option>
+            <option>Digital Operations</option>
+            <option>Market Intelligence</option>
+            <option>Web Design & Development</option>
+            <option>Not sure — let's talk</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Tell us about your project</label>
+          <textarea rows="4" placeholder="What are you trying to build or solve?"></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;cursor:pointer;border:none;font-size:.95rem">Send Message →</button>
+      </div>
+      <div class="contact-info">
+        <div class="contact-info-title">Work with us directly.</div>
+        <div class="contact-info-body">
+          We take on a limited number of engagements at a time to ensure every client gets our full attention. If you have a real problem and need a team that can actually solve it — reach out.
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-val">hello@webeverything.io</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">💼</div>
+          <div>
+            <div class="contact-item-label">LinkedIn</div>
+            <div class="contact-item-val">Kenny Gimpert II</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-item-label">Based In</div>
+            <div class="contact-item-val">United States · Remote-first</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="#" style="font-size:1.5rem">
+          Web<span class="logo-accent">Everything</span>
+        </a>
+        <p class="footer-tagline">
+          AI-powered digital agency combining enterprise performance marketing, proprietary AdTech, and agentic AI systems. Built to win.
+        </p>
+        <div class="footer-social">
+          <a class="social-btn" href="#" title="LinkedIn">in</a>
+          <a class="social-btn" href="#" title="X / Twitter">𝕏</a>
+          <a class="social-btn" href="#" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-label">Services</div>
+        <a class="footer-link" href="#">AI Strategy</a>
+        <a class="footer-link" href="#">Performance Marketing</a>
+        <a class="footer-link" href="#">AdTech Development</a>
+        <a class="footer-link" href="#">Agentic AI Systems</a>
+        <a class="footer-link" href="#">GEO</a>
+        <a class="footer-link" href="#">All Services →</a>
+      </div>
+      <div>
+        <div class="footer-col-label">Company</div>
+        <a class="footer-link" href="#">About</a>
+        <a class="footer-link" href="#">Insights</a>
+        <a class="footer-link" href="#">Case Studies</a>
+        <a class="footer-link" href="#">Careers</a>
+        <a class="footer-link" href="#">Contact</a>
+      </div>
+      <div>
+        <div class="footer-col-label">Built On</div>
+        <a class="footer-link" href="#">Anthropic / Claude</a>
+        <a class="footer-link" href="#">Google Cloud</a>
+        <a class="footer-link" href="#">Cloudflare</a>
+        <a class="footer-link" href="#">Webflow</a>
+        <a class="footer-link" href="#">MCP Protocol</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Web Everything. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
