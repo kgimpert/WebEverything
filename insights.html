@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Insights — Web Everything</title>
+  <meta name="description" content="Practical thinking on AI, performance marketing, AdTech, and digital transformation — written by people who build these systems."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --p9:#2e0060;--p8:#4a0090;--p7:#6d28d9;--p6:#7c3aed;
+      --p5:#9333ea;--p4:#a855f7;--p3:#c084fc;--p2:#ddb6fe;
+      --glow:rgba(147,51,234,.35);--glows:rgba(147,51,234,.6);
+      --dark:#05050d;--dark2:#080814;--dark3:#0d0d1f;
+      --light:#ffffff;--light2:#f9f6ff;--light3:#ede8ff;
+      --tx-dark:#f0f0f8;--tx-light:#18102e;
+      --muted-dark:#9090b0;--muted-light:#5a4080;
+      --bd-dark:rgba(147,51,234,.2);--bd-light:rgba(109,40,217,.15);
+    }
+
+    html{scroll-behavior:smooth}
+    body{font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;overflow-x:hidden;line-height:1.65;background:var(--dark)}
+
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      background:rgba(5,5,13,.92);backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--bd-dark);
+      transition:background .3s;
+    }
+    .nav-inner{
+      max-width:1280px;margin:0 auto;padding:0 2rem;
+      display:flex;align-items:center;justify-content:space-between;height:68px;
+    }
+    .nav-logo{
+      font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:800;
+      color:#fff;cursor:pointer;text-decoration:none;letter-spacing:-.02em;
+      line-height:1;white-space:nowrap;
+      transition:opacity .2s;
+    }
+    .nav-logo:hover{opacity:.85}
+    .nav-logo .logo-accent{color:var(--p4)}
+    .nav-links{display:flex;align-items:center;gap:.25rem}
+    .nav-link{
+      position:relative;padding:.5rem 1rem;font-size:.875rem;font-weight:500;
+      color:var(--muted-dark);cursor:pointer;transition:color .2s;
+      border-radius:8px;white-space:nowrap;text-decoration:none;display:block;
+    }
+    .nav-link:hover{color:var(--tx-dark)}
+    .nav-link.has-drop:after{content:'▾';margin-left:.3rem;font-size:.7em;opacity:.6}
+    /* dropdown */
+    .drop{
+      position:absolute;top:calc(100% + 8px);left:0;
+      background:rgba(8,8,20,.97);border:1px solid var(--bd-dark);
+      border-radius:14px;padding:1rem;min-width:260px;
+      opacity:0;pointer-events:none;transform:translateY(-8px);
+      transition:opacity .2s,transform .2s;
+    }
+    .nav-link:hover .drop,.nav-link:focus-within .drop{opacity:1;pointer-events:all;transform:translateY(0)}
+    .drop-item{
+      display:block;padding:.55rem .85rem;font-size:.82rem;color:var(--muted-dark);
+      cursor:pointer;border-radius:8px;transition:background .15s,color .15s;
+      text-decoration:none;white-space:nowrap;
+    }
+    .drop-item:hover{background:rgba(147,51,234,.12);color:var(--p3)}
+    .drop-divider{height:1px;background:var(--bd-dark);margin:.5rem 0}
+    .drop-label{padding:.3rem .85rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--p6)}
+    .nav-cta{
+      margin-left:.75rem;padding:.55rem 1.35rem;
+      background:linear-gradient(135deg,var(--p6),var(--p5));
+      color:#fff;font-size:.875rem;font-weight:600;border-radius:10px;
+      text-decoration:none;transition:opacity .2s,box-shadow .2s;
+      box-shadow:0 0 20px var(--glow);
+    }
+    .nav-cta:hover{opacity:.88;box-shadow:0 0 35px var(--glows)}
+    .nav-mobile-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem}
+    .nav-mobile-btn span{display:block;width:22px;height:2px;background:var(--tx-dark);border-radius:2px;transition:.3s}
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .nav-mobile-btn{display:flex}
+      .nav-cta{display:none}
+    }
+
+    /* ── CONTAINER ── */
+    .container{max-width:1200px;margin:0 auto;padding:0 2rem}
+
+    /* ── SECTION SHARED ── */
+    section{padding:7rem 0}
+    .eyebrow{
+      font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--p6);margin-bottom:1.25rem;
+    }
+    .section-h2{
+      font-size:clamp(2rem,4vw,3.2rem);font-weight:800;letter-spacing:-.03em;
+      line-height:1.1;margin-bottom:1.25rem;
+    }
+    .section-body{font-size:1.05rem;color:var(--muted-light);line-height:1.8;max-width:680px}
+
+    /* ── PAGE HERO ── */
+    .page-hero{
+      position:relative;min-height:40vh;display:flex;align-items:center;
+      background:var(--dark);padding:10rem 2rem 5rem;overflow:hidden;
+    }
+    .page-hero::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse at 60% 40%,rgba(109,40,217,.18) 0%,transparent 65%),
+                 radial-gradient(ellipse at 20% 80%,rgba(147,51,234,.1) 0%,transparent 55%);
+    }
+    .page-hero-inner{position:relative;z-index:2;max-width:760px}
+    .page-eyebrow{
+      display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--p4);margin-bottom:1.5rem;
+      padding:.4rem 1rem;border:1px solid rgba(168,85,247,.3);border-radius:100px;
+      background:rgba(168,85,247,.08);
+    }
+    .page-h1{
+      font-size:clamp(2.5rem,6vw,5rem);font-weight:900;letter-spacing:-.04em;
+      line-height:1.04;color:var(--tx-dark);margin-bottom:1.25rem;
+    }
+    .page-sub{
+      font-size:clamp(.95rem,1.8vw,1.15rem);color:var(--muted-dark);
+      max-width:620px;line-height:1.8;
+    }
+
+    /* ── FILTER TABS ── */
+    .filter-section{
+      background:var(--dark);padding:0 0 3rem;
+      border-bottom:1px solid var(--bd-dark);
+    }
+    .filter-inner{max-width:1200px;margin:0 auto;padding:0 2rem}
+    .filter-tabs{display:flex;gap:.5rem;flex-wrap:wrap}
+    .filter-tab{
+      padding:.45rem 1.1rem;border-radius:100px;font-size:.82rem;font-weight:600;
+      text-decoration:none;transition:background .2s,color .2s,border-color .2s;
+      border:1.5px solid var(--bd-dark);color:var(--muted-dark);
+      cursor:pointer;
+    }
+    .filter-tab:hover{border-color:var(--p5);color:var(--p3)}
+    .filter-tab.active{
+      background:var(--p6);border-color:var(--p6);color:#fff;
+    }
+
+    /* ── FEATURED INSIGHT ── */
+    .featured-section{background:var(--dark);padding:4rem 0 0}
+    .featured-card{
+      background:rgba(255,255,255,.04);border:1px solid var(--bd-dark);
+      border-left:4px solid var(--p6);border-radius:18px;padding:3rem 3.5rem;
+      display:grid;grid-template-columns:1fr auto;gap:2rem 4rem;align-items:center;
+      transition:border-color .2s,box-shadow .2s;cursor:pointer;
+    }
+    .featured-card:hover{border-left-color:var(--p4);box-shadow:0 0 60px rgba(147,51,234,.1)}
+    .featured-label{
+      display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--p4);padding:.25rem .7rem;background:rgba(168,85,247,.12);border-radius:100px;margin-bottom:1.1rem;
+    }
+    .featured-title{
+      font-size:clamp(1.4rem,2.5vw,2rem);font-weight:800;letter-spacing:-.03em;
+      color:var(--tx-dark);line-height:1.2;margin-bottom:1rem;
+    }
+    .featured-desc{font-size:.95rem;color:var(--muted-dark);line-height:1.8;margin-bottom:1.5rem;max-width:640px}
+    .featured-meta{font-size:.8rem;color:var(--muted-dark);margin-bottom:1.75rem}
+    .featured-cta{
+      display:inline-block;padding:.75rem 1.75rem;
+      background:linear-gradient(135deg,var(--p6),var(--p5));
+      color:#fff;font-weight:700;font-size:.9rem;border-radius:10px;
+      text-decoration:none;transition:opacity .2s,box-shadow .2s;
+      box-shadow:0 0 24px var(--glow);white-space:nowrap;
+    }
+    .featured-cta:hover{opacity:.88;box-shadow:0 0 40px var(--glows)}
+    .featured-badge{
+      text-align:center;flex-shrink:0;
+    }
+    .featured-badge-inner{
+      width:120px;height:120px;border-radius:50%;
+      background:linear-gradient(135deg,var(--p9),var(--p7));
+      border:2px solid var(--bd-dark);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+    }
+    .featured-badge-num{font-size:1.6rem;font-weight:900;color:var(--p3);line-height:1}
+    .featured-badge-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dark);margin-top:.2rem}
+    @media(max-width:760px){
+      .featured-card{grid-template-columns:1fr;padding:2rem}
+      .featured-badge{display:none}
+    }
+
+    /* ── INSIGHTS GRID ── */
+    .insights-section{background:var(--dark);padding:4rem 0 7rem}
+    .insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .insight-card{
+      background:rgba(255,255,255,.04);border:1px solid var(--bd-dark);border-radius:18px;
+      overflow:hidden;transition:border-color .2s,transform .2s;cursor:pointer;
+      text-decoration:none;display:block;
+    }
+    .insight-card:hover{border-color:rgba(147,51,234,.45);transform:translateY(-4px)}
+    .insight-img{
+      height:180px;background:linear-gradient(135deg,var(--p9),var(--p8));
+      display:flex;align-items:center;justify-content:center;
+      font-size:2.5rem;
+    }
+    .insight-body{padding:1.5rem}
+    .insight-tag{
+      display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--p4);padding:.25rem .7rem;background:rgba(168,85,247,.12);border-radius:100px;margin-bottom:1rem;
+    }
+    .insight-title{font-size:1rem;font-weight:700;color:var(--tx-dark);line-height:1.45;margin-bottom:.6rem}
+    .insight-meta{font-size:.78rem;color:var(--muted-dark)}
+    @media(max-width:900px){.insights-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.insights-grid{grid-template-columns:1fr}}
+
+    /* ── SVG CARD ILLUSTRATIONS ── */
+    .insight-img svg{opacity:.9}
+
+    /* ── NEWSLETTER ── */
+    .newsletter-section{
+      background:var(--light2);padding:7rem 0;
+    }
+    .newsletter-inner{max-width:600px;margin:0 auto;text-align:center;padding:0 2rem}
+    .newsletter-eyebrow{
+      font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--p6);margin-bottom:1.25rem;
+    }
+    .newsletter-h2{
+      font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-.03em;
+      line-height:1.1;color:var(--tx-light);margin-bottom:1rem;
+    }
+    .newsletter-sub{font-size:1rem;color:var(--muted-light);line-height:1.75;margin-bottom:2.5rem}
+    .newsletter-form{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
+    .newsletter-input{
+      flex:1;min-width:220px;padding:.75rem 1.2rem;
+      background:#fff;border:1.5px solid var(--bd-light);border-radius:10px;
+      font-size:.9rem;font-family:inherit;color:var(--tx-light);outline:none;
+      transition:border-color .2s;
+    }
+    .newsletter-input:focus{border-color:var(--p6)}
+    .newsletter-input::placeholder{color:var(--muted-light);opacity:.6}
+    .newsletter-btn{
+      padding:.75rem 1.75rem;background:linear-gradient(135deg,var(--p6),var(--p5));
+      color:#fff;font-weight:700;font-size:.9rem;border-radius:10px;
+      border:none;cursor:pointer;transition:opacity .2s,box-shadow .2s;
+      box-shadow:0 0 20px var(--glow);white-space:nowrap;
+    }
+    .newsletter-btn:hover{opacity:.88;box-shadow:0 0 35px var(--glows)}
+
+    /* ── CTA BANNER ── */
+    .cta-section{
+      background:linear-gradient(135deg,var(--p9) 0%,var(--p8) 40%,var(--p7) 100%);
+      padding:6rem 0;text-align:center;position:relative;overflow:hidden;
+    }
+    .cta-section::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse at center,rgba(168,85,247,.2) 0%,transparent 70%);
+    }
+    .cta-section .section-h2{color:#fff;max-width:700px;margin:0 auto 1rem}
+    .cta-section .section-body{color:rgba(240,240,248,.75);margin:0 auto 2.5rem;max-width:560px}
+    .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative}
+    .btn-white{
+      padding:.85rem 2.2rem;background:#fff;
+      color:var(--p7);font-weight:700;font-size:.95rem;border-radius:12px;
+      text-decoration:none;transition:opacity .2s;
+    }
+    .btn-white:hover{opacity:.9}
+
+    /* ── FOOTER ── */
+    footer{background:var(--dark);border-top:1px solid var(--bd-dark);padding:5rem 0 3rem}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:4rem}
+    .footer-brand .nav-logo{font-size:1.6rem;display:inline-flex;margin-bottom:1.25rem}
+    .footer-tagline{font-size:.875rem;color:var(--muted-dark);line-height:1.7;max-width:280px;margin-bottom:1.5rem}
+    .footer-social{display:flex;gap:.75rem}
+    .social-btn{
+      width:38px;height:38px;border-radius:10px;border:1px solid var(--bd-dark);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--muted-dark);font-size:.85rem;cursor:pointer;transition:background .2s,color .2s,border-color .2s;
+      text-decoration:none;
+    }
+    .social-btn:hover{background:rgba(147,51,234,.15);color:var(--p3);border-color:var(--p6)}
+    .footer-col-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--p5);margin-bottom:1.1rem}
+    .footer-link{display:block;font-size:.875rem;color:var(--muted-dark);margin-bottom:.6rem;text-decoration:none;transition:color .2s;cursor:pointer}
+    .footer-link:hover{color:var(--p3)}
+    .footer-bottom{border-top:1px solid var(--bd-dark);padding-top:2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .footer-copy{font-size:.8rem;color:var(--muted-dark)}
+    .footer-legal{display:flex;gap:1.5rem}
+    .footer-legal a{font-size:.8rem;color:var(--muted-dark);text-decoration:none;transition:color .2s}
+    .footer-legal a:hover{color:var(--p3)}
+    @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;gap:3rem}}
+    @media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+  
+    .mobile-menu{
+      display:none;position:fixed;inset:0;background:rgba(5,5,13,.99);
+      z-index:101;flex-direction:column;align-items:flex-start;
+      justify-content:flex-start;padding:5rem 2.5rem 2.5rem;gap:0;
+      overflow-y:auto;
+    }
+    .nav-mobile-open .mobile-menu{display:flex}
+    .mobile-menu .m-link{
+      font-size:2rem;font-weight:800;color:var(--tx-dark);
+      text-decoration:none;padding:.55rem 0;letter-spacing:-.03em;
+      transition:color .2s;display:block;width:100%;
+      border-bottom:1px solid rgba(147,51,234,.1);
+    }
+    .mobile-menu .m-link:hover{color:var(--p4)}
+    .mobile-menu .m-section{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--p6);margin:1.25rem 0 .25rem}
+    .mobile-menu .m-sub{font-size:1rem;font-weight:500;color:var(--muted-dark);text-decoration:none;display:block;padding:.35rem 0;transition:color .2s}
+    .mobile-menu .m-sub:hover{color:var(--p3)}
+    .mobile-menu .m-cta{margin-top:2rem;padding:.85rem 2.2rem;background:linear-gradient(135deg,var(--p6),var(--p5));color:#fff;font-weight:700;font-size:1rem;border-radius:12px;text-decoration:none;display:inline-block;box-shadow:0 0 30px rgba(147,51,234,.35)}
+    .mobile-close{position:fixed;top:1.25rem;right:1.5rem;z-index:102;font-size:2rem;color:var(--tx-dark);cursor:pointer;background:none;border:none;line-height:1;padding:.25rem .5rem}
+    .nav-mobile-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem}
+    .nav-mobile-btn span{display:block;width:22px;height:2px;background:var(--tx-dark);border-radius:2px;transition:.3s}
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">Web<span class="logo-accent">Everything</span></a>
+    <div class="nav-links">
+      <div class="nav-link has-drop">
+        Services
+        <div class="drop">
+          <div class="drop-label">Performance</div>
+          <a class="drop-item" href="services.html#performance-marketing">Performance Marketing</a>
+          <a class="drop-item" href="services.html#adtech-development">AdTech Development</a>
+          <a class="drop-item" href="services.html#analytics-reporting">Analytics &amp; Reporting</a>
+          <a class="drop-item" href="services.html#digital-operations">Digital Operations</a>
+          <div class="drop-divider"></div>
+          <div class="drop-label">AI &amp; Strategy</div>
+          <a class="drop-item" href="services.html#ai-strategy">AI Strategy &amp; Integration</a>
+          <a class="drop-item" href="services.html#agentic-ai">Agentic AI Systems</a>
+          <a class="drop-item" href="services.html#geo">Generative Engine Optimization</a>
+          <a class="drop-item" href="services.html#marketing-transformation">Marketing Transformation</a>
+          <div class="drop-divider"></div>
+          <div class="drop-label">Growth &amp; Intelligence</div>
+          <a class="drop-item" href="services.html#customer-experience">Customer Experience</a>
+          <a class="drop-item" href="services.html#market-intelligence">Market Intelligence</a>
+          <a class="drop-item" href="services.html#web-development">Web Design &amp; Development</a>
+          <a class="drop-item" href="services.html#data-transformation">Digital &amp; Data Transformation</a>
+        </div>
+      </div>
+      <a class="nav-link" href="industries.html">Industries</a>
+      <a class="nav-link" href="insights.html">Insights</a>
+      <a class="nav-link" href="about.html">About</a>
+    </div>
+    <a class="nav-cta" href="contact.html">Start a Project</a>
+    <div class="nav-mobile-btn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+  <a class="m-link" href="index.html">Home</a>
+  <a class="m-link" href="services.html">Services</a>
+  <div class="m-section">Performance</div>
+  <a class="m-sub" href="services.html#performance-marketing">Performance Marketing</a>
+  <a class="m-sub" href="services.html#adtech">AdTech Development</a>
+  <a class="m-sub" href="services.html#analytics">Analytics &amp; Reporting</a>
+  <a class="m-sub" href="services.html#digital-ops">Digital Operations</a>
+  <div class="m-section">AI &amp; Automation</div>
+  <a class="m-sub" href="services.html#ai-strategy">AI Strategy</a>
+  <a class="m-sub" href="services.html#agentic-ai">Agentic AI Systems</a>
+  <a class="m-sub" href="services.html#geo">GEO</a>
+  <a class="m-sub" href="services.html#marketing-transformation">Marketing Transformation</a>
+  <a class="m-link" href="industries.html">Industries</a>
+  <a class="m-link" href="insights.html">Insights</a>
+  <a class="m-link" href="about.html">About</a>
+  <a class="m-cta" href="contact.html">Start a Project →</a>
+</div>
+
+<!-- ── PAGE HERO ── -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-eyebrow">Insights</div>
+    <h1 class="page-h1">Intelligence from<br/>the front lines.</h1>
+    <p class="page-sub">Practical thinking on AI, performance marketing, AdTech, and digital transformation — written by people who build these systems.</p>
+  </div>
+</section>
+
+<!-- ── FILTER TABS ── -->
+<div class="filter-section">
+  <div class="filter-inner">
+    <div class="filter-tabs">
+      <a class="filter-tab active" href="#">All</a>
+      <a class="filter-tab" href="#">AI &amp; Automation</a>
+      <a class="filter-tab" href="#">Performance</a>
+      <a class="filter-tab" href="#">AdTech</a>
+      <a class="filter-tab" href="#">GEO</a>
+      <a class="filter-tab" href="#">Strategy</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── FEATURED INSIGHT ── -->
+<section class="featured-section">
+  <div class="container">
+    <a class="featured-card" href="#">
+      <div class="featured-content">
+        <div class="featured-label">Featured Report</div>
+        <div class="featured-title">The State of AI in Performance Marketing — 2026 Report</div>
+        <p class="featured-desc">A comprehensive look at how AI is reshaping paid media, attribution, and creative optimization. Data from practitioners who are running this technology at scale today.</p>
+        <div class="featured-meta">April 2026 &nbsp;·&nbsp; 15 min read</div>
+        <a class="featured-cta" href="#">Read the Report →</a>
+      </div>
+      <div class="featured-badge">
+        <div class="featured-badge-inner">
+          <div class="featured-badge-num">2026</div>
+          <div class="featured-badge-label">Annual Report</div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ── INSIGHTS GRID ── -->
+<section class="insights-section">
+  <div class="container">
+    <div class="insights-grid">
+
+      <!-- Card 1: AI & Automation -->
+      <a class="insight-card" href="#">
+        <div class="insight-img">
+          <svg viewBox="0 0 180 180" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="90" cy="90" r="36" stroke="#c084fc" stroke-width="2" opacity=".7"/>
+            <circle cx="90" cy="90" r="22" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="6 5" opacity=".6"/>
+            <circle cx="90" cy="90" r="8" fill="#a855f7" opacity=".9"/>
+            <circle cx="90" cy="90" r="14" stroke="#ddb6fe" stroke-width="1" fill="none" opacity=".4"/>
+            <g stroke="#7c3aed" stroke-width="1.5" opacity=".5">
+              <line x1="90" y1="54" x2="90" y2="42"/><line x1="90" y1="126" x2="90" y2="138"/>
+              <line x1="54" y1="90" x2="42" y2="90"/><line x1="126" y1="90" x2="138" y2="90"/>
+            </g>
+            <circle cx="90" cy="42" r="4" fill="#c084fc" opacity=".8"/>
+            <circle cx="90" cy="138" r="4" fill="#c084fc" opacity=".8"/>
+            <circle cx="42" cy="90" r="4" fill="#c084fc" opacity=".8"/>
+            <circle cx="138" cy="90" r="4" fill="#c084fc" opacity=".8"/>
+          </svg>
+        </div>
+        <div class="insight-body">
+          <div class="insight-tag">AI &amp; Automation</div>
+          <div class="insight-title">Why Agentic AI Will Replace Entire Workflow Layers by 2026</div>
+          <div class="insight-meta">April 2026 &nbsp;·&nbsp; 8 min read</div>
+        </div>
+      </a>
+
+      <!-- Card 2: GEO -->
+      <a class="insight-card" href="#">
+        <div class="insight-img">
+          <svg viewBox="0 0 180 180" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="90" cy="90" r="50" stroke="#9333ea" stroke-width="1.5" opacity=".6"/>
+            <ellipse cx="90" cy="90" rx="22" ry="50" stroke="#a855f7" stroke-width="1" opacity=".5"/>
+            <line x1="40" y1="90" x2="140" y2="90" stroke="#7c3aed" stroke-width="1" opacity=".4"/>
+            <line x1="44" y1="68" x2="136" y2="68" stroke="#7c3aed" stroke-width="1" opacity=".3"/>
+            <line x1="44" y1="112" x2="136" y2="112" stroke="#7c3aed" stroke-width="1" opacity=".3"/>
+            <circle cx="90" cy="90" r="6" fill="#c084fc" opacity=".9"/>
+            <circle cx="90" cy="54" r="3.5" fill="#a855f7" opacity=".8"/>
+            <circle cx="90" cy="126" r="3.5" fill="#a855f7" opacity=".8"/>
+          </svg>
+        </div>
+        <div class="insight-body">
+          <div class="insight-tag">GEO</div>
+          <div class="insight-title">The GEO Playbook: Getting Your Brand Into ChatGPT and Perplexity</div>
+          <div class="insight-meta">March 2026 &nbsp;·&nbsp; 12 min read</div>
+        </div>
+      </a>
+
+      <!-- Card 3: Performance -->
+      <a class="insight-card" href="#">
+        <div class="insight-img">
+          <svg viewBox="0 0 180 180" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="120" width="22" height="40" rx="3" fill="#6d28d9" opacity=".7"/>
+            <rect x="52" y="96" width="22" height="64" rx="3" fill="#9333ea" opacity=".8"/>
+            <rect x="84" y="68" width="22" height="92" rx="3" fill="#a855f7" opacity=".9"/>
+            <rect x="116" y="44" width="22" height="116" rx="3" fill="#c084fc" opacity=".95"/>
+            <polyline points="31,120 63,96 95,68 127,44" stroke="#ddb6fe" stroke-width="2" stroke-linecap="round" fill="none" opacity=".8"/>
+            <circle cx="31" cy="120" r="4" fill="#ddb6fe" opacity=".9"/>
+            <circle cx="63" cy="96" r="4" fill="#ddb6fe" opacity=".9"/>
+            <circle cx="95" cy="68" r="4" fill="#ddb6fe" opacity=".9"/>
+            <circle cx="127" cy="44" r="4" fill="#fff" opacity=".9"/>
+          </svg>
+        </div>
+        <div class="insight-body">
+          <div class="insight-tag">Performance</div>
+          <div class="insight-title">How We Managed $100M in Ad Spend Without Burning It</div>
+          <div class="insight-meta">March 2026 &nbsp;·&nbsp; 6 min read</div>
+        </div>
+      </a>
+
+      <!-- Card 4: AdTech -->
+      <a class="insight-card" href="#">
+        <div class="insight-img">
+          <svg viewBox="0 0 180 180" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="58" y="58" width="64" height="64" rx="8" stroke="#a855f7" stroke-width="2" opacity=".7"/>
+            <rect x="74" y="74" width="32" height="32" rx="4" stroke="#c084fc" stroke-width="1.5" opacity=".6"/>
+            <circle cx="90" cy="90" r="7" fill="#a855f7" opacity=".9"/>
+            <line x1="58" y1="72" x2="40" y2="72" stroke="#7c3aed" stroke-width="2" opacity=".6"/>
+            <line x1="58" y1="108" x2="40" y2="108" stroke="#7c3aed" stroke-width="2" opacity=".6"/>
+            <line x1="122" y1="72" x2="140" y2="72" stroke="#7c3aed" stroke-width="2" opacity=".6"/>
+            <line x1="122" y1="108" x2="140" y2="108" stroke="#7c3aed" stroke-width="2" opacity=".6"/>
+            <line x1="72" y1="58" x2="72" y2="40" stroke="#7c3aed" stroke-width="2" opacity=".6"/>
+            <line x1="108" y1="58" x2="108" y2="40" stroke="#7c3aed" stroke-width="2" opacity=".6"/>
+            <line x1="72" y1="122" x2="72" y2="140" stroke="#7c3aed" stroke-width="2" opacity=".6"/>
+            <line x1="108" y1="122" x2="108" y2="140" stroke="#7c3aed" stroke-width="2" opacity=".6"/>
+          </svg>
+        </div>
+        <div class="insight-body">
+          <div class="insight-tag">AdTech</div>
+          <div class="insight-title">Building Proprietary AdTech on Google Cloud: A Practical Guide</div>
+          <div class="insight-meta">February 2026 &nbsp;·&nbsp; 10 min read</div>
+        </div>
+      </a>
+
+      <!-- Card 5: Strategy -->
+      <a class="insight-card" href="#">
+        <div class="insight-img">
+          <svg viewBox="0 0 180 180" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M90 30 L150 66 L150 114 Q150 150 90 162 Q30 150 30 114 L30 66 Z" stroke="#a855f7" stroke-width="2" fill="none" opacity=".7"/>
+            <path d="M90 50 L130 72 L130 108 Q130 136 90 146 Q50 136 50 108 L50 72 Z" stroke="#c084fc" stroke-width="1.5" fill="rgba(168,85,247,.07)" opacity=".7"/>
+            <polyline points="72,96 84,110 108,78" stroke="#ddb6fe" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+          </svg>
+        </div>
+        <div class="insight-body">
+          <div class="insight-tag">Strategy</div>
+          <div class="insight-title">Why Most AI Strategies Fail Before They Launch</div>
+          <div class="insight-meta">February 2026 &nbsp;·&nbsp; 7 min read</div>
+        </div>
+      </a>
+
+      <!-- Card 6: Performance -->
+      <a class="insight-card" href="#">
+        <div class="insight-img">
+          <svg viewBox="0 0 180 180" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="90" cy="72" r="26" stroke="#a855f7" stroke-width="2" opacity=".7"/>
+            <path d="M56 140 Q56 110 90 110 Q124 110 124 140" stroke="#9333ea" stroke-width="2" stroke-linecap="round" fill="none" opacity=".7"/>
+            <line x1="90" y1="98" x2="58" y2="78" stroke="#7c3aed" stroke-width="1.5" opacity=".6"/>
+            <line x1="90" y1="98" x2="122" y2="78" stroke="#7c3aed" stroke-width="1.5" opacity=".6"/>
+            <circle cx="58" cy="78" r="5" fill="#c084fc" opacity=".8"/>
+            <circle cx="122" cy="78" r="5" fill="#c084fc" opacity=".8"/>
+            <rect x="76" y="56" width="28" height="6" rx="3" fill="#ddb6fe" opacity=".6"/>
+          </svg>
+        </div>
+        <div class="insight-body">
+          <div class="insight-tag">Performance</div>
+          <div class="insight-title">Healthcare PPC in 2026: Compliance, AI, and What Actually Works</div>
+          <div class="insight-meta">January 2026 &nbsp;·&nbsp; 9 min read</div>
+        </div>
+      </a>
+
+      <!-- Card 7: GEO -->
+      <a class="insight-card" href="#">
+        <div class="insight-img">
+          <svg viewBox="0 0 180 180" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="90" cy="90" r="48" stroke="#9333ea" stroke-width="1.5" opacity=".5"/>
+            <path d="M42 66 Q66 42 90 40 Q118 38 138 62" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round" fill="none" opacity=".8"/>
+            <path d="M36 90 Q60 80 90 82 Q116 84 140 78" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".6"/>
+            <circle cx="90" cy="60" r="8" fill="#a855f7" opacity=".9"/>
+            <circle cx="90" cy="60" r="16" stroke="#c084fc" stroke-width="1" fill="none" opacity=".4"/>
+            <circle cx="90" cy="60" r="24" stroke="#7c3aed" stroke-width="1" fill="none" opacity=".25"/>
+          </svg>
+        </div>
+        <div class="insight-body">
+          <div class="insight-tag">GEO</div>
+          <div class="insight-title">Google AI Overviews: What They Mean for Paid and Organic Search</div>
+          <div class="insight-meta">January 2026 &nbsp;·&nbsp; 5 min read</div>
+        </div>
+      </a>
+
+      <!-- Card 8: AdTech -->
+      <a class="insight-card" href="#">
+        <div class="insight-img">
+          <svg viewBox="0 0 180 180" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="44" y="70" width="40" height="40" rx="6" stroke="#a855f7" stroke-width="2" opacity=".8"/>
+            <rect x="96" y="70" width="40" height="40" rx="6" stroke="#a855f7" stroke-width="2" opacity=".8"/>
+            <line x1="84" y1="90" x2="96" y2="90" stroke="#c084fc" stroke-width="2.5" stroke-linecap="round" opacity=".9"/>
+            <circle cx="64" cy="90" r="7" fill="#9333ea" opacity=".9"/>
+            <circle cx="116" cy="90" r="7" fill="#9333ea" opacity=".9"/>
+            <line x1="64" y1="70" x2="64" y2="52" stroke="#7c3aed" stroke-width="1.5" opacity=".6"/>
+            <line x1="116" y1="70" x2="116" y2="52" stroke="#7c3aed" stroke-width="1.5" opacity=".6"/>
+            <line x1="64" y1="110" x2="64" y2="128" stroke="#7c3aed" stroke-width="1.5" opacity=".6"/>
+            <line x1="116" y1="110" x2="116" y2="128" stroke="#7c3aed" stroke-width="1.5" opacity=".6"/>
+            <circle cx="64" cy="50" r="4" fill="#c084fc" opacity=".8"/>
+            <circle cx="116" cy="50" r="4" fill="#c084fc" opacity=".8"/>
+            <circle cx="64" cy="130" r="4" fill="#c084fc" opacity=".8"/>
+            <circle cx="116" cy="130" r="4" fill="#c084fc" opacity=".8"/>
+          </svg>
+        </div>
+        <div class="insight-body">
+          <div class="insight-tag">AdTech</div>
+          <div class="insight-title">MCP Protocol: The New Standard for AI-to-Tool Communication</div>
+          <div class="insight-meta">December 2025 &nbsp;·&nbsp; 11 min read</div>
+        </div>
+      </a>
+
+      <!-- Card 9: Strategy -->
+      <a class="insight-card" href="#">
+        <div class="insight-img">
+          <svg viewBox="0 0 180 180" width="100" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M34 138 Q50 130 60 110 Q74 84 90 68 Q106 52 122 40 Q134 32 148 28" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round" fill="none" opacity=".85"/>
+            <circle cx="34" cy="138" r="5" fill="#9333ea" opacity=".8"/>
+            <circle cx="60" cy="110" r="5" fill="#a855f7" opacity=".8"/>
+            <circle cx="90" cy="68" r="5.5" fill="#c084fc" opacity=".9"/>
+            <circle cx="122" cy="40" r="5" fill="#ddb6fe" opacity=".9"/>
+            <circle cx="148" cy="28" r="7" fill="#fff" opacity=".9"/>
+            <polyline points="142,28 148,28 148,34" stroke="#ddb6fe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".8"/>
+            <line x1="34" y1="142" x2="154" y2="142" stroke="#7c3aed" stroke-width="1" opacity=".3"/>
+            <line x1="34" y1="30" x2="34" y2="142" stroke="#7c3aed" stroke-width="1" opacity=".3"/>
+          </svg>
+        </div>
+        <div class="insight-body">
+          <div class="insight-tag">Strategy</div>
+          <div class="insight-title">From Chaos to Compounding: Building a Digital Operations System</div>
+          <div class="insight-meta">December 2025 &nbsp;·&nbsp; 6 min read</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── NEWSLETTER ── -->
+<section class="newsletter-section">
+  <div class="newsletter-inner">
+    <div class="newsletter-eyebrow">Stay Sharp</div>
+    <h2 class="newsletter-h2">AI and performance insights, monthly.</h2>
+    <p class="newsletter-sub">No fluff. Just the intelligence we're acting on.</p>
+    <div class="newsletter-form">
+      <input class="newsletter-input" type="email" placeholder="your@email.com"/>
+      <button class="newsletter-btn" type="submit">Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ── -->
+<section class="cta-section">
+  <div class="container" style="position:relative">
+    <h2 class="section-h2">Want to discuss what you read?</h2>
+    <p class="section-body">Bring your questions, your challenges, or just a problem worth solving.</p>
+    <div class="cta-btns">
+      <a class="btn-white" href="contact.html">Start a Conversation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="index.html" style="font-size:1.4rem">Web<span class="logo-accent">Everything</span></a>
+        <p class="footer-tagline">
+          AI-powered digital agency combining enterprise performance marketing, proprietary AdTech, and agentic AI systems. Built to win.
+        </p>
+        <div class="footer-social">
+          <a class="social-btn" href="#" title="LinkedIn">in</a>
+          <a class="social-btn" href="#" title="X / Twitter">𝕏</a>
+          <a class="social-btn" href="#" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-label">Services</div>
+        <a class="footer-link" href="services.html#ai-strategy">AI Strategy</a>
+        <a class="footer-link" href="services.html#performance-marketing">Performance Marketing</a>
+        <a class="footer-link" href="services.html#adtech-development">AdTech Development</a>
+        <a class="footer-link" href="services.html#agentic-ai">Agentic AI Systems</a>
+        <a class="footer-link" href="services.html#geo">GEO</a>
+        <a class="footer-link" href="services.html">All Services →</a>
+      </div>
+      <div>
+        <div class="footer-col-label">Company</div>
+        <a class="footer-link" href="about.html">About</a>
+        <a class="footer-link" href="insights.html">Insights</a>
+        <a class="footer-link" href="#">Case Studies</a>
+        <a class="footer-link" href="#">Careers</a>
+        <a class="footer-link" href="contact.html">Contact</a>
+      </div>
+      <div>
+        <div class="footer-col-label">Built On</div>
+        <a class="footer-link" href="#">Anthropic / Claude</a>
+        <a class="footer-link" href="#">Google Cloud</a>
+        <a class="footer-link" href="#">Cloudflare</a>
+        <a class="footer-link" href="#">Webflow</a>
+        <a class="footer-link" href="#">MCP Protocol</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Web Everything. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="accessibility.html">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

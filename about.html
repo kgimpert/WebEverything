@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>About — Web Everything</title>
+  <meta name="description" content="Web Everything is Kenny Gimpert II — 15 years of enterprise performance marketing, proprietary AdTech architecture, and AI systems built to actually run businesses."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --p9:#2e0060;--p8:#4a0090;--p7:#6d28d9;--p6:#7c3aed;
+      --p5:#9333ea;--p4:#a855f7;--p3:#c084fc;--p2:#ddb6fe;
+      --glow:rgba(147,51,234,.35);--glows:rgba(147,51,234,.6);
+      --dark:#05050d;--dark2:#080814;--dark3:#0d0d1f;
+      --light:#ffffff;--light2:#f9f6ff;--light3:#ede8ff;
+      --tx-dark:#f0f0f8;--tx-light:#18102e;
+      --muted-dark:#9090b0;--muted-light:#5a4080;
+      --bd-dark:rgba(147,51,234,.2);--bd-light:rgba(109,40,217,.15);
+    }
+
+    html{scroll-behavior:smooth}
+    body{font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;overflow-x:hidden;line-height:1.65}
+
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      background:rgba(5,5,13,.92);backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--bd-dark);
+      transition:background .3s;
+    }
+    .nav-inner{
+      max-width:1280px;margin:0 auto;padding:0 2rem;
+      display:flex;align-items:center;justify-content:space-between;height:68px;
+    }
+    .nav-logo{
+      font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:800;
+      color:#fff;cursor:pointer;text-decoration:none;letter-spacing:-.02em;
+      line-height:1;white-space:nowrap;
+      transition:opacity .2s;
+    }
+    .nav-logo:hover{opacity:.85}
+    .nav-logo .logo-accent{color:var(--p4)}
+    .nav-links{display:flex;align-items:center;gap:.25rem}
+    .nav-link{
+      position:relative;padding:.5rem 1rem;font-size:.875rem;font-weight:500;
+      color:var(--muted-dark);cursor:pointer;transition:color .2s;
+      border-radius:8px;white-space:nowrap;
+    }
+    .nav-link:hover{color:var(--tx-dark)}
+    .nav-link.has-drop:after{content:'▾';margin-left:.3rem;font-size:.7em;opacity:.6}
+    /* dropdown */
+    .drop{
+      position:absolute;top:calc(100% + 8px);left:0;
+      background:rgba(8,8,20,.97);border:1px solid var(--bd-dark);
+      border-radius:14px;padding:1rem;min-width:260px;
+      opacity:0;pointer-events:none;transform:translateY(-8px);
+      transition:opacity .2s,transform .2s;
+    }
+    .nav-link:hover .drop,.nav-link:focus-within .drop{opacity:1;pointer-events:all;transform:translateY(0)}
+    .drop-item{
+      display:block;padding:.55rem .85rem;font-size:.82rem;color:var(--muted-dark);
+      cursor:pointer;border-radius:8px;transition:background .15s,color .15s;
+      text-decoration:none;white-space:nowrap;
+    }
+    .drop-item:hover{background:rgba(147,51,234,.12);color:var(--p3)}
+    .drop-divider{height:1px;background:var(--bd-dark);margin:.5rem 0}
+    .drop-label{padding:.3rem .85rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--p6)}
+    .nav-cta{
+      margin-left:.75rem;padding:.55rem 1.35rem;
+      background:linear-gradient(135deg,var(--p6),var(--p5));
+      color:#fff;font-size:.875rem;font-weight:600;border-radius:10px;
+      text-decoration:none;transition:opacity .2s,box-shadow .2s;
+      box-shadow:0 0 20px var(--glow);
+    }
+    .nav-cta:hover{opacity:.88;box-shadow:0 0 35px var(--glows)}
+    .nav-mobile-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem}
+    .nav-mobile-btn span{display:block;width:22px;height:2px;background:var(--tx-dark);border-radius:2px;transition:.3s}
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .nav-mobile-btn{display:flex}
+      .nav-cta{display:none}
+    }
+
+    /* ── CONTAINER ── */
+    .container{max-width:1200px;margin:0 auto;padding:0 2rem}
+
+    /* ── SECTION SHARED ── */
+    section{padding:7rem 0}
+    .eyebrow{
+      font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--p6);margin-bottom:1.25rem;
+    }
+    .section-h2{
+      font-size:clamp(2rem,4vw,3.2rem);font-weight:800;letter-spacing:-.03em;
+      line-height:1.1;margin-bottom:1.25rem;
+    }
+    .section-body{font-size:1.05rem;color:var(--muted-light);line-height:1.8;max-width:680px}
+
+    /* ── CTA BANNER ── */
+    .cta-section{
+      background:linear-gradient(135deg,var(--p9) 0%,var(--p8) 40%,var(--p7) 100%);
+      padding:6rem 0;text-align:center;position:relative;overflow:hidden;
+    }
+    .cta-section::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse at center,rgba(168,85,247,.2) 0%,transparent 70%);
+    }
+    .cta-section .section-h2{color:#fff;max-width:700px;margin:0 auto 1rem}
+    .cta-section .section-body{color:rgba(240,240,248,.75);margin:0 auto 2.5rem;max-width:560px}
+    .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative}
+    .btn-primary{
+      padding:.85rem 2.2rem;background:linear-gradient(135deg,var(--p6),var(--p5));
+      color:#fff;font-weight:700;font-size:.95rem;border-radius:12px;
+      text-decoration:none;transition:opacity .2s,box-shadow .2s;
+      box-shadow:0 0 30px var(--glow);
+    }
+    .btn-primary:hover{opacity:.88;box-shadow:0 0 50px var(--glows)}
+    .btn-white{
+      padding:.85rem 2.2rem;background:#fff;
+      color:var(--p7);font-weight:700;font-size:.95rem;border-radius:12px;
+      text-decoration:none;transition:opacity .2s;
+    }
+    .btn-white:hover{opacity:.9}
+
+    /* ── AI-BADGE STYLE ── */
+    .ai-badges{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+    .ai-badge{
+      padding:.45rem 1.1rem;border-radius:100px;font-size:.75rem;font-weight:600;letter-spacing:.04em;
+      background:rgba(147,51,234,.12);border:1px solid rgba(147,51,234,.25);color:var(--p3);
+    }
+
+    /* ── FOOTER ── */
+    footer{background:var(--dark);border-top:1px solid var(--bd-dark);padding:5rem 0 3rem}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:4rem}
+    .footer-brand .nav-logo{font-size:1.6rem;display:inline-flex;margin-bottom:1.25rem}
+    .footer-tagline{font-size:.875rem;color:var(--muted-dark);line-height:1.7;max-width:280px;margin-bottom:1.5rem}
+    .footer-social{display:flex;gap:.75rem}
+    .social-btn{
+      width:38px;height:38px;border-radius:10px;border:1px solid var(--bd-dark);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--muted-dark);font-size:.85rem;cursor:pointer;transition:background .2s,color .2s,border-color .2s;
+      text-decoration:none;
+    }
+    .social-btn:hover{background:rgba(147,51,234,.15);color:var(--p3);border-color:var(--p6)}
+    .footer-col-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--p5);margin-bottom:1.1rem}
+    .footer-link{display:block;font-size:.875rem;color:var(--muted-dark);margin-bottom:.6rem;text-decoration:none;transition:color .2s;cursor:pointer}
+    .footer-link:hover{color:var(--p3)}
+    .footer-bottom{border-top:1px solid var(--bd-dark);padding-top:2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .footer-copy{font-size:.8rem;color:var(--muted-dark)}
+    .footer-legal{display:flex;gap:1.5rem}
+    .footer-legal a{font-size:.8rem;color:var(--muted-dark);text-decoration:none;transition:color .2s}
+    .footer-legal a:hover{color:var(--p3)}
+    @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;gap:3rem}}
+    @media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+
+    /* ── PAGE HERO ── */
+    .page-hero{
+      min-height:50vh;display:flex;align-items:center;justify-content:center;
+      background:var(--dark);padding:10rem 2rem 6rem;
+      position:relative;overflow:hidden;
+      text-align:center;
+    }
+    .page-hero::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse at 60% 0%,rgba(109,40,217,.18) 0%,transparent 60%),
+                 radial-gradient(ellipse at 20% 80%,rgba(147,51,234,.1) 0%,transparent 55%);
+    }
+    .page-hero-inner{position:relative;z-index:2;max-width:860px;margin:0 auto}
+    .hero-eyebrow{
+      display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--p4);margin-bottom:1.75rem;
+      padding:.4rem 1rem;border:1px solid rgba(168,85,247,.3);border-radius:100px;
+      background:rgba(168,85,247,.08);
+    }
+    .page-hero h1{
+      font-size:clamp(2.4rem,5.5vw,4.5rem);font-weight:900;letter-spacing:-.04em;
+      line-height:1.06;color:var(--tx-dark);margin-bottom:1.5rem;
+    }
+    .page-hero p{
+      font-size:clamp(1rem,1.8vw,1.15rem);color:var(--muted-dark);
+      max-width:620px;margin:0 auto;line-height:1.8;
+    }
+
+    /* ── STORY SECTION ── */
+    .story-section{background:var(--light2);padding:7rem 0}
+    .story-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:3.5rem;
+    }
+    .story-text{font-size:1.05rem;color:var(--muted-light);line-height:1.85}
+    .story-section .section-h2{color:var(--tx-light)}
+    .story-section .eyebrow{color:var(--p6)}
+    .stat-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .stat-card{
+      background:var(--dark);border:1px solid var(--p6);border-radius:16px;
+      padding:2rem 1.5rem;text-align:center;
+      transition:border-color .2s,box-shadow .2s;
+    }
+    .stat-card:hover{border-color:var(--p4);box-shadow:0 0 30px rgba(147,51,234,.2)}
+    .stat-num{
+      font-size:2.4rem;font-weight:900;letter-spacing:-.04em;color:var(--tx-dark);
+      background:linear-gradient(135deg,var(--p2) 0%,var(--p4) 100%);
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+      margin-bottom:.4rem;
+    }
+    .stat-label{font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted-dark)}
+    @media(max-width:900px){.story-grid{grid-template-columns:1fr;gap:3rem}}
+
+    /* ── VALUES SECTION ── */
+    .values-section{background:var(--dark);padding:7rem 0}
+    .values-section .eyebrow{color:var(--p4)}
+    .values-section .section-h2{color:var(--tx-dark)}
+    .values-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3.5rem;
+    }
+    .value-card{
+      background:rgba(255,255,255,.04);border:1px solid var(--bd-dark);
+      border-radius:18px;padding:2.25rem 2rem;
+      transition:border-color .2s,background .2s;
+    }
+    .value-card:hover{border-color:rgba(147,51,234,.45);background:rgba(147,51,234,.06)}
+    .value-title{
+      font-size:1rem;font-weight:700;color:var(--p3);margin-bottom:.75rem;
+    }
+    .value-body{font-size:.875rem;color:var(--muted-dark);line-height:1.75}
+    @media(max-width:900px){.values-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:560px){.values-grid{grid-template-columns:1fr}}
+
+    /* ── FOUNDER SECTION ── */
+    .founder-section{background:var(--light2);padding:7rem 0}
+    .founder-section .section-h2{color:var(--tx-light)}
+    .founder-section .eyebrow{color:var(--p6)}
+    .founder-grid{
+      display:grid;grid-template-columns:1fr 2fr;gap:5rem;align-items:start;margin-top:3.5rem;
+    }
+    .founder-photo{
+      border-radius:20px;
+      background:var(--dark);
+      border:2px solid var(--p6);
+      padding:3px;
+      position:relative;
+      overflow:hidden;
+    }
+    .founder-photo-inner{
+      border-radius:18px;
+      background:linear-gradient(135deg,var(--p9) 0%,var(--p8) 50%,var(--dark3) 100%);
+      aspect-ratio:4/5;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .founder-initials{
+      font-size:5rem;font-weight:900;letter-spacing:-.05em;
+      background:linear-gradient(135deg,var(--p2) 0%,var(--p4) 100%);
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .founder-name{font-size:1.6rem;font-weight:800;color:var(--tx-light);letter-spacing:-.02em;margin-bottom:.25rem}
+    .founder-role{font-size:.875rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--p6);margin-bottom:1.5rem}
+    .founder-bio{font-size:1rem;color:var(--muted-light);line-height:1.85;margin-bottom:1.75rem}
+    .founder-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.75rem}
+    .founder-tag{
+      font-size:.72rem;font-weight:600;letter-spacing:.04em;
+      padding:.3rem .8rem;border-radius:100px;
+      background:rgba(109,40,217,.08);color:var(--p7);border:1px solid rgba(109,40,217,.15);
+    }
+    .btn-linkedin{
+      display:inline-flex;align-items:center;gap:.5rem;
+      padding:.7rem 1.6rem;background:linear-gradient(135deg,var(--p7),var(--p5));
+      color:#fff;font-size:.875rem;font-weight:600;border-radius:10px;
+      text-decoration:none;transition:opacity .2s,box-shadow .2s;
+      box-shadow:0 0 20px var(--glow);
+    }
+    .btn-linkedin:hover{opacity:.88;box-shadow:0 0 35px var(--glows)}
+    @media(max-width:860px){.founder-grid{grid-template-columns:1fr;gap:3rem}.founder-photo-inner{aspect-ratio:3/2}}
+
+    /* ── TECH STACK SECTION ── */
+    .stack-section{background:var(--dark);padding:6rem 0;text-align:center}
+    .stack-section .eyebrow{color:var(--p4);margin-bottom:.5rem}
+    .stack-label{font-size:.85rem;color:var(--muted-dark);margin-bottom:2rem}
+    .stack-badges{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+    .stack-badge{
+      padding:.5rem 1.2rem;border-radius:100px;font-size:.8rem;font-weight:600;letter-spacing:.04em;
+      background:rgba(147,51,234,.1);border:1px solid rgba(147,51,234,.22);color:var(--p3);
+      transition:background .2s,border-color .2s;
+    }
+    .stack-badge:hover{background:rgba(147,51,234,.22);border-color:var(--p5)}
+  
+    .mobile-menu{
+      display:none;position:fixed;inset:0;background:rgba(5,5,13,.99);
+      z-index:101;flex-direction:column;align-items:flex-start;
+      justify-content:flex-start;padding:5rem 2.5rem 2.5rem;gap:0;
+      overflow-y:auto;
+    }
+    .nav-mobile-open .mobile-menu{display:flex}
+    .mobile-menu .m-link{
+      font-size:2rem;font-weight:800;color:var(--tx-dark);
+      text-decoration:none;padding:.55rem 0;letter-spacing:-.03em;
+      transition:color .2s;display:block;width:100%;
+      border-bottom:1px solid rgba(147,51,234,.1);
+    }
+    .mobile-menu .m-link:hover{color:var(--p4)}
+    .mobile-menu .m-section{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--p6);margin:1.25rem 0 .25rem}
+    .mobile-menu .m-sub{font-size:1rem;font-weight:500;color:var(--muted-dark);text-decoration:none;display:block;padding:.35rem 0;transition:color .2s}
+    .mobile-menu .m-sub:hover{color:var(--p3)}
+    .mobile-menu .m-cta{margin-top:2rem;padding:.85rem 2.2rem;background:linear-gradient(135deg,var(--p6),var(--p5));color:#fff;font-weight:700;font-size:1rem;border-radius:12px;text-decoration:none;display:inline-block;box-shadow:0 0 30px rgba(147,51,234,.35)}
+    .mobile-close{position:fixed;top:1.25rem;right:1.5rem;z-index:102;font-size:2rem;color:var(--tx-dark);cursor:pointer;background:none;border:none;line-height:1;padding:.25rem .5rem}
+    .nav-mobile-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem}
+    .nav-mobile-btn span{display:block;width:22px;height:2px;background:var(--tx-dark);border-radius:2px;transition:.3s}
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">Web<span class="logo-accent">Everything</span></a>
+    <div class="nav-links">
+      <div class="nav-link has-drop">
+        Services
+        <div class="drop">
+          <div class="drop-label">Performance</div>
+          <a class="drop-item" href="services.html#performance-marketing">Performance Marketing</a>
+          <a class="drop-item" href="services.html#adtech-development">AdTech Development</a>
+          <a class="drop-item" href="services.html#analytics-reporting">Analytics & Reporting</a>
+          <a class="drop-item" href="services.html#digital-operations">Digital Operations</a>
+          <div class="drop-divider"></div>
+          <div class="drop-label">AI & Strategy</div>
+          <a class="drop-item" href="services.html#ai-strategy">AI Strategy & Integration</a>
+          <a class="drop-item" href="services.html#agentic-ai">Agentic AI Systems</a>
+          <a class="drop-item" href="services.html#geo">Generative Engine Optimization</a>
+          <a class="drop-item" href="services.html#marketing-transformation">Marketing Transformation</a>
+          <div class="drop-divider"></div>
+          <div class="drop-label">Growth & Intelligence</div>
+          <a class="drop-item" href="services.html#customer-experience">Customer Experience</a>
+          <a class="drop-item" href="services.html#market-intelligence">Market Intelligence</a>
+          <a class="drop-item" href="services.html#web-design">Web Design & Development</a>
+          <a class="drop-item" href="services.html#data-transformation">Digital & Data Transformation</a>
+        </div>
+      </div>
+      <a class="nav-link" href="industries.html">Industries</a>
+      <a class="nav-link" href="insights.html">Insights</a>
+      <a class="nav-link" href="about.html" style="color:var(--tx-dark)">About</a>
+    </div>
+    <a class="nav-cta" href="contact.html">Start a Project</a>
+    <div class="nav-mobile-btn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+  <a class="m-link" href="index.html">Home</a>
+  <a class="m-link" href="services.html">Services</a>
+  <div class="m-section">Performance</div>
+  <a class="m-sub" href="services.html#performance-marketing">Performance Marketing</a>
+  <a class="m-sub" href="services.html#adtech">AdTech Development</a>
+  <a class="m-sub" href="services.html#analytics">Analytics &amp; Reporting</a>
+  <a class="m-sub" href="services.html#digital-ops">Digital Operations</a>
+  <div class="m-section">AI &amp; Automation</div>
+  <a class="m-sub" href="services.html#ai-strategy">AI Strategy</a>
+  <a class="m-sub" href="services.html#agentic-ai">Agentic AI Systems</a>
+  <a class="m-sub" href="services.html#geo">GEO</a>
+  <a class="m-sub" href="services.html#marketing-transformation">Marketing Transformation</a>
+  <a class="m-link" href="industries.html">Industries</a>
+  <a class="m-link" href="insights.html">Insights</a>
+  <a class="m-link" href="about.html">About</a>
+  <a class="m-cta" href="contact.html">Start a Project →</a>
+</div>
+
+<!-- ── PAGE HERO ── -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">About Web Everything</div>
+    <h1>Built by a practitioner,<br/>not a pitch deck.</h1>
+    <p>Web Everything is Kenny Gimpert II — 15 years of enterprise performance marketing, proprietary AdTech architecture, and AI systems built to actually run businesses.</p>
+  </div>
+</div>
+
+<!-- ── THE STORY ── -->
+<section class="story-section">
+  <div class="container">
+    <div class="eyebrow">The Story</div>
+    <h2 class="section-h2">Where the expertise comes from.</h2>
+    <div class="story-grid">
+      <div class="story-text">
+        Kenny spent 15 years inside enterprise marketing — running $100M+ ad portfolios across healthcare, pharma, automotive, and D2C. He also built the tech: custom AdTech on Google Cloud, tracking infrastructure on Cloudflare, agentic AI workflows on Anthropic's Claude API.
+        <br/><br/>
+        Web Everything is the agency form of that expertise — built for clients who need a partner who has actually done it at scale.
+      </div>
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-num">$100M+</div>
+          <div class="stat-label">Managed Ad Spend</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">15 Yrs</div>
+          <div class="stat-label">Enterprise Experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">12</div>
+          <div class="stat-label">Service Lines</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">AI-Native</div>
+          <div class="stat-label">Built on Claude</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VALUES ── -->
+<section class="values-section">
+  <div class="container">
+    <div class="eyebrow">Our Values</div>
+    <h2 class="section-h2" style="color:var(--tx-dark)">What we stand for.</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-title">Execution over theory</div>
+        <div class="value-body">We don't just advise. We build, run, and optimize.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-title">Proprietary, not rented</div>
+        <div class="value-body">We build IP your team owns, not SaaS dependency.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-title">AI at the core</div>
+        <div class="value-body">Every system we build is AI-native from day one.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-title">Measurable or nothing</div>
+        <div class="value-body">Every engagement is tied to revenue impact.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-title">Speed without shortcuts</div>
+        <div class="value-body">We ship fast and build right.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-title">Radical transparency</div>
+        <div class="value-body">No black boxes, no hidden fees, no BS reports.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOUNDER ── -->
+<section class="founder-section">
+  <div class="container">
+    <div class="eyebrow">The Founder</div>
+    <h2 class="section-h2">The person behind the work.</h2>
+    <div class="founder-grid">
+      <div class="founder-photo">
+        <div class="founder-photo-inner">
+          <div class="founder-initials">KG</div>
+        </div>
+      </div>
+      <div>
+        <div class="founder-name">Kenny Gimpert II</div>
+        <div class="founder-role">Founder &amp; Principal</div>
+        <div class="founder-bio">
+          Ran performance marketing at $100M+ scale for Fortune 500 companies. Built AdTech infrastructure from scratch. Pioneer in Generative Engine Optimization (GEO). Agentic AI systems architect on Anthropic's Claude. International search expertise including Korean market (Naver, Daum). Based in Detroit, MI.
+        </div>
+        <div class="founder-tags">
+          <span class="founder-tag">Performance Marketing</span>
+          <span class="founder-tag">AdTech</span>
+          <span class="founder-tag">Agentic AI</span>
+          <span class="founder-tag">GEO</span>
+          <span class="founder-tag">Analytics</span>
+          <span class="founder-tag">International Search</span>
+        </div>
+        <a class="btn-linkedin" href="#">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2.5" stroke="#fff" stroke-width="1.4"/><path d="M4.5 6.5V12" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/><circle cx="4.5" cy="4.5" r="1" fill="#fff"/><path d="M7.5 12V9c0-1.4.9-2.5 2-2.5s2 .9 2 2.5v3" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg>
+          Connect on LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TECH STACK ── -->
+<section class="stack-section">
+  <div class="container">
+    <div class="eyebrow">Built On</div>
+    <div class="stack-label">The platforms and technologies powering every engagement.</div>
+    <div class="stack-badges">
+      <span class="stack-badge">Anthropic Claude</span>
+      <span class="stack-badge">Google Cloud</span>
+      <span class="stack-badge">Cloudflare</span>
+      <span class="stack-badge">MCP Protocol</span>
+      <span class="stack-badge">Webflow</span>
+      <span class="stack-badge">Shopify</span>
+      <span class="stack-badge">Stripe</span>
+      <span class="stack-badge">GA4</span>
+      <span class="stack-badge">Looker Studio</span>
+      <span class="stack-badge">BigQuery</span>
+      <span class="stack-badge">Naver</span>
+      <span class="stack-badge">Perplexity</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ── -->
+<section class="cta-section">
+  <div class="container" style="position:relative">
+    <h2 class="section-h2">Ready to work together?</h2>
+    <p class="section-body">Let's build something that actually moves the needle.</p>
+    <div class="cta-btns">
+      <a class="btn-white" href="contact.html">Start a Project</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="index.html" style="font-size:1.4rem">Web<span class="logo-accent">Everything</span></a>
+        <p class="footer-tagline">
+          AI-powered digital agency combining enterprise performance marketing, proprietary AdTech, and agentic AI systems. Built to win.
+        </p>
+        <div class="footer-social">
+          <a class="social-btn" href="#" title="LinkedIn">in</a>
+          <a class="social-btn" href="#" title="X / Twitter">𝕏</a>
+          <a class="social-btn" href="#" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-label">Services</div>
+        <a class="footer-link" href="services.html#ai-strategy">AI Strategy</a>
+        <a class="footer-link" href="services.html#performance-marketing">Performance Marketing</a>
+        <a class="footer-link" href="services.html#adtech-development">AdTech Development</a>
+        <a class="footer-link" href="services.html#agentic-ai">Agentic AI Systems</a>
+        <a class="footer-link" href="services.html#geo">GEO</a>
+        <a class="footer-link" href="services.html">All Services →</a>
+      </div>
+      <div>
+        <div class="footer-col-label">Company</div>
+        <a class="footer-link" href="about.html">About</a>
+        <a class="footer-link" href="insights.html">Insights</a>
+        <a class="footer-link" href="#">Case Studies</a>
+        <a class="footer-link" href="#">Careers</a>
+        <a class="footer-link" href="contact.html">Contact</a>
+      </div>
+      <div>
+        <div class="footer-col-label">Built On</div>
+        <a class="footer-link" href="#">Anthropic / Claude</a>
+        <a class="footer-link" href="#">Google Cloud</a>
+        <a class="footer-link" href="#">Cloudflare</a>
+        <a class="footer-link" href="#">Webflow</a>
+        <a class="footer-link" href="#">MCP Protocol</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Web Everything. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="accessibility.html">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

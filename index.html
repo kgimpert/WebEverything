@@ -7,7 +7,7 @@
   <meta name="description" content="Web Everything is an AI-powered digital agency combining enterprise performance marketing, proprietary AdTech, and agentic AI systems. Built to win."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
@@ -23,7 +23,7 @@
     }
 
     html{scroll-behavior:smooth}
-    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;overflow-x:hidden;line-height:1.65}
+    body{font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;overflow-x:hidden;line-height:1.65}
 
     /* ── NAV ── */
     nav{
@@ -37,15 +37,13 @@
       display:flex;align-items:center;justify-content:space-between;height:68px;
     }
     .nav-logo{
-      font-size:1.4rem;font-weight:900;letter-spacing:-.04em;
-      color:var(--tx-dark);cursor:pointer;text-decoration:none;
-      display:flex;align-items:center;gap:.15rem;
+      font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:800;
+      color:#fff;cursor:pointer;text-decoration:none;letter-spacing:-.02em;
+      line-height:1;white-space:nowrap;
+      transition:opacity .2s;
     }
-    .nav-logo .logo-accent{
-      background:linear-gradient(135deg,var(--p4),var(--p6));
-      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-    }
-    .nav-logo sup{font-size:.65em;color:var(--p4);-webkit-text-fill-color:var(--p4)}
+    .nav-logo:hover{opacity:.85}
+    .nav-logo .logo-accent{color:var(--p4)}
     .nav-links{display:flex;align-items:center;gap:.25rem}
     .nav-link{
       position:relative;padding:.5rem 1rem;font-size:.875rem;font-weight:500;
@@ -81,6 +79,25 @@
     .nav-cta:hover{opacity:.88;box-shadow:0 0 35px var(--glows)}
     .nav-mobile-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem}
     .nav-mobile-btn span{display:block;width:22px;height:2px;background:var(--tx-dark);border-radius:2px;transition:.3s}
+    .mobile-menu{
+      display:none;position:fixed;inset:0;background:rgba(5,5,13,.99);
+      z-index:101;flex-direction:column;align-items:flex-start;
+      justify-content:flex-start;padding:5rem 2.5rem 2.5rem;gap:0;
+      overflow-y:auto;
+    }
+    .nav-mobile-open .mobile-menu{display:flex}
+    .mobile-menu .m-link{
+      font-size:2rem;font-weight:800;color:var(--tx-dark);
+      text-decoration:none;padding:.55rem 0;letter-spacing:-.03em;
+      transition:color .2s;display:block;width:100%;
+      border-bottom:1px solid rgba(147,51,234,.1);
+    }
+    .mobile-menu .m-link:hover{color:var(--p4)}
+    .mobile-menu .m-section{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--p6);margin:1.25rem 0 .25rem}
+    .mobile-menu .m-sub{font-size:1rem;font-weight:500;color:var(--muted-dark);text-decoration:none;display:block;padding:.35rem 0;transition:color .2s}
+    .mobile-menu .m-sub:hover{color:var(--p3)}
+    .mobile-menu .m-cta{margin-top:2rem;padding:.85rem 2.2rem;background:linear-gradient(135deg,var(--p6),var(--p5));color:#fff;font-weight:700;font-size:1rem;border-radius:12px;text-decoration:none;display:inline-block;box-shadow:0 0 30px var(--glow)}
+    .mobile-close{position:fixed;top:1.25rem;right:1.5rem;z-index:102;font-size:2rem;color:var(--tx-dark);cursor:pointer;background:none;border:none;line-height:1;padding:.25rem .5rem}
     @media(max-width:900px){
       .nav-links{display:none}
       .nav-mobile-btn{display:flex}
@@ -275,17 +292,6 @@
     @media(max-width:900px){.deliver-grid{grid-template-columns:repeat(3,1fr)}}
     @media(max-width:580px){.deliver-grid{grid-template-columns:1fr 1fr}}
 
-    /* ── STATS ── */
-    .stats-section{background:linear-gradient(135deg,var(--p9) 0%,var(--p8) 50%,var(--dark3) 100%);padding:5rem 0}
-    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
-    .stat-n{
-      font-size:clamp(2.5rem,4vw,3.8rem);font-weight:900;letter-spacing:-.04em;
-      background:linear-gradient(135deg,var(--p2),var(--p4));
-      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-      line-height:1;margin-bottom:.5rem;
-    }
-    .stat-l{font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(192,132,252,.7)}
-    @media(max-width:768px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
 
     /* ── SERVICES ── */
     .services-section{background:var(--light2)}
@@ -437,11 +443,14 @@
     .btn-outline-white:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7)}
 
     /* ── CONTACT ── */
-    .contact-section{background:var(--dark3);padding:7rem 0}
+    .contact-section{background:var(--dark);padding:7rem 0}
     .contact-section .eyebrow{color:var(--p4)}
     .contact-section .section-h2{color:var(--tx-dark)}
-    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;margin-top:3.5rem;align-items:start}
     .contact-form{background:rgba(255,255,255,.04);border:1px solid var(--bd-dark);border-radius:20px;padding:2.5rem}
+    .contact-info-wrap{padding:0}
+    .contact-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--p7),var(--p5));display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .25s,box-shadow .25s}
+    .contact-item:hover .contact-icon{transform:translateY(-2px);box-shadow:0 8px 20px var(--glow)}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;margin-top:3.5rem;align-items:start}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
     .form-field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
     .form-field label{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--p4)}
@@ -500,52 +509,70 @@
 <!-- ── NAV ── -->
 <nav>
   <div class="nav-inner">
-    <a class="nav-logo" href="#">
-      Web<span class="logo-accent">Everything</span>
-    </a>
+    <a class="nav-logo" href="index.html">Web<span class="logo-accent">Everything</span></a>
     <div class="nav-links">
       <div class="nav-link has-drop">
         Services
         <div class="drop">
           <div class="drop-label">Performance</div>
-          <a class="drop-item" href="#services">Performance Marketing</a>
-          <a class="drop-item" href="#services">AdTech Development</a>
-          <a class="drop-item" href="#services">Analytics & Reporting</a>
-          <a class="drop-item" href="#services">Digital Operations</a>
+          <a class="drop-item" href="services.html#performance-marketing">Performance Marketing</a>
+          <a class="drop-item" href="services.html#adtech">AdTech Development</a>
+          <a class="drop-item" href="services.html#analytics">Analytics & Reporting</a>
+          <a class="drop-item" href="services.html#digital-ops">Digital Operations</a>
           <div class="drop-divider"></div>
           <div class="drop-label">AI & Strategy</div>
-          <a class="drop-item" href="#services">AI Strategy & Integration</a>
-          <a class="drop-item" href="#services">Agentic AI Systems</a>
-          <a class="drop-item" href="#services">Generative Engine Optimization</a>
-          <a class="drop-item" href="#services">Marketing Transformation</a>
+          <a class="drop-item" href="services.html#ai-strategy">AI Strategy & Integration</a>
+          <a class="drop-item" href="services.html#agentic-ai">Agentic AI Systems</a>
+          <a class="drop-item" href="services.html#geo">Generative Engine Optimization</a>
+          <a class="drop-item" href="services.html#marketing-transformation">Marketing Transformation</a>
           <div class="drop-divider"></div>
           <div class="drop-label">Growth & Intelligence</div>
-          <a class="drop-item" href="#services">Customer Experience</a>
-          <a class="drop-item" href="#services">Market Intelligence</a>
-          <a class="drop-item" href="#services">Web Design & Development</a>
-          <a class="drop-item" href="#services">Digital & Data Transformation</a>
+          <a class="drop-item" href="services.html#cx">Customer Experience</a>
+          <a class="drop-item" href="services.html#market-intelligence">Market Intelligence</a>
+          <a class="drop-item" href="services.html#web-dev">Web Design & Development</a>
+          <a class="drop-item" href="services.html#digital-data">Digital & Data Transformation</a>
         </div>
       </div>
       <div class="nav-link has-drop">
         Industries
         <div class="drop">
-          <a class="drop-item" href="#">Healthcare & Pharma</a>
-          <a class="drop-item" href="#">Financial Services</a>
-          <a class="drop-item" href="#">Retail & D2C</a>
-          <a class="drop-item" href="#">Automotive</a>
-          <a class="drop-item" href="#">Technology & SaaS</a>
-          <a class="drop-item" href="#">Travel & Leisure</a>
+          <a class="drop-item" href="industries.html#healthcare">Healthcare & Pharma</a>
+          <a class="drop-item" href="industries.html#financial-services">Financial Services</a>
+          <a class="drop-item" href="industries.html#retail">Retail & D2C</a>
+          <a class="drop-item" href="industries.html#automotive">Automotive</a>
+          <a class="drop-item" href="industries.html#technology">Technology & SaaS</a>
+          <a class="drop-item" href="industries.html#travel">Travel & Leisure</a>
         </div>
       </div>
-      <a class="nav-link" href="#insights">Insights</a>
-      <a class="nav-link" href="#contact">About</a>
+      <a class="nav-link" href="insights.html">Insights</a>
+      <a class="nav-link" href="about.html">About</a>
     </div>
-    <a class="nav-cta" href="#contact">Start a Project</a>
+    <a class="nav-cta" href="contact.html">Start a Project</a>
     <div class="nav-mobile-btn" aria-label="Menu">
       <span></span><span></span><span></span>
     </div>
   </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+  <a class="m-link" href="index.html">Home</a>
+  <a class="m-link" href="services.html">Services</a>
+  <div class="m-section">Performance</div>
+  <a class="m-sub" href="services.html#performance-marketing">Performance Marketing</a>
+  <a class="m-sub" href="services.html#adtech">AdTech Development</a>
+  <a class="m-sub" href="services.html#analytics">Analytics & Reporting</a>
+  <a class="m-sub" href="services.html#digital-ops">Digital Operations</a>
+  <div class="m-section">AI & Automation</div>
+  <a class="m-sub" href="services.html#ai-strategy">AI Strategy</a>
+  <a class="m-sub" href="services.html#agentic-ai">Agentic AI Systems</a>
+  <a class="m-sub" href="services.html#geo">GEO</a>
+  <a class="m-sub" href="services.html#marketing-transformation">Marketing Transformation</a>
+  <a class="m-link" href="industries.html">Industries</a>
+  <a class="m-link" href="insights.html">Insights</a>
+  <a class="m-link" href="about.html">About</a>
+  <a class="m-cta" href="contact.html">Start a Project →</a>
+</div>
 
 <!-- ── HERO ── -->
 <section class="hero">
@@ -882,30 +909,6 @@
   </div>
 </section>
 
-<!-- ── STATS ── -->
-<section class="stats-section">
-  <div class="container">
-    <div class="stats-grid">
-      <div>
-        <div class="stat-n">$100M+</div>
-        <div class="stat-l">Managed Ad Spend</div>
-      </div>
-      <div>
-        <div class="stat-n">15</div>
-        <div class="stat-l">Years Experience</div>
-      </div>
-      <div>
-        <div class="stat-n">12</div>
-        <div class="stat-l">Service Lines</div>
-      </div>
-      <div>
-        <div class="stat-n">AI-Native</div>
-        <div class="stat-l">Built on Anthropic</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ── SERVICES ── -->
 <section class="services-section" id="services">
   <div class="container">
@@ -1099,105 +1102,7 @@
   </div>
 </section>
 
-<!-- ── CLIENT LOGOS ── -->
-<section class="logos-section">
-  <div class="container">
-    <div class="logos-eyebrow">Trusted by teams at</div>
-    <div class="logos-track">
-      <div class="logo-ph">Healthcare Co.</div>
-      <div class="logo-ph">Pharma Brand</div>
-      <div class="logo-ph">Auto Group</div>
-      <div class="logo-ph">D2C Retailer</div>
-      <div class="logo-ph">SaaS Platform</div>
-      <div class="logo-ph">Finance Co.</div>
-    </div>
-  </div>
-</section>
 
-<!-- ── INSIGHTS ── -->
-<section class="insights-section" id="insights">
-  <div class="container">
-    <div class="insights-header">
-      <div>
-        <div class="eyebrow">Insights</div>
-        <h2 class="section-h2">Thinking on AI, performance &amp; the digital frontier.</h2>
-      </div>
-      <a class="btn-ghost" href="#">View all articles →</a>
-    </div>
-    <div class="insights-grid">
-      <div class="insight-card">
-        <div class="insight-img">🤖</div>
-        <div class="insight-body">
-          <div class="insight-tag">Agentic AI</div>
-          <div class="insight-title">Why MCP Changes Everything for Marketing Automation</div>
-          <div class="insight-meta">April 2026 · 8 min read</div>
-        </div>
-      </div>
-      <div class="insight-card">
-        <div class="insight-img">🔍</div>
-        <div class="insight-body">
-          <div class="insight-tag">GEO</div>
-          <div class="insight-title">Your Brand in the Age of AI Search: A GEO Primer for 2026</div>
-          <div class="insight-meta">March 2026 · 6 min read</div>
-        </div>
-      </div>
-      <div class="insight-card">
-        <div class="insight-img">📊</div>
-        <div class="insight-body">
-          <div class="insight-tag">AdTech</div>
-          <div class="insight-title">The Case for Owning Your Advertising Technology Stack</div>
-          <div class="insight-meta">February 2026 · 10 min read</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── TESTIMONIALS ── -->
-<section class="testimonials-section" id="work">
-  <div class="container">
-    <div class="eyebrow" style="color:var(--p6)">Client Stories</div>
-    <h2 class="section-h2">What it's like to work with us.</h2>
-    <div class="testi-grid">
-      <div class="testi-card featured">
-        <div class="testi-quote">
-          The AdTech systems Kenny built gave us complete ownership of our performance logic for the first time. We stopped renting capability from platforms and started building our own. The compounding advantage is real.
-        </div>
-        <div class="testi-attr">
-          <div class="testi-avatar">VP</div>
-          <div>
-            <div class="testi-name">VP of Growth</div>
-            <div class="testi-role">Healthcare D2C Brand — $40M ARR</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-quote">
-          Moved us from a manual reporting nightmare to a fully automated, real-time dashboard in three weeks. I can finally read my own numbers.
-        </div>
-        <div class="testi-attr">
-          <div class="testi-avatar">MD</div>
-          <div>
-            <div class="testi-name">Marketing Director</div>
-            <div class="testi-role">Automotive Group</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-quote">
-          GEO wasn't even on our radar six months ago. Now it's a core pillar of how we think about brand visibility. The strategy was clear, the execution was faster than expected.
-        </div>
-        <div class="testi-attr">
-          <div class="testi-avatar">CD</div>
-          <div>
-            <div class="testi-name">Chief Digital Officer</div>
-            <div class="testi-role">Mid-Market Pharma</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ── AI CALLOUT ── -->
 <section class="ai-section">
@@ -1286,35 +1191,53 @@
         </div>
         <button type="submit" class="btn-primary" style="width:100%;cursor:pointer;border:none;font-size:.95rem">Send Message →</button>
       </div>
-      <div class="contact-info">
+      <div class="contact-info contact-info-wrap">
         <div class="contact-info-title">Work with us directly.</div>
         <div class="contact-info-body">
           We take on a limited number of engagements at a time to ensure every client gets our full attention. If you have a real problem and need a team that can actually solve it — reach out.
         </div>
         <div class="contact-item">
-          <div class="contact-icon">✉️</div>
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="4" width="16" height="12" rx="2" stroke="#fff" stroke-width="1.5"/>
+              <polyline points="2,4 10,11 18,4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
           <div>
             <div class="contact-item-label">Email</div>
             <div class="contact-item-val">hello@webeverything.io</div>
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">💼</div>
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="1.5"/>
+              <rect x="11" y="2" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="1.5"/>
+              <rect x="2" y="11" width="7" height="7" rx="1.5" stroke="#fff" stroke-width="1.5"/>
+              <path d="M11 14.5 C11 12.5 12.5 11 14.5 11 C16.5 11 18 12.5 18 14.5 C18 16.5 16.5 18 14.5 18 C12.5 18 11 16.5 11 14.5Z" stroke="#fff" stroke-width="1.5"/>
+            </svg>
+          </div>
           <div>
             <div class="contact-item-label">LinkedIn</div>
             <div class="contact-item-val">Kenny Gimpert II</div>
           </div>
         </div>
         <div class="contact-item">
-          <div class="contact-icon">📍</div>
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2C7.24 2 5 4.24 5 7C5 11 10 18 10 18C10 18 15 11 15 7C15 4.24 12.76 2 10 2Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+              <circle cx="10" cy="7" r="2" stroke="#fff" stroke-width="1.5"/>
+            </svg>
+          </div>
           <div>
             <div class="contact-item-label">Based In</div>
-            <div class="contact-item-val">United States · Remote-first</div>
+            <div class="contact-item-val">Detroit, MI · Remote-first</div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
 </section>
 
 <!-- ── FOOTER ── -->
@@ -1322,9 +1245,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a class="nav-logo" href="#" style="font-size:1.5rem">
-          Web<span class="logo-accent">Everything</span>
-        </a>
+        <a class="nav-logo" href="#" style="font-size:1.4rem">Web<span class="logo-accent">Everything</span></a>
         <p class="footer-tagline">
           AI-powered digital agency combining enterprise performance marketing, proprietary AdTech, and agentic AI systems. Built to win.
         </p>
@@ -1336,20 +1257,20 @@
       </div>
       <div>
         <div class="footer-col-label">Services</div>
-        <a class="footer-link" href="#">AI Strategy</a>
-        <a class="footer-link" href="#">Performance Marketing</a>
-        <a class="footer-link" href="#">AdTech Development</a>
-        <a class="footer-link" href="#">Agentic AI Systems</a>
-        <a class="footer-link" href="#">GEO</a>
-        <a class="footer-link" href="#">All Services →</a>
+        <a class="footer-link" href="services.html#ai-strategy">AI Strategy</a>
+        <a class="footer-link" href="services.html#performance-marketing">Performance Marketing</a>
+        <a class="footer-link" href="services.html#adtech">AdTech Development</a>
+        <a class="footer-link" href="services.html#agentic-ai">Agentic AI Systems</a>
+        <a class="footer-link" href="services.html#geo">GEO</a>
+        <a class="footer-link" href="services.html">All Services →</a>
       </div>
       <div>
         <div class="footer-col-label">Company</div>
-        <a class="footer-link" href="#">About</a>
-        <a class="footer-link" href="#">Insights</a>
-        <a class="footer-link" href="#">Case Studies</a>
-        <a class="footer-link" href="#">Careers</a>
-        <a class="footer-link" href="#">Contact</a>
+        <a class="footer-link" href="about.html">About</a>
+        <a class="footer-link" href="insights.html">Insights</a>
+        <a class="footer-link" href="insights.html">Case Studies</a>
+        <a class="footer-link" href="about.html">Careers</a>
+        <a class="footer-link" href="contact.html">Contact</a>
       </div>
       <div>
         <div class="footer-col-label">Built On</div>
@@ -1363,13 +1284,22 @@
     <div class="footer-bottom">
       <div class="footer-copy">© 2026 Web Everything. All rights reserved.</div>
       <div class="footer-legal">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Cookies</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="accessibility.html">Accessibility</a>
       </div>
     </div>
   </div>
 </footer>
 
+<script>
+  const mobileBtn = document.querySelector('.nav-mobile-btn');
+  const mobileClose = document.getElementById('mobileClose');
+  const toggle = () => document.body.classList.toggle('nav-mobile-open');
+  if(mobileBtn) mobileBtn.addEventListener('click', toggle);
+  if(mobileClose) mobileClose.addEventListener('click', toggle);
+  document.addEventListener('keydown', e => { if(e.key==='Escape') document.body.classList.remove('nav-mobile-open'); });
+</script>
 </body>
 </html>

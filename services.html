@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Services — Web Everything</title>
+  <meta name="description" content="Web Everything offers 12 services across performance marketing, AI & automation, and digital transformation. One partner for everything digital."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --p9:#2e0060;--p8:#4a0090;--p7:#6d28d9;--p6:#7c3aed;
+      --p5:#9333ea;--p4:#a855f7;--p3:#c084fc;--p2:#ddb6fe;
+      --glow:rgba(147,51,234,.35);--glows:rgba(147,51,234,.6);
+      --dark:#05050d;--dark2:#080814;--dark3:#0d0d1f;
+      --light:#ffffff;--light2:#f9f6ff;--light3:#ede8ff;
+      --tx-dark:#f0f0f8;--tx-light:#18102e;
+      --muted-dark:#9090b0;--muted-light:#5a4080;
+      --bd-dark:rgba(147,51,234,.2);--bd-light:rgba(109,40,217,.15);
+    }
+
+    html{scroll-behavior:smooth}
+    body{font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;overflow-x:hidden;line-height:1.65}
+
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      background:rgba(5,5,13,.92);backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--bd-dark);
+      transition:background .3s;
+    }
+    .nav-inner{
+      max-width:1280px;margin:0 auto;padding:0 2rem;
+      display:flex;align-items:center;justify-content:space-between;height:68px;
+    }
+    .nav-logo{
+      font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:800;
+      color:#fff;cursor:pointer;text-decoration:none;letter-spacing:-.02em;
+      line-height:1;white-space:nowrap;
+      transition:opacity .2s;
+    }
+    .nav-logo:hover{opacity:.85}
+    .nav-logo .logo-accent{color:var(--p4)}
+    .nav-links{display:flex;align-items:center;gap:.25rem}
+    .nav-link{
+      position:relative;padding:.5rem 1rem;font-size:.875rem;font-weight:500;
+      color:var(--muted-dark);cursor:pointer;transition:color .2s;
+      border-radius:8px;white-space:nowrap;
+    }
+    .nav-link:hover{color:var(--tx-dark)}
+    .nav-link.has-drop:after{content:'▾';margin-left:.3rem;font-size:.7em;opacity:.6}
+    /* dropdown */
+    .drop{
+      position:absolute;top:calc(100% + 8px);left:0;
+      background:rgba(8,8,20,.97);border:1px solid var(--bd-dark);
+      border-radius:14px;padding:1rem;min-width:260px;
+      opacity:0;pointer-events:none;transform:translateY(-8px);
+      transition:opacity .2s,transform .2s;
+    }
+    .nav-link:hover .drop,.nav-link:focus-within .drop{opacity:1;pointer-events:all;transform:translateY(0)}
+    .drop-item{
+      display:block;padding:.55rem .85rem;font-size:.82rem;color:var(--muted-dark);
+      cursor:pointer;border-radius:8px;transition:background .15s,color .15s;
+      text-decoration:none;white-space:nowrap;
+    }
+    .drop-item:hover{background:rgba(147,51,234,.12);color:var(--p3)}
+    .drop-divider{height:1px;background:var(--bd-dark);margin:.5rem 0}
+    .drop-label{padding:.3rem .85rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--p6)}
+    .nav-cta{
+      margin-left:.75rem;padding:.55rem 1.35rem;
+      background:linear-gradient(135deg,var(--p6),var(--p5));
+      color:#fff;font-size:.875rem;font-weight:600;border-radius:10px;
+      text-decoration:none;transition:opacity .2s,box-shadow .2s;
+      box-shadow:0 0 20px var(--glow);
+    }
+    .nav-cta:hover{opacity:.88;box-shadow:0 0 35px var(--glows)}
+    .nav-mobile-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem}
+    .nav-mobile-btn span{display:block;width:22px;height:2px;background:var(--tx-dark);border-radius:2px;transition:.3s}
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .nav-mobile-btn{display:flex}
+      .nav-cta{display:none}
+    }
+
+    /* ── HERO ── */
+    .hero{
+      position:relative;min-height:50vh;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;overflow:hidden;
+      background:var(--dark);padding:8rem 2rem 5rem;
+    }
+    .orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(90px);animation:floatOrb 10s ease-in-out infinite}
+    .orb1{width:600px;height:600px;background:var(--p7);opacity:.08;top:-150px;right:-150px}
+    .orb2{width:400px;height:400px;background:var(--p5);opacity:.07;bottom:5%;left:-100px;animation-delay:4s}
+    .orb3{width:300px;height:300px;background:var(--p9);opacity:.12;top:40%;right:10%;animation-delay:7s}
+    @keyframes floatOrb{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(30px,-40px) scale(1.07)}70%{transform:translate(-20px,20px) scale(.95)}}
+
+    .hero-inner{position:relative;z-index:2;text-align:center;max-width:820px}
+    .hero-eyebrow{
+      display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--p4);margin-bottom:1.75rem;
+      padding:.4rem 1rem;border:1px solid rgba(168,85,247,.3);border-radius:100px;
+      background:rgba(168,85,247,.08);
+    }
+    .hero-h1{
+      font-size:clamp(2.4rem,6vw,4.8rem);font-weight:900;letter-spacing:-.04em;
+      line-height:1.05;color:var(--tx-dark);margin-bottom:1.25rem;
+    }
+    .hero-h1 .grad{
+      background:linear-gradient(135deg,var(--p2) 0%,var(--p4) 40%,var(--p6) 100%);
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .hero-sub{
+      font-size:clamp(.95rem,2vw,1.1rem);color:var(--muted-dark);
+      max-width:600px;margin:0 auto;line-height:1.8;
+    }
+
+    /* ── CONTAINER ── */
+    .container{max-width:1200px;margin:0 auto;padding:0 2rem}
+
+    /* ── SECTION SHARED ── */
+    section{padding:7rem 0}
+    .eyebrow{
+      font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--p6);margin-bottom:1.25rem;
+    }
+    .section-h2{
+      font-size:clamp(2rem,4vw,3.2rem);font-weight:800;letter-spacing:-.03em;
+      line-height:1.1;margin-bottom:1.25rem;
+    }
+    .section-body{font-size:1.05rem;color:var(--muted-light);line-height:1.8;max-width:680px}
+
+    /* ── PILLARS GRID ── */
+    .pillars-section{
+      background:var(--light2);
+      padding:5rem 0;
+    }
+    .pillars-header{text-align:center;max-width:680px;margin:0 auto 3.5rem}
+    .pillars-header .eyebrow{color:var(--muted-light)}
+    .pillars-header .section-h2{color:var(--tx-light)}
+    .pillars-header .section-body{margin:0 auto;color:var(--muted-light);font-size:.98rem}
+    .pillars-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
+    }
+    .pillar-card{
+      background:var(--light);border:1px solid var(--bd-light);border-radius:20px;
+      padding:2.25rem 2rem;transition:border-color .2s,box-shadow .2s,transform .2s;
+      cursor:default;
+    }
+    .pillar-card:hover{
+      border-color:rgba(109,40,217,.35);
+      box-shadow:0 12px 48px rgba(109,40,217,.09);
+      transform:translateY(-3px);
+    }
+    .pillar-icon{
+      width:52px;height:52px;margin-bottom:1.5rem;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(109,40,217,.07);border-radius:14px;
+      border:1px solid rgba(109,40,217,.12);
+    }
+    .pillar-card h3{
+      font-size:1.15rem;font-weight:800;color:var(--tx-light);
+      margin-bottom:.65rem;letter-spacing:-.02em;
+    }
+    .pillar-card p{
+      font-size:.875rem;color:var(--muted-light);line-height:1.75;
+    }
+    @media(max-width:768px){.pillars-grid{grid-template-columns:1fr}}
+
+    /* ── SERVICES ── */
+    .services-section{background:var(--light2)}
+    .services-section .section-h2{color:var(--tx-light)}
+    .svc-list{margin-top:3rem;border-top:1px solid var(--bd-light)}
+    .svc-row{
+      display:grid;grid-template-columns:90px 1fr auto;gap:0 2.5rem;
+      padding:2.25rem 0;border-bottom:1px solid var(--bd-light);
+      align-items:start;transition:background .2s;cursor:default;
+    }
+    .svc-row:hover{background:rgba(109,40,217,.035);margin:0 -1rem;padding-left:1rem;padding-right:1rem;border-radius:0}
+    .svc-row:hover .svc-num{color:var(--p5)}
+    .svc-num{font-size:3.5rem;font-weight:900;color:rgba(109,40,217,.12);line-height:1;letter-spacing:-.05em;transition:color .3s}
+    .svc-content{}
+    .svc-title{font-size:1.15rem;font-weight:700;color:var(--tx-light);margin-bottom:.5rem}
+    .svc-body{font-size:.875rem;color:var(--muted-light);line-height:1.75;max-width:600px}
+    .svc-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.85rem}
+    .svc-tag{
+      font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+      padding:.25rem .65rem;border-radius:100px;
+      background:rgba(109,40,217,.08);color:var(--p7);border:1px solid rgba(109,40,217,.15);
+    }
+    .svc-arrow{color:var(--p6);font-size:1.2rem;opacity:0;transition:opacity .2s;padding-top:.25rem}
+    .svc-row:hover .svc-arrow{opacity:1}
+    @media(max-width:640px){.svc-row{grid-template-columns:56px 1fr}.svc-arrow{display:none}.svc-num{font-size:2.5rem}}
+
+    /* ── CATEGORY HEADERS ── */
+    .cat-header{
+      padding:5.5rem 0 0;
+    }
+    .cat-header .eyebrow{margin-bottom:.75rem}
+    .cat-header h2{
+      font-size:clamp(1.6rem,3.5vw,2.5rem);font-weight:800;letter-spacing:-.03em;
+      line-height:1.1;margin-bottom:.75rem;
+    }
+    .cat-header p{
+      font-size:.95rem;line-height:1.75;max-width:600px;
+    }
+
+    /* dark category bg */
+    .cat-dark{
+      background:var(--dark);
+    }
+    .cat-dark .eyebrow{color:var(--p4)}
+    .cat-dark .cat-header h2{color:var(--tx-dark)}
+    .cat-dark .cat-header p{color:var(--muted-dark)}
+    .cat-dark .svc-list{border-top-color:var(--bd-dark)}
+    .cat-dark .svc-row{border-bottom-color:var(--bd-dark)}
+    .cat-dark .svc-row:hover{background:rgba(147,51,234,.05)}
+    .cat-dark .svc-num{color:rgba(147,51,234,.14)}
+    .cat-dark .svc-row:hover .svc-num{color:var(--p4)}
+    .cat-dark .svc-title{color:var(--tx-dark)}
+    .cat-dark .svc-body{color:var(--muted-dark)}
+    .cat-dark .svc-tag{background:rgba(147,51,234,.1);color:var(--p3);border-color:rgba(147,51,234,.2)}
+    .cat-dark .svc-arrow{color:var(--p4)}
+
+    /* purple gradient category bg */
+    .cat-purple{
+      background:linear-gradient(150deg,var(--p9) 0%,var(--p8) 55%,var(--p7) 100%);
+    }
+    .cat-purple .eyebrow{color:rgba(255,255,255,.7)}
+    .cat-purple .cat-header h2{color:#fff}
+    .cat-purple .cat-header p{color:rgba(255,255,255,.68)}
+    .cat-purple .svc-list{border-top-color:rgba(255,255,255,.15)}
+    .cat-purple .svc-row{border-bottom-color:rgba(255,255,255,.12)}
+    .cat-purple .svc-row:hover{background:rgba(255,255,255,.06)}
+    .cat-purple .svc-num{color:rgba(255,255,255,.12)}
+    .cat-purple .svc-row:hover .svc-num{color:rgba(255,255,255,.55)}
+    .cat-purple .svc-title{color:rgba(255,255,255,.95)}
+    .cat-purple .svc-body{color:rgba(255,255,255,.68)}
+    .cat-purple .svc-tag{background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.2)}
+    .cat-purple .svc-arrow{color:rgba(255,255,255,.6)}
+
+    /* light category bg */
+    .cat-light{
+      background:var(--light2);
+    }
+    .cat-light .eyebrow{color:var(--p6)}
+    .cat-light .cat-header h2{color:var(--tx-light)}
+    .cat-light .cat-header p{color:var(--muted-light)}
+
+    /* ── PROCESS ── */
+    .process-section{
+      background:var(--dark);
+      padding:7rem 0;
+    }
+    .process-header{text-align:center;max-width:640px;margin:0 auto 4.5rem}
+    .process-header .eyebrow{color:var(--p4)}
+    .process-header .section-h2{color:var(--tx-dark)}
+    .process-header .section-body{color:var(--muted-dark);margin:0 auto}
+    .process-steps{
+      display:grid;grid-template-columns:repeat(4,1fr);
+      border-top:1px solid var(--bd-dark);
+      border-left:1px solid var(--bd-dark);
+    }
+    .process-step{
+      padding:2.5rem 2rem;
+      border-right:1px solid var(--bd-dark);
+      border-bottom:1px solid var(--bd-dark);
+      position:relative;
+      transition:background .2s;
+    }
+    .process-step:hover{background:rgba(147,51,234,.06)}
+    .process-step-num{
+      font-size:3rem;font-weight:900;letter-spacing:-.05em;
+      color:rgba(147,51,234,.18);line-height:1;margin-bottom:1.25rem;
+      transition:color .3s;
+    }
+    .process-step:hover .process-step-num{color:rgba(147,51,234,.4)}
+    .process-step h3{
+      font-size:1.05rem;font-weight:700;color:var(--tx-dark);
+      margin-bottom:.6rem;
+    }
+    .process-step p{
+      font-size:.82rem;color:var(--muted-dark);line-height:1.7;
+    }
+    @media(max-width:900px){.process-steps{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:500px){.process-steps{grid-template-columns:1fr}}
+
+    /* ── CTA BANNER ── */
+    .cta-section{
+      background:linear-gradient(135deg,var(--p9) 0%,var(--p8) 40%,var(--p7) 100%);
+      padding:6rem 0;text-align:center;position:relative;overflow:hidden;
+    }
+    .cta-section::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse at center,rgba(168,85,247,.2) 0%,transparent 70%);
+    }
+    .cta-section .section-h2{color:#fff;max-width:700px;margin:0 auto 1rem}
+    .cta-section .section-body{color:rgba(240,240,248,.75);margin:0 auto 2.5rem;max-width:560px}
+    .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative}
+    .btn-white{
+      padding:.85rem 2.2rem;background:#fff;
+      color:var(--p7);font-weight:700;font-size:.95rem;border-radius:12px;
+      text-decoration:none;transition:opacity .2s;
+    }
+    .btn-white:hover{opacity:.9}
+    .btn-outline-white{
+      padding:.85rem 2.2rem;border:1.5px solid rgba(255,255,255,.4);
+      color:#fff;font-weight:600;font-size:.95rem;border-radius:12px;
+      text-decoration:none;transition:background .2s,border-color .2s;
+    }
+    .btn-outline-white:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7)}
+
+    /* ── FOOTER ── */
+    footer{background:var(--dark);border-top:1px solid var(--bd-dark);padding:5rem 0 3rem}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:4rem}
+    .footer-brand .nav-logo{font-size:1.6rem;display:inline-flex;margin-bottom:1.25rem}
+    .footer-tagline{font-size:.875rem;color:var(--muted-dark);line-height:1.7;max-width:280px;margin-bottom:1.5rem}
+    .footer-social{display:flex;gap:.75rem}
+    .social-btn{
+      width:38px;height:38px;border-radius:10px;border:1px solid var(--bd-dark);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--muted-dark);font-size:.85rem;cursor:pointer;transition:background .2s,color .2s,border-color .2s;
+      text-decoration:none;
+    }
+    .social-btn:hover{background:rgba(147,51,234,.15);color:var(--p3);border-color:var(--p6)}
+    .footer-col-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--p5);margin-bottom:1.1rem}
+    .footer-link{display:block;font-size:.875rem;color:var(--muted-dark);margin-bottom:.6rem;text-decoration:none;transition:color .2s;cursor:pointer}
+    .footer-link:hover{color:var(--p3)}
+    .footer-bottom{border-top:1px solid var(--bd-dark);padding-top:2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .footer-copy{font-size:.8rem;color:var(--muted-dark)}
+    .footer-legal{display:flex;gap:1.5rem}
+    .footer-legal a{font-size:.8rem;color:var(--muted-dark);text-decoration:none;transition:color .2s}
+    .footer-legal a:hover{color:var(--p3)}
+    @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;gap:3rem}}
+    @media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+
+    /* ── SVG ANIMATIONS ── */
+    @keyframes drawIn{from{stroke-dashoffset:var(--d,300)}to{stroke-dashoffset:0}}
+    @keyframes nodePulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+    /* ── MISC ── */
+    .section-divider{
+      height:1px;background:linear-gradient(to right,transparent,var(--bd-dark),transparent);
+      margin:0 2rem;
+    }
+  
+    .mobile-menu{
+      display:none;position:fixed;inset:0;background:rgba(5,5,13,.99);
+      z-index:101;flex-direction:column;align-items:flex-start;
+      justify-content:flex-start;padding:5rem 2.5rem 2.5rem;gap:0;
+      overflow-y:auto;
+    }
+    .nav-mobile-open .mobile-menu{display:flex}
+    .mobile-menu .m-link{
+      font-size:2rem;font-weight:800;color:var(--tx-dark);
+      text-decoration:none;padding:.55rem 0;letter-spacing:-.03em;
+      transition:color .2s;display:block;width:100%;
+      border-bottom:1px solid rgba(147,51,234,.1);
+    }
+    .mobile-menu .m-link:hover{color:var(--p4)}
+    .mobile-menu .m-section{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--p6);margin:1.25rem 0 .25rem}
+    .mobile-menu .m-sub{font-size:1rem;font-weight:500;color:var(--muted-dark);text-decoration:none;display:block;padding:.35rem 0;transition:color .2s}
+    .mobile-menu .m-sub:hover{color:var(--p3)}
+    .mobile-menu .m-cta{margin-top:2rem;padding:.85rem 2.2rem;background:linear-gradient(135deg,var(--p6),var(--p5));color:#fff;font-weight:700;font-size:1rem;border-radius:12px;text-decoration:none;display:inline-block;box-shadow:0 0 30px rgba(147,51,234,.35)}
+    .mobile-close{position:fixed;top:1.25rem;right:1.5rem;z-index:102;font-size:2rem;color:var(--tx-dark);cursor:pointer;background:none;border:none;line-height:1;padding:.25rem .5rem}
+    .nav-mobile-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem}
+    .nav-mobile-btn span{display:block;width:22px;height:2px;background:var(--tx-dark);border-radius:2px;transition:.3s}
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">Web<span class="logo-accent">Everything</span></a>
+    <div class="nav-links">
+      <div class="nav-link has-drop">
+        Services
+        <div class="drop">
+          <div class="drop-label">Performance</div>
+          <a class="drop-item" href="services.html#ai-strategy">AI Strategy & Integration</a>
+          <a class="drop-item" href="services.html#performance-marketing">Performance Marketing</a>
+          <a class="drop-item" href="services.html#adtech">AdTech Development</a>
+          <a class="drop-item" href="services.html#analytics">Analytics & Reporting</a>
+          <div class="drop-divider"></div>
+          <div class="drop-label">AI & Automation</div>
+          <a class="drop-item" href="services.html#agentic-ai">Agentic AI Systems</a>
+          <a class="drop-item" href="services.html#geo">Generative Engine Optimization</a>
+          <a class="drop-item" href="services.html#marketing-transformation">Marketing Transformation</a>
+          <a class="drop-item" href="services.html#cx">Customer Experience</a>
+          <div class="drop-divider"></div>
+          <div class="drop-label">Growth & Intelligence</div>
+          <a class="drop-item" href="services.html#digital-data">Digital & Data Transformation</a>
+          <a class="drop-item" href="services.html#digital-ops">Digital Operations</a>
+          <a class="drop-item" href="services.html#market-intelligence">Market Intelligence</a>
+          <a class="drop-item" href="services.html#web-dev">Web Design & Development</a>
+        </div>
+      </div>
+      <div class="nav-link has-drop">
+        Industries
+        <div class="drop">
+          <a class="drop-item" href="industries.html">Healthcare & Pharma</a>
+          <a class="drop-item" href="industries.html">Financial Services</a>
+          <a class="drop-item" href="industries.html">Retail & D2C</a>
+          <a class="drop-item" href="industries.html">Automotive</a>
+          <a class="drop-item" href="industries.html">Technology & SaaS</a>
+          <a class="drop-item" href="industries.html">Travel & Leisure</a>
+        </div>
+      </div>
+      <a class="nav-link" href="insights.html">Insights</a>
+      <a class="nav-link" href="about.html">About</a>
+    </div>
+    <a class="nav-cta" href="contact.html">Start a Project</a>
+    <div class="nav-mobile-btn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+  <a class="m-link" href="index.html">Home</a>
+  <a class="m-link" href="services.html">Services</a>
+  <div class="m-section">Performance</div>
+  <a class="m-sub" href="services.html#performance-marketing">Performance Marketing</a>
+  <a class="m-sub" href="services.html#adtech">AdTech Development</a>
+  <a class="m-sub" href="services.html#analytics">Analytics &amp; Reporting</a>
+  <a class="m-sub" href="services.html#digital-ops">Digital Operations</a>
+  <div class="m-section">AI &amp; Automation</div>
+  <a class="m-sub" href="services.html#ai-strategy">AI Strategy</a>
+  <a class="m-sub" href="services.html#agentic-ai">Agentic AI Systems</a>
+  <a class="m-sub" href="services.html#geo">GEO</a>
+  <a class="m-sub" href="services.html#marketing-transformation">Marketing Transformation</a>
+  <a class="m-link" href="industries.html">Industries</a>
+  <a class="m-link" href="insights.html">Insights</a>
+  <a class="m-link" href="about.html">About</a>
+  <a class="m-cta" href="contact.html">Start a Project →</a>
+</div>
+
+<!-- ── PAGE HERO ── -->
+<section class="hero">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Our Services</div>
+    <h1 class="hero-h1">
+      Everything digital.<br/><span class="grad">One partner.</span>
+    </h1>
+    <p class="hero-sub">
+      12 services across performance marketing, AI & automation, and digital transformation — built to work together and deliver compounding results.
+    </p>
+  </div>
+</section>
+
+<!-- ── THREE PILLARS INTRO GRID ── -->
+<section class="pillars-section">
+  <div class="container">
+    <div class="pillars-header">
+      <div class="eyebrow">Three Pillars</div>
+      <h2 class="section-h2">Built around what actually moves the needle.</h2>
+      <p class="section-body">
+        Every engagement draws from three interconnected disciplines. Performance without AI is leaving money on the table. AI without performance context is a science project. Intelligence without action is noise.
+      </p>
+    </div>
+    <div class="pillars-grid">
+
+      <!-- Pillar 1: Performance -->
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 28 28" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="18" width="5" height="8" rx="1" stroke="#7c3aed" stroke-width="1.5" stroke-linejoin="round"/>
+            <rect x="10" y="12" width="5" height="14" rx="1" stroke="#7c3aed" stroke-width="1.5" stroke-linejoin="round"/>
+            <rect x="18" y="5" width="5" height="21" rx="1" stroke="#7c3aed" stroke-width="1.5" stroke-linejoin="round"/>
+            <polyline points="4.5,18 12.5,12 20.5,5" stroke="#a855f7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Performance</h3>
+        <p>High-scale paid media, AdTech infrastructure, and analytics systems engineered to drive measurable acquisition results at enterprise volume.</p>
+      </div>
+
+      <!-- Pillar 2: AI & Automation -->
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 28 28" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="14" r="5" stroke="#7c3aed" stroke-width="1.5"/>
+            <circle cx="14" cy="14" r="10" stroke="#a855f7" stroke-width="1" stroke-dasharray="3 3"/>
+            <circle cx="24" cy="14" r="2" fill="#a855f7"/>
+            <circle cx="4" cy="14" r="2" fill="#7c3aed"/>
+            <circle cx="14" cy="4" r="2" fill="#9333ea"/>
+            <circle cx="14" cy="24" r="2" fill="#9333ea"/>
+          </svg>
+        </div>
+        <h3>AI &amp; Automation</h3>
+        <p>Agentic systems built on Anthropic's Claude API, GEO strategy, and marketing transformation — replacing manual overhead with intelligent, scalable operations.</p>
+      </div>
+
+      <!-- Pillar 3: Growth & Intelligence -->
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 28 28" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="8" r="4" stroke="#7c3aed" stroke-width="1.5"/>
+            <circle cx="5" cy="22" r="3" stroke="#9333ea" stroke-width="1.5"/>
+            <circle cx="23" cy="22" r="3" stroke="#9333ea" stroke-width="1.5"/>
+            <line x1="11" y1="11" x2="7" y2="19" stroke="#a855f7" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="17" y1="11" x2="21" y2="19" stroke="#a855f7" stroke-width="1.2" stroke-linecap="round"/>
+            <line x1="8" y1="22" x2="20" y2="22" stroke="#7c3aed" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 2"/>
+          </svg>
+        </div>
+        <h3>Growth &amp; Intelligence</h3>
+        <p>Data transformation, digital operations, market intelligence, and web development — the infrastructure layer that makes everything else sustainable and scalable.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CATEGORY 1: PERFORMANCE  (dark + purple gradient)
+═══════════════════════════════════════════ -->
+<section class="cat-purple" style="padding-bottom:5rem">
+  <div class="container">
+    <div class="cat-header">
+      <div class="eyebrow">Category 01</div>
+      <h2>Performance</h2>
+      <p>Revenue-first systems built for scale. We engineer the full acquisition stack — from media strategy to proprietary AdTech infrastructure and real-time intelligence.</p>
+    </div>
+    <div class="svc-list">
+
+      <div class="svc-row" id="ai-strategy">
+        <div class="svc-num">01</div>
+        <div class="svc-content">
+          <div class="svc-title">AI Strategy &amp; Integration</div>
+          <div class="svc-body">We embed AI into the core of your marketing stack. From model selection to deployment, we build proprietary AI pipelines on Anthropic's Claude API that give you a measurable edge.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Claude API</span>
+            <span class="svc-tag">MCP</span>
+            <span class="svc-tag">Strategy</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row" id="performance-marketing">
+        <div class="svc-num">02</div>
+        <div class="svc-content">
+          <div class="svc-title">Performance Marketing</div>
+          <div class="svc-body">High-scale paid search and performance media across healthcare, pharma, automotive, and D2C. We engineer full acquisition systems, not just ad campaigns.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Google Ads</span>
+            <span class="svc-tag">Microsoft Ads</span>
+            <span class="svc-tag">Paid Search</span>
+            <span class="svc-tag">Healthcare</span>
+            <span class="svc-tag">Pharma</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row" id="adtech">
+        <div class="svc-num">03</div>
+        <div class="svc-content">
+          <div class="svc-title">AdTech Development</div>
+          <div class="svc-body">Custom AdTech built on Google Cloud and Cloudflare. Bidding algorithms, data pipelines, attribution systems, and proprietary tracking infrastructure.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Google Cloud</span>
+            <span class="svc-tag">Cloudflare</span>
+            <span class="svc-tag">DSPs</span>
+            <span class="svc-tag">Attribution</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row" id="analytics">
+        <div class="svc-num">04</div>
+        <div class="svc-content">
+          <div class="svc-title">Analytics &amp; Reporting</div>
+          <div class="svc-body">Real-time dashboards, GA4 implementation, Looker Studio, and custom data pipelines. We turn raw signals into decision-ready intelligence.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">GA4</span>
+            <span class="svc-tag">Looker Studio</span>
+            <span class="svc-tag">BigQuery</span>
+            <span class="svc-tag">Data Pipelines</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CATEGORY 2: AI & AUTOMATION  (light bg)
+═══════════════════════════════════════════ -->
+<section class="cat-light" style="padding-bottom:5rem">
+  <div class="container">
+    <div class="cat-header">
+      <div class="eyebrow">Category 02</div>
+      <h2>AI &amp; Automation</h2>
+      <p>Autonomous systems, AI visibility, and operating model transformation. We build the intelligent layer that makes your marketing scalable without adding headcount.</p>
+    </div>
+    <div class="svc-list">
+
+      <div class="svc-row" id="agentic-ai">
+        <div class="svc-num">05</div>
+        <div class="svc-content">
+          <div class="svc-title">Agentic AI Systems</div>
+          <div class="svc-body">Autonomous AI agents built on Claude that execute complex workflows, replace manual overhead, and scale operations without headcount.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Claude</span>
+            <span class="svc-tag">MCP</span>
+            <span class="svc-tag">Agentic Workflows</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row" id="geo">
+        <div class="svc-num">06</div>
+        <div class="svc-content">
+          <div class="svc-title">Generative Engine Optimization</div>
+          <div class="svc-body">We make your brand visible in ChatGPT, Perplexity, Google AI Overviews, and every AI surface that's eating traditional search traffic.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">GEO</span>
+            <span class="svc-tag">AI Overviews</span>
+            <span class="svc-tag">Perplexity</span>
+            <span class="svc-tag">ChatGPT</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row" id="marketing-transformation">
+        <div class="svc-num">07</div>
+        <div class="svc-content">
+          <div class="svc-title">Marketing Transformation</div>
+          <div class="svc-body">We rebuild your marketing operating model around AI-native processes. From org design to tech stack re-architecture.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Strategy</span>
+            <span class="svc-tag">Change Management</span>
+            <span class="svc-tag">MarTech</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row" id="cx">
+        <div class="svc-num">08</div>
+        <div class="svc-content">
+          <div class="svc-title">Customer Experience</div>
+          <div class="svc-body">AI-powered CX systems that predict, personalize, and adapt. We design the digital touchpoints that convert and retain.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">CX</span>
+            <span class="svc-tag">Personalization</span>
+            <span class="svc-tag">AI</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CATEGORY 3: GROWTH & INTELLIGENCE  (dark)
+═══════════════════════════════════════════ -->
+<section class="cat-dark" style="padding-bottom:5rem">
+  <div class="container">
+    <div class="cat-header">
+      <div class="eyebrow">Category 03</div>
+      <h2>Growth &amp; Intelligence</h2>
+      <p>The infrastructure, intelligence, and execution layer that makes growth sustainable — from data architecture to web properties that win.</p>
+    </div>
+    <div class="svc-list">
+
+      <div class="svc-row" id="digital-data">
+        <div class="svc-num">09</div>
+        <div class="svc-content">
+          <div class="svc-title">Digital &amp; Data Transformation</div>
+          <div class="svc-body">End-to-end transformation of your data infrastructure. We turn fragmented systems into unified intelligence platforms.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Data Engineering</span>
+            <span class="svc-tag">CDP</span>
+            <span class="svc-tag">Cloud Migration</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row" id="digital-ops">
+        <div class="svc-num">10</div>
+        <div class="svc-content">
+          <div class="svc-title">Digital Operations</div>
+          <div class="svc-body">Webflow, Shopify, Stripe integrations. We run the operational layer so your digital properties stay fast, secure, and scalable.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Webflow</span>
+            <span class="svc-tag">Shopify</span>
+            <span class="svc-tag">Stripe</span>
+            <span class="svc-tag">Operations</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row" id="market-intelligence">
+        <div class="svc-num">11</div>
+        <div class="svc-content">
+          <div class="svc-title">Market Intelligence</div>
+          <div class="svc-body">Competitive tracking, keyword intelligence, SERP analysis, and AI-powered research that keeps you ahead of market shifts.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">SEO</span>
+            <span class="svc-tag">Research</span>
+            <span class="svc-tag">Competitive Intel</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+      <div class="svc-row" id="web-dev">
+        <div class="svc-num">12</div>
+        <div class="svc-content">
+          <div class="svc-title">Web Design &amp; Development</div>
+          <div class="svc-body">We design and build the web properties that win. Fast, responsive, conversion-optimized, built with modern tooling.</div>
+          <div class="svc-tags">
+            <span class="svc-tag">Design</span>
+            <span class="svc-tag">Dev</span>
+            <span class="svc-tag">Webflow</span>
+            <span class="svc-tag">Performance</span>
+          </div>
+        </div>
+        <div class="svc-arrow">→</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ── -->
+<section class="process-section">
+  <div class="container">
+    <div class="process-header">
+      <div class="eyebrow">How We Work</div>
+      <h2 class="section-h2">A clear process. No ambiguity.</h2>
+      <p class="section-body">
+        Every engagement follows the same four-phase model — built to move fast without cutting corners.
+      </p>
+    </div>
+    <div class="process-steps">
+
+      <div class="process-step">
+        <div class="process-step-num">01</div>
+        <h3>Discovery</h3>
+        <p>We audit your current stack, understand business objectives, and map every gap between where you are and where you need to be. No assumptions, no templates.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-num">02</div>
+        <h3>Strategy</h3>
+        <p>We translate discovery into a prioritized roadmap — which services, in which order, at what investment level — with clear success metrics tied to revenue outcomes.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-num">03</div>
+        <h3>Build</h3>
+        <p>Execution with full transparency. Whether we're launching campaigns, deploying AI agents, or building infrastructure — you see every move in real time.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="process-step-num">04</div>
+        <h3>Optimize</h3>
+        <p>Systems that improve over time. Continuous testing, AI learning loops, and performance reviews ensure the work keeps compounding long after launch.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ── -->
+<section class="cta-section">
+  <div class="container" style="position:relative">
+    <h2 class="section-h2">Ready to build?</h2>
+    <p class="section-body">
+      Tell us what you're working on. We'll tell you exactly how we'd approach it.
+    </p>
+    <div class="cta-btns">
+      <a class="btn-white" href="contact.html">Start a Project</a>
+      <a class="btn-outline-white" href="insights.html">See Our Work</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="index.html" style="font-size:1.4rem">Web<span class="logo-accent">Everything</span></a>
+        <p class="footer-tagline">
+          AI-powered digital agency combining enterprise performance marketing, proprietary AdTech, and agentic AI systems. Built to win.
+        </p>
+        <div class="footer-social">
+          <a class="social-btn" href="#" title="LinkedIn">in</a>
+          <a class="social-btn" href="#" title="X / Twitter">𝕏</a>
+          <a class="social-btn" href="#" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-label">Services</div>
+        <a class="footer-link" href="services.html#ai-strategy">AI Strategy</a>
+        <a class="footer-link" href="services.html#performance-marketing">Performance Marketing</a>
+        <a class="footer-link" href="services.html#adtech">AdTech Development</a>
+        <a class="footer-link" href="services.html#agentic-ai">Agentic AI Systems</a>
+        <a class="footer-link" href="services.html#geo">GEO</a>
+        <a class="footer-link" href="services.html">All Services →</a>
+      </div>
+      <div>
+        <div class="footer-col-label">Company</div>
+        <a class="footer-link" href="about.html">About</a>
+        <a class="footer-link" href="insights.html">Insights</a>
+        <a class="footer-link" href="insights.html">Case Studies</a>
+        <a class="footer-link" href="contact.html">Contact</a>
+      </div>
+      <div>
+        <div class="footer-col-label">Built On</div>
+        <a class="footer-link" href="#">Anthropic / Claude</a>
+        <a class="footer-link" href="#">Google Cloud</a>
+        <a class="footer-link" href="#">Cloudflare</a>
+        <a class="footer-link" href="#">Webflow</a>
+        <a class="footer-link" href="#">MCP Protocol</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Web Everything. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

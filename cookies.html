@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Cookie Policy — Web Everything</title>
+  <meta name="description" content="Cookie Policy for Web Everything. Learn about the cookies we use, why we use them, and how to manage your preferences."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --p9:#2e0060;--p8:#4a0090;--p7:#6d28d9;--p6:#7c3aed;
+      --p5:#9333ea;--p4:#a855f7;--p3:#c084fc;--p2:#ddb6fe;
+      --glow:rgba(147,51,234,.35);--glows:rgba(147,51,234,.6);
+      --dark:#05050d;--dark2:#080814;--dark3:#0d0d1f;
+      --light:#ffffff;--light2:#f9f6ff;--light3:#ede8ff;
+      --tx-dark:#f0f0f8;--tx-light:#18102e;
+      --muted-dark:#9090b0;--muted-light:#5a4080;
+      --bd-dark:rgba(147,51,234,.2);--bd-light:rgba(109,40,217,.15);
+    }
+
+    html{scroll-behavior:smooth}
+    body{font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;overflow-x:hidden;line-height:1.65}
+
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      background:rgba(5,5,13,.92);backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--bd-dark);
+      transition:background .3s;
+    }
+    .nav-inner{
+      max-width:1280px;margin:0 auto;padding:0 2rem;
+      display:flex;align-items:center;justify-content:space-between;height:68px;
+    }
+    .nav-logo{
+      font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:800;
+      color:#fff;cursor:pointer;text-decoration:none;letter-spacing:-.02em;
+      line-height:1;white-space:nowrap;
+      transition:opacity .2s;
+    }
+    .nav-logo:hover{opacity:.85}
+    .nav-logo .logo-accent{color:var(--p4)}
+    .nav-links{display:flex;align-items:center;gap:.25rem}
+    .nav-link{
+      position:relative;padding:.5rem 1rem;font-size:.875rem;font-weight:500;
+      color:var(--muted-dark);cursor:pointer;transition:color .2s;
+      border-radius:8px;white-space:nowrap;
+    }
+    .nav-link:hover{color:var(--tx-dark)}
+    .nav-link.has-drop:after{content:'▾';margin-left:.3rem;font-size:.7em;opacity:.6}
+    .drop{
+      position:absolute;top:calc(100% + 8px);left:0;
+      background:rgba(8,8,20,.97);border:1px solid var(--bd-dark);
+      border-radius:14px;padding:1rem;min-width:260px;
+      opacity:0;pointer-events:none;transform:translateY(-8px);
+      transition:opacity .2s,transform .2s;
+    }
+    .nav-link:hover .drop,.nav-link:focus-within .drop{opacity:1;pointer-events:all;transform:translateY(0)}
+    .drop-item{
+      display:block;padding:.55rem .85rem;font-size:.82rem;color:var(--muted-dark);
+      cursor:pointer;border-radius:8px;transition:background .15s,color .15s;
+      text-decoration:none;white-space:nowrap;
+    }
+    .drop-item:hover{background:rgba(147,51,234,.12);color:var(--p3)}
+    .drop-divider{height:1px;background:var(--bd-dark);margin:.5rem 0}
+    .drop-label{padding:.3rem .85rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--p6)}
+    .nav-cta{
+      margin-left:.75rem;padding:.55rem 1.35rem;
+      background:linear-gradient(135deg,var(--p6),var(--p5));
+      color:#fff;font-size:.875rem;font-weight:600;border-radius:10px;
+      text-decoration:none;transition:opacity .2s,box-shadow .2s;
+      box-shadow:0 0 20px var(--glow);
+    }
+    .nav-cta:hover{opacity:.88;box-shadow:0 0 35px var(--glows)}
+    .nav-mobile-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem}
+    .nav-mobile-btn span{display:block;width:22px;height:2px;background:var(--tx-dark);border-radius:2px;transition:.3s}
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .nav-mobile-btn{display:flex}
+      .nav-cta{display:none}
+    }
+
+    /* ── CONTAINER ── */
+    .container{max-width:1200px;margin:0 auto;padding:0 2rem}
+
+    /* ── FOOTER ── */
+    footer{background:var(--dark);border-top:1px solid var(--bd-dark);padding:5rem 0 3rem}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:4rem}
+    .footer-brand .nav-logo{font-size:1.6rem;display:inline-flex;margin-bottom:1.25rem}
+    .footer-tagline{font-size:.875rem;color:var(--muted-dark);line-height:1.7;max-width:280px;margin-bottom:1.5rem}
+    .footer-social{display:flex;gap:.75rem}
+    .social-btn{
+      width:38px;height:38px;border-radius:10px;border:1px solid var(--bd-dark);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--muted-dark);font-size:.85rem;cursor:pointer;transition:background .2s,color .2s,border-color .2s;
+      text-decoration:none;
+    }
+    .social-btn:hover{background:rgba(147,51,234,.15);color:var(--p3);border-color:var(--p6)}
+    .footer-col-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--p5);margin-bottom:1.1rem}
+    .footer-link{display:block;font-size:.875rem;color:var(--muted-dark);margin-bottom:.6rem;text-decoration:none;transition:color .2s;cursor:pointer}
+    .footer-link:hover{color:var(--p3)}
+    .footer-bottom{border-top:1px solid var(--bd-dark);padding-top:2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .footer-copy{font-size:.8rem;color:var(--muted-dark)}
+    .footer-legal{display:flex;gap:1.5rem}
+    .footer-legal a{font-size:.8rem;color:var(--muted-dark);text-decoration:none;transition:color .2s}
+    .footer-legal a:hover{color:var(--p3)}
+    @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;gap:3rem}}
+    @media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+
+    /* ── LEGAL PAGE STYLES ── */
+    .legal-hero{background:var(--dark);padding:8rem 2rem 4rem;border-bottom:1px solid var(--bd-dark)}
+    .legal-hero .eyebrow{color:var(--p4)}
+    .legal-hero h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;color:var(--tx-dark);margin-top:.75rem;line-height:1.1}
+    .legal-hero .meta{font-size:.85rem;color:var(--muted-dark);margin-top:1rem}
+    .legal-body{background:var(--light2);padding:5rem 0}
+    .legal-content{max-width:800px;margin:0 auto;padding:0 2rem}
+    .legal-content h2{font-size:1.35rem;font-weight:700;color:var(--tx-light);margin:2.5rem 0 .75rem;padding-bottom:.5rem;border-bottom:1px solid var(--bd-light)}
+    .legal-content h3{font-size:1.05rem;font-weight:700;color:var(--tx-light);margin:1.5rem 0 .5rem}
+    .legal-content p{font-size:.95rem;color:var(--muted-light);line-height:1.85;margin-bottom:1rem}
+    .legal-content ul,.legal-content ol{font-size:.95rem;color:var(--muted-light);line-height:1.85;margin-bottom:1rem;padding-left:1.5rem}
+    .legal-content li{margin-bottom:.4rem}
+    .legal-content a{color:var(--p6);text-decoration:underline}
+    .legal-content a:hover{color:var(--p4)}
+    .legal-toc{background:rgba(109,40,217,.06);border:1px solid var(--bd-light);border-radius:14px;padding:1.5rem 2rem;margin-bottom:3rem}
+    .legal-toc-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--p6);margin-bottom:1rem}
+    .legal-toc a{display:block;font-size:.875rem;color:var(--muted-light);text-decoration:none;padding:.25rem 0;transition:color .15s}
+    .legal-toc a:hover{color:var(--p5)}
+
+    /* cookie table */
+    .cookie-table{border-collapse:collapse;width:100%;margin:1rem 0 2rem;border-radius:10px;overflow:hidden}
+    .cookie-table th{background:var(--p9);color:var(--tx-dark);padding:.75rem 1rem;text-align:left;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
+    .cookie-table td{padding:.75rem 1rem;border-bottom:1px solid var(--bd-light);font-size:.875rem;color:var(--muted-light)}
+    .cookie-table tr:last-child td{border-bottom:none}
+    @media(max-width:640px){
+      .cookie-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    }
+
+    .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--p6);margin-bottom:1.25rem}
+  
+    .mobile-menu{
+      display:none;position:fixed;inset:0;background:rgba(5,5,13,.99);
+      z-index:101;flex-direction:column;align-items:flex-start;
+      justify-content:flex-start;padding:5rem 2.5rem 2.5rem;gap:0;
+      overflow-y:auto;
+    }
+    .nav-mobile-open .mobile-menu{display:flex}
+    .mobile-menu .m-link{
+      font-size:2rem;font-weight:800;color:var(--tx-dark);
+      text-decoration:none;padding:.55rem 0;letter-spacing:-.03em;
+      transition:color .2s;display:block;width:100%;
+      border-bottom:1px solid rgba(147,51,234,.1);
+    }
+    .mobile-menu .m-link:hover{color:var(--p4)}
+    .mobile-menu .m-section{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--p6);margin:1.25rem 0 .25rem}
+    .mobile-menu .m-sub{font-size:1rem;font-weight:500;color:var(--muted-dark);text-decoration:none;display:block;padding:.35rem 0;transition:color .2s}
+    .mobile-menu .m-sub:hover{color:var(--p3)}
+    .mobile-menu .m-cta{margin-top:2rem;padding:.85rem 2.2rem;background:linear-gradient(135deg,var(--p6),var(--p5));color:#fff;font-weight:700;font-size:1rem;border-radius:12px;text-decoration:none;display:inline-block;box-shadow:0 0 30px rgba(147,51,234,.35)}
+    .mobile-close{position:fixed;top:1.25rem;right:1.5rem;z-index:102;font-size:2rem;color:var(--tx-dark);cursor:pointer;background:none;border:none;line-height:1;padding:.25rem .5rem}
+    .nav-mobile-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem}
+    .nav-mobile-btn span{display:block;width:22px;height:2px;background:var(--tx-dark);border-radius:2px;transition:.3s}
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">Web<span class="logo-accent">Everything</span></a>
+    <div class="nav-links">
+      <div class="nav-link has-drop">
+        Services
+        <div class="drop">
+          <div class="drop-label">Performance</div>
+          <a class="drop-item" href="services.html#performance-marketing">Performance Marketing</a>
+          <a class="drop-item" href="services.html#adtech-development">AdTech Development</a>
+          <a class="drop-item" href="services.html#analytics-reporting">Analytics & Reporting</a>
+          <a class="drop-item" href="services.html#digital-operations">Digital Operations</a>
+          <div class="drop-divider"></div>
+          <div class="drop-label">AI & Strategy</div>
+          <a class="drop-item" href="services.html#ai-strategy-integration">AI Strategy & Integration</a>
+          <a class="drop-item" href="services.html#agentic-ai-systems">Agentic AI Systems</a>
+          <a class="drop-item" href="services.html#generative-engine-optimization">Generative Engine Optimization</a>
+          <a class="drop-item" href="services.html#marketing-transformation">Marketing Transformation</a>
+          <div class="drop-divider"></div>
+          <div class="drop-label">Growth & Intelligence</div>
+          <a class="drop-item" href="services.html#customer-experience">Customer Experience</a>
+          <a class="drop-item" href="services.html#market-intelligence">Market Intelligence</a>
+          <a class="drop-item" href="services.html#web-design-development">Web Design & Development</a>
+          <a class="drop-item" href="services.html#digital-data-transformation">Digital & Data Transformation</a>
+        </div>
+      </div>
+      <a class="nav-link" href="industries.html">Industries</a>
+      <a class="nav-link" href="insights.html">Insights</a>
+      <a class="nav-link" href="about.html">About</a>
+    </div>
+    <a class="nav-cta" href="contact.html">Start a Project</a>
+    <div class="nav-mobile-btn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+  <a class="m-link" href="index.html">Home</a>
+  <a class="m-link" href="services.html">Services</a>
+  <div class="m-section">Performance</div>
+  <a class="m-sub" href="services.html#performance-marketing">Performance Marketing</a>
+  <a class="m-sub" href="services.html#adtech">AdTech Development</a>
+  <a class="m-sub" href="services.html#analytics">Analytics &amp; Reporting</a>
+  <a class="m-sub" href="services.html#digital-ops">Digital Operations</a>
+  <div class="m-section">AI &amp; Automation</div>
+  <a class="m-sub" href="services.html#ai-strategy">AI Strategy</a>
+  <a class="m-sub" href="services.html#agentic-ai">Agentic AI Systems</a>
+  <a class="m-sub" href="services.html#geo">GEO</a>
+  <a class="m-sub" href="services.html#marketing-transformation">Marketing Transformation</a>
+  <a class="m-link" href="industries.html">Industries</a>
+  <a class="m-link" href="insights.html">Insights</a>
+  <a class="m-link" href="about.html">About</a>
+  <a class="m-cta" href="contact.html">Start a Project →</a>
+</div>
+
+<!-- ── HERO ── -->
+<div class="legal-hero">
+  <div class="container">
+    <div class="eyebrow">Legal</div>
+    <h1>Cookie Policy</h1>
+    <p class="meta">Effective date: April 1, 2026 &nbsp;·&nbsp; Web Everything</p>
+  </div>
+</div>
+
+<!-- ── BODY ── -->
+<div class="legal-body">
+  <div class="legal-content">
+
+    <!-- TOC -->
+    <div class="legal-toc">
+      <div class="legal-toc-title">On This Page</div>
+      <a href="#what-are-cookies">1. What Are Cookies</a>
+      <a href="#types-of-cookies">2. Types of Cookies We Use</a>
+      <a href="#third-party-cookies">3. Third-Party Cookies</a>
+      <a href="#managing-preferences">4. Managing Your Cookie Preferences</a>
+      <a href="#cookie-table">5. Cookie Table</a>
+      <a href="#updates">6. Updates to This Policy</a>
+      <a href="#contact">7. Contact</a>
+    </div>
+
+    <p>This Cookie Policy explains how Web Everything ("we," "us," or "our") uses cookies and similar tracking technologies when you visit our website. It should be read alongside our <a href="privacy.html">Privacy Policy</a>, which provides more detail about how we handle personal information generally.</p>
+
+    <h2 id="what-are-cookies">1. What Are Cookies</h2>
+    <p>Cookies are small text files that are placed on your device (computer, tablet, or mobile phone) when you visit a website. They are widely used to make websites work more efficiently, to remember your preferences, and to provide website owners with analytical information about how their sites are used.</p>
+    <p>Cookies are not programs — they cannot carry viruses or install malware on your device. They contain small amounts of text data that can be read by the website that set them or, in the case of third-party cookies, by the third-party service that placed them.</p>
+    <p>In addition to cookies, we may use similar technologies such as pixel tags, web beacons, and local storage. This policy applies to all such technologies collectively referred to as "cookies."</p>
+
+    <h2 id="types-of-cookies">2. Types of Cookies We Use</h2>
+
+    <h3>2.1 Essential Cookies</h3>
+    <p>Essential cookies are strictly necessary for our website to function correctly. Without these cookies, core features of the website — such as page navigation, secure browsing, and form submissions — would not work. These cookies do not collect any personal information for marketing purposes and cannot be disabled without materially impacting site functionality.</p>
+    <p>Examples include cookies that maintain your session as you navigate between pages, and security cookies that help detect and prevent fraudulent activity.</p>
+
+    <h3>2.2 Analytics Cookies</h3>
+    <p>Analytics cookies help us understand how visitors interact with our website by collecting and reporting information in an anonymized or aggregated form. We use Google Analytics 4 (GA4) for this purpose. The data collected includes pages visited, time spent on pages, traffic source, device type, and general geographic location (country/region).</p>
+    <p>We have enabled IP anonymization in Google Analytics 4, which means your full IP address is never stored. The information gathered is used solely to improve the performance and content of our website. Google Analytics data is governed by Google's own privacy policy, available at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>.</p>
+
+    <h3>2.3 Preference Cookies</h3>
+    <p>Preference cookies allow our website to remember choices you make — such as your display preferences or any settings you have applied — so that we can provide a more personalized experience on return visits. These cookies do not track your activity across other websites.</p>
+
+    <h3>2.4 Marketing Cookies</h3>
+    <p>Marketing cookies may be used if we run advertising or retargeting campaigns. These cookies track your visits to our website and other sites so that we can deliver advertising that is relevant to your interests, and to measure the effectiveness of those campaigns. At present, Web Everything does not run ad retargeting campaigns that use third-party marketing cookies. If this changes, we will update this policy and, where required by law, obtain your consent before setting marketing cookies.</p>
+
+    <h2 id="third-party-cookies">3. Third-Party Cookies</h2>
+    <p>Some cookies on our website are set by third-party services we use. These third parties have their own privacy and cookie policies, and we do not have direct control over the information they collect. The primary third-party cookie provider on our site is:</p>
+    <ul>
+      <li>
+        <strong>Google Analytics 4 (Google LLC)</strong> — Sets analytics cookies to help us understand website usage. Google may use the data collected to contextualize and personalize the ads of its own advertising network. You can learn more and opt out of Google Analytics tracking across the web using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics Opt-out Browser Add-on</a>.
+      </li>
+    </ul>
+    <p>We periodically review our use of third-party services and will update this policy if additional third-party cookies are added to our website.</p>
+
+    <h2 id="managing-preferences">4. Managing Your Cookie Preferences</h2>
+    <p>You have several options for controlling how cookies are used when you visit our website:</p>
+
+    <h3>4.1 Browser Settings</h3>
+    <p>Most web browsers allow you to control cookies through their settings. You can typically find cookie settings under your browser's Privacy, Security, or History settings. Here is how to access cookie settings in common browsers:</p>
+    <ul>
+      <li><strong>Google Chrome:</strong> Settings &rarr; Privacy and security &rarr; Cookies and other site data.</li>
+      <li><strong>Mozilla Firefox:</strong> Settings &rarr; Privacy &amp; Security &rarr; Cookies and Site Data.</li>
+      <li><strong>Apple Safari:</strong> Preferences &rarr; Privacy &rarr; Manage Website Data.</li>
+      <li><strong>Microsoft Edge:</strong> Settings &rarr; Cookies and site permissions &rarr; Cookies and site data.</li>
+    </ul>
+    <p>You can choose to block all cookies, block only third-party cookies, or clear cookies when you close your browser. Please note that blocking essential cookies will impair the functionality of our website.</p>
+
+    <h3>4.2 Google Analytics Opt-Out</h3>
+    <p>To opt out of Google Analytics tracking specifically, you can install the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics Opt-out Browser Add-on</a>, which prevents your data from being used by Google Analytics on any website you visit.</p>
+
+    <h3>4.3 Do Not Track</h3>
+    <p>Some browsers support a "Do Not Track" (DNT) signal that communicates your preference not to be tracked. Our website does not currently respond to DNT signals because there is no universal standard for how websites should honor them. We will revisit this position if a consensus standard emerges.</p>
+
+    <h2 id="cookie-table">5. Cookie Table</h2>
+    <p>The following table describes the specific cookies currently in use on the Web Everything website:</p>
+
+    <table class="cookie-table" aria-label="Cookies used on this website">
+      <thead>
+        <tr>
+          <th scope="col">Cookie Name</th>
+          <th scope="col">Purpose</th>
+          <th scope="col">Duration</th>
+          <th scope="col">Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>_ga</code></td>
+          <td>Google Analytics — distinguishes unique users by assigning a randomly generated number as a client identifier.</td>
+          <td>2 years</td>
+          <td>Analytics</td>
+        </tr>
+        <tr>
+          <td><code>_ga_[ID]</code></td>
+          <td>Google Analytics 4 — used to persist session state and track pageview and event data for analytics reporting.</td>
+          <td>2 years</td>
+          <td>Analytics</td>
+        </tr>
+        <tr>
+          <td><code>_gid</code></td>
+          <td>Google Analytics — distinguishes users; stores and updates a unique value for each page visited.</td>
+          <td>24 hours</td>
+          <td>Analytics</td>
+        </tr>
+        <tr>
+          <td><code>we_session</code></td>
+          <td>Essential session cookie — maintains your session state as you navigate through the site, enabling form submissions and page continuity.</td>
+          <td>Session (expires on browser close)</td>
+          <td>Essential</td>
+        </tr>
+        <tr>
+          <td><code>we_prefs</code></td>
+          <td>Stores your display preferences (e.g., theme settings) so they are remembered on return visits.</td>
+          <td>1 year</td>
+          <td>Preference</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>This table is updated as our cookie usage changes. If you notice a cookie on our site that is not listed here, please contact us at <a href="mailto:hello@webeverything.io">hello@webeverything.io</a>.</p>
+
+    <h2 id="updates">6. Updates to This Policy</h2>
+    <p>We may update this Cookie Policy from time to time to reflect changes in the cookies we use, regulatory requirements, or our business practices. When we make changes, we will update the effective date at the top of this page. If we make significant changes to the types of cookies we use or their purposes, we will make reasonable efforts to notify you, such as by posting a notice on our website.</p>
+    <p>We encourage you to review this policy periodically to stay informed about how we use cookies.</p>
+
+    <h2 id="contact">7. Contact</h2>
+    <p>If you have questions or concerns about our use of cookies or this Cookie Policy, please contact us:</p>
+    <ul>
+      <li><strong>Email:</strong> <a href="mailto:hello@webeverything.io">hello@webeverything.io</a></li>
+      <li><strong>Company:</strong> Web Everything, operated by Kenny Gimpert II</li>
+      <li><strong>Location:</strong> Detroit, MI</li>
+    </ul>
+
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="index.html" style="font-size:1.4rem">Web<span class="logo-accent">Everything</span></a>
+        <p class="footer-tagline">
+          AI-powered digital agency combining enterprise performance marketing, proprietary AdTech, and agentic AI systems. Built to win.
+        </p>
+        <div class="footer-social">
+          <a class="social-btn" href="#" title="LinkedIn">in</a>
+          <a class="social-btn" href="#" title="X / Twitter">𝕏</a>
+          <a class="social-btn" href="#" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-label">Services</div>
+        <a class="footer-link" href="services.html#ai-strategy-integration">AI Strategy</a>
+        <a class="footer-link" href="services.html#performance-marketing">Performance Marketing</a>
+        <a class="footer-link" href="services.html#adtech-development">AdTech Development</a>
+        <a class="footer-link" href="services.html#agentic-ai-systems">Agentic AI Systems</a>
+        <a class="footer-link" href="services.html#generative-engine-optimization">GEO</a>
+        <a class="footer-link" href="services.html">All Services →</a>
+      </div>
+      <div>
+        <div class="footer-col-label">Company</div>
+        <a class="footer-link" href="about.html">About</a>
+        <a class="footer-link" href="insights.html">Insights</a>
+        <a class="footer-link" href="about.html#case-studies">Case Studies</a>
+        <a class="footer-link" href="about.html#careers">Careers</a>
+        <a class="footer-link" href="contact.html">Contact</a>
+      </div>
+      <div>
+        <div class="footer-col-label">Built On</div>
+        <a class="footer-link" href="#">Anthropic / Claude</a>
+        <a class="footer-link" href="#">Google Cloud</a>
+        <a class="footer-link" href="#">Cloudflare</a>
+        <a class="footer-link" href="#">Webflow</a>
+        <a class="footer-link" href="#">MCP Protocol</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Web Everything. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="accessibility.html">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

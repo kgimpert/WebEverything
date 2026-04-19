@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Industries — Web Everything</title>
+  <meta name="description" content="Deep vertical expertise in Healthcare, Automotive, Retail, Financial Services, Technology, and Travel. We don't spread thin — we go deep."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --p9:#2e0060;--p8:#4a0090;--p7:#6d28d9;--p6:#7c3aed;
+      --p5:#9333ea;--p4:#a855f7;--p3:#c084fc;--p2:#ddb6fe;
+      --glow:rgba(147,51,234,.35);--glows:rgba(147,51,234,.6);
+      --dark:#05050d;--dark2:#080814;--dark3:#0d0d1f;
+      --light:#ffffff;--light2:#f9f6ff;--light3:#ede8ff;
+      --tx-dark:#f0f0f8;--tx-light:#18102e;
+      --muted-dark:#9090b0;--muted-light:#5a4080;
+      --bd-dark:rgba(147,51,234,.2);--bd-light:rgba(109,40,217,.15);
+    }
+
+    html{scroll-behavior:smooth}
+    body{font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;overflow-x:hidden;line-height:1.65}
+
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      background:rgba(5,5,13,.92);backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--bd-dark);
+      transition:background .3s;
+    }
+    .nav-inner{
+      max-width:1280px;margin:0 auto;padding:0 2rem;
+      display:flex;align-items:center;justify-content:space-between;height:68px;
+    }
+    .nav-logo{
+      font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:800;
+      color:#fff;cursor:pointer;text-decoration:none;letter-spacing:-.02em;
+      line-height:1;white-space:nowrap;
+      transition:opacity .2s;
+    }
+    .nav-logo:hover{opacity:.85}
+    .nav-logo .logo-accent{color:var(--p4)}
+    .nav-links{display:flex;align-items:center;gap:.25rem}
+    .nav-link{
+      position:relative;padding:.5rem 1rem;font-size:.875rem;font-weight:500;
+      color:var(--muted-dark);cursor:pointer;transition:color .2s;
+      border-radius:8px;white-space:nowrap;text-decoration:none;display:block;
+    }
+    .nav-link:hover{color:var(--tx-dark)}
+    .nav-link.has-drop:after{content:'▾';margin-left:.3rem;font-size:.7em;opacity:.6}
+    /* dropdown */
+    .drop{
+      position:absolute;top:calc(100% + 8px);left:0;
+      background:rgba(8,8,20,.97);border:1px solid var(--bd-dark);
+      border-radius:14px;padding:1rem;min-width:260px;
+      opacity:0;pointer-events:none;transform:translateY(-8px);
+      transition:opacity .2s,transform .2s;
+    }
+    .nav-link:hover .drop,.nav-link:focus-within .drop{opacity:1;pointer-events:all;transform:translateY(0)}
+    .drop-item{
+      display:block;padding:.55rem .85rem;font-size:.82rem;color:var(--muted-dark);
+      cursor:pointer;border-radius:8px;transition:background .15s,color .15s;
+      text-decoration:none;white-space:nowrap;
+    }
+    .drop-item:hover{background:rgba(147,51,234,.12);color:var(--p3)}
+    .drop-divider{height:1px;background:var(--bd-dark);margin:.5rem 0}
+    .drop-label{padding:.3rem .85rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--p6)}
+    .nav-cta{
+      margin-left:.75rem;padding:.55rem 1.35rem;
+      background:linear-gradient(135deg,var(--p6),var(--p5));
+      color:#fff;font-size:.875rem;font-weight:600;border-radius:10px;
+      text-decoration:none;transition:opacity .2s,box-shadow .2s;
+      box-shadow:0 0 20px var(--glow);
+    }
+    .nav-cta:hover{opacity:.88;box-shadow:0 0 35px var(--glows)}
+    .nav-mobile-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem}
+    .nav-mobile-btn span{display:block;width:22px;height:2px;background:var(--tx-dark);border-radius:2px;transition:.3s}
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .nav-mobile-btn{display:flex}
+      .nav-cta{display:none}
+    }
+
+    /* ── CONTAINER ── */
+    .container{max-width:1200px;margin:0 auto;padding:0 2rem}
+
+    /* ── SECTION SHARED ── */
+    section{padding:7rem 0}
+    .eyebrow{
+      font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--p6);margin-bottom:1.25rem;
+    }
+    .section-h2{
+      font-size:clamp(2rem,4vw,3.2rem);font-weight:800;letter-spacing:-.03em;
+      line-height:1.1;margin-bottom:1.25rem;
+    }
+    .section-body{font-size:1.05rem;color:var(--muted-light);line-height:1.8;max-width:680px}
+
+    /* ── PAGE HERO ── */
+    .page-hero{
+      position:relative;min-height:50vh;display:flex;align-items:center;
+      background:var(--dark);padding:10rem 2rem 6rem;overflow:hidden;
+    }
+    .page-hero::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse at 70% 30%,rgba(109,40,217,.2) 0%,transparent 65%),
+                 radial-gradient(ellipse at 20% 90%,rgba(147,51,234,.12) 0%,transparent 55%);
+    }
+    .page-hero-inner{position:relative;z-index:2;max-width:800px}
+    .page-eyebrow{
+      display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--p4);margin-bottom:1.5rem;
+      padding:.4rem 1rem;border:1px solid rgba(168,85,247,.3);border-radius:100px;
+      background:rgba(168,85,247,.08);
+    }
+    .page-h1{
+      font-size:clamp(2.5rem,6vw,5rem);font-weight:900;letter-spacing:-.04em;
+      line-height:1.04;color:var(--tx-dark);margin-bottom:1.25rem;
+    }
+    .page-h1 .grad{
+      background:linear-gradient(135deg,var(--p2) 0%,var(--p4) 40%,var(--p6) 100%);
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .page-sub{
+      font-size:clamp(.95rem,1.8vw,1.15rem);color:var(--muted-dark);
+      max-width:620px;line-height:1.8;
+    }
+
+    /* ── INDUSTRIES GRID ── */
+    .industries-section{background:var(--light2);padding:7rem 0}
+    .industries-grid{
+      display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;margin-top:4rem;
+    }
+    .industry-card{
+      background:var(--dark);border:1px solid var(--bd-dark);border-radius:20px;
+      padding:2.75rem 2.5rem;position:relative;overflow:hidden;
+      transition:border-color .25s,box-shadow .25s;cursor:default;
+    }
+    .industry-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:3px;
+      background:linear-gradient(90deg,var(--p8),var(--p6),var(--p5));
+      border-radius:20px 20px 0 0;
+    }
+    .industry-card:hover{
+      border-color:var(--p6);
+      box-shadow:0 16px 60px rgba(109,40,217,.15);
+    }
+    .industry-icon{
+      width:56px;height:56px;margin-bottom:1.5rem;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .industry-name{
+      font-size:1.25rem;font-weight:800;color:var(--tx-dark);
+      margin-bottom:.85rem;letter-spacing:-.02em;
+    }
+    .industry-desc{
+      font-size:.9rem;color:var(--muted-dark);line-height:1.8;margin-bottom:1.5rem;
+    }
+    .industry-services-label{
+      font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--p5);margin-bottom:.65rem;
+    }
+    .industry-services{display:flex;flex-wrap:wrap;gap:.4rem}
+    .industry-svc-tag{
+      font-size:.72rem;font-weight:600;letter-spacing:.04em;
+      padding:.25rem .7rem;border-radius:100px;
+      background:rgba(147,51,234,.1);border:1px solid rgba(147,51,234,.2);color:var(--p3);
+    }
+    @media(max-width:768px){.industries-grid{grid-template-columns:1fr}}
+
+    /* ── WHY VERTICAL SECTION ── */
+    .vertical-section{background:var(--dark);padding:7rem 0}
+    .vertical-inner{
+      display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;
+    }
+    .vertical-left{}
+    .vertical-eyebrow{
+      font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--p4);margin-bottom:1.25rem;
+    }
+    .vertical-h2{
+      font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-.03em;
+      line-height:1.1;color:var(--tx-dark);margin-bottom:1.25rem;
+    }
+    .vertical-body{font-size:.975rem;color:var(--muted-dark);line-height:1.85}
+    .vertical-right{}
+    .vertical-points{
+      display:flex;flex-direction:column;gap:1.25rem;margin-top:.5rem;
+    }
+    .vertical-point{
+      display:flex;align-items:flex-start;gap:1rem;
+      padding:1.35rem 1.5rem;
+      background:rgba(255,255,255,.04);border:1px solid var(--bd-dark);border-radius:14px;
+      transition:border-color .2s;
+    }
+    .vertical-point:hover{border-color:rgba(147,51,234,.4)}
+    .vertical-point-icon{
+      width:34px;height:34px;border-radius:8px;flex-shrink:0;
+      background:linear-gradient(135deg,var(--p7),var(--p5));
+      display:flex;align-items:center;justify-content:center;
+    }
+    .vertical-point-text{font-size:.9rem;color:var(--tx-dark);font-weight:600;line-height:1.5}
+    @media(max-width:860px){
+      .vertical-inner{grid-template-columns:1fr;gap:3.5rem}
+    }
+
+    /* ── CTA BANNER ── */
+    .cta-section{
+      background:linear-gradient(135deg,var(--p9) 0%,var(--p8) 40%,var(--p7) 100%);
+      padding:6rem 0;text-align:center;position:relative;overflow:hidden;
+    }
+    .cta-section::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse at center,rgba(168,85,247,.2) 0%,transparent 70%);
+    }
+    .cta-section .section-h2{color:#fff;max-width:700px;margin:0 auto 1rem}
+    .cta-section .section-body{color:rgba(240,240,248,.75);margin:0 auto 2.5rem;max-width:560px}
+    .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative}
+    .btn-white{
+      padding:.85rem 2.2rem;background:#fff;
+      color:var(--p7);font-weight:700;font-size:.95rem;border-radius:12px;
+      text-decoration:none;transition:opacity .2s;
+    }
+    .btn-white:hover{opacity:.9}
+
+    /* ── FOOTER ── */
+    footer{background:var(--dark);border-top:1px solid var(--bd-dark);padding:5rem 0 3rem}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:4rem}
+    .footer-brand .nav-logo{font-size:1.6rem;display:inline-flex;margin-bottom:1.25rem}
+    .footer-tagline{font-size:.875rem;color:var(--muted-dark);line-height:1.7;max-width:280px;margin-bottom:1.5rem}
+    .footer-social{display:flex;gap:.75rem}
+    .social-btn{
+      width:38px;height:38px;border-radius:10px;border:1px solid var(--bd-dark);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--muted-dark);font-size:.85rem;cursor:pointer;transition:background .2s,color .2s,border-color .2s;
+      text-decoration:none;
+    }
+    .social-btn:hover{background:rgba(147,51,234,.15);color:var(--p3);border-color:var(--p6)}
+    .footer-col-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--p5);margin-bottom:1.1rem}
+    .footer-link{display:block;font-size:.875rem;color:var(--muted-dark);margin-bottom:.6rem;text-decoration:none;transition:color .2s;cursor:pointer}
+    .footer-link:hover{color:var(--p3)}
+    .footer-bottom{border-top:1px solid var(--bd-dark);padding-top:2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .footer-copy{font-size:.8rem;color:var(--muted-dark)}
+    .footer-legal{display:flex;gap:1.5rem}
+    .footer-legal a{font-size:.8rem;color:var(--muted-dark);text-decoration:none;transition:color .2s}
+    .footer-legal a:hover{color:var(--p3)}
+    @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;gap:3rem}}
+    @media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+  
+    .mobile-menu{
+      display:none;position:fixed;inset:0;background:rgba(5,5,13,.99);
+      z-index:101;flex-direction:column;align-items:flex-start;
+      justify-content:flex-start;padding:5rem 2.5rem 2.5rem;gap:0;
+      overflow-y:auto;
+    }
+    .nav-mobile-open .mobile-menu{display:flex}
+    .mobile-menu .m-link{
+      font-size:2rem;font-weight:800;color:var(--tx-dark);
+      text-decoration:none;padding:.55rem 0;letter-spacing:-.03em;
+      transition:color .2s;display:block;width:100%;
+      border-bottom:1px solid rgba(147,51,234,.1);
+    }
+    .mobile-menu .m-link:hover{color:var(--p4)}
+    .mobile-menu .m-section{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--p6);margin:1.25rem 0 .25rem}
+    .mobile-menu .m-sub{font-size:1rem;font-weight:500;color:var(--muted-dark);text-decoration:none;display:block;padding:.35rem 0;transition:color .2s}
+    .mobile-menu .m-sub:hover{color:var(--p3)}
+    .mobile-menu .m-cta{margin-top:2rem;padding:.85rem 2.2rem;background:linear-gradient(135deg,var(--p6),var(--p5));color:#fff;font-weight:700;font-size:1rem;border-radius:12px;text-decoration:none;display:inline-block;box-shadow:0 0 30px rgba(147,51,234,.35)}
+    .mobile-close{position:fixed;top:1.25rem;right:1.5rem;z-index:102;font-size:2rem;color:var(--tx-dark);cursor:pointer;background:none;border:none;line-height:1;padding:.25rem .5rem}
+    .nav-mobile-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem}
+    .nav-mobile-btn span{display:block;width:22px;height:2px;background:var(--tx-dark);border-radius:2px;transition:.3s}
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">Web<span class="logo-accent">Everything</span></a>
+    <div class="nav-links">
+      <div class="nav-link has-drop">
+        Services
+        <div class="drop">
+          <div class="drop-label">Performance</div>
+          <a class="drop-item" href="services.html#performance-marketing">Performance Marketing</a>
+          <a class="drop-item" href="services.html#adtech-development">AdTech Development</a>
+          <a class="drop-item" href="services.html#analytics-reporting">Analytics &amp; Reporting</a>
+          <a class="drop-item" href="services.html#digital-operations">Digital Operations</a>
+          <div class="drop-divider"></div>
+          <div class="drop-label">AI &amp; Strategy</div>
+          <a class="drop-item" href="services.html#ai-strategy">AI Strategy &amp; Integration</a>
+          <a class="drop-item" href="services.html#agentic-ai">Agentic AI Systems</a>
+          <a class="drop-item" href="services.html#geo">Generative Engine Optimization</a>
+          <a class="drop-item" href="services.html#marketing-transformation">Marketing Transformation</a>
+          <div class="drop-divider"></div>
+          <div class="drop-label">Growth &amp; Intelligence</div>
+          <a class="drop-item" href="services.html#customer-experience">Customer Experience</a>
+          <a class="drop-item" href="services.html#market-intelligence">Market Intelligence</a>
+          <a class="drop-item" href="services.html#web-development">Web Design &amp; Development</a>
+          <a class="drop-item" href="services.html#data-transformation">Digital &amp; Data Transformation</a>
+        </div>
+      </div>
+      <a class="nav-link" href="industries.html">Industries</a>
+      <a class="nav-link" href="insights.html">Insights</a>
+      <a class="nav-link" href="about.html">About</a>
+    </div>
+    <a class="nav-cta" href="contact.html">Start a Project</a>
+    <div class="nav-mobile-btn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+  <a class="m-link" href="index.html">Home</a>
+  <a class="m-link" href="services.html">Services</a>
+  <div class="m-section">Performance</div>
+  <a class="m-sub" href="services.html#performance-marketing">Performance Marketing</a>
+  <a class="m-sub" href="services.html#adtech">AdTech Development</a>
+  <a class="m-sub" href="services.html#analytics">Analytics &amp; Reporting</a>
+  <a class="m-sub" href="services.html#digital-ops">Digital Operations</a>
+  <div class="m-section">AI &amp; Automation</div>
+  <a class="m-sub" href="services.html#ai-strategy">AI Strategy</a>
+  <a class="m-sub" href="services.html#agentic-ai">Agentic AI Systems</a>
+  <a class="m-sub" href="services.html#geo">GEO</a>
+  <a class="m-sub" href="services.html#marketing-transformation">Marketing Transformation</a>
+  <a class="m-link" href="industries.html">Industries</a>
+  <a class="m-link" href="insights.html">Insights</a>
+  <a class="m-link" href="about.html">About</a>
+  <a class="m-cta" href="contact.html">Start a Project →</a>
+</div>
+
+<!-- ── PAGE HERO ── -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-eyebrow">Industries</div>
+    <h1 class="page-h1">Deep expertise.<br/><span class="grad">Proven verticals.</span></h1>
+    <p class="page-sub">We don't spread thin across every industry. We go deep in the ones we've operated in for years.</p>
+  </div>
+</section>
+
+<!-- ── INDUSTRIES GRID ── -->
+<section class="industries-section">
+  <div class="container">
+    <div class="eyebrow" style="color:var(--p6)">Verticals We Serve</div>
+    <h2 class="section-h2" style="color:var(--tx-light)">Industries we know from the inside.</h2>
+    <div class="industries-grid">
+
+      <!-- Healthcare & Pharma -->
+      <div class="industry-card">
+        <div class="industry-icon">
+          <svg viewBox="0 0 56 56" width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="24" stroke="#a855f7" stroke-width="1.5" opacity=".4"/>
+            <rect x="21" y="14" width="14" height="28" rx="3" stroke="#a855f7" stroke-width="2"/>
+            <rect x="14" y="21" width="28" height="14" rx="3" stroke="#a855f7" stroke-width="2"/>
+            <rect x="24" y="22" width="8" height="12" rx="1.5" fill="#a855f7" opacity=".25"/>
+            <rect x="22" y="24" width="12" height="8" rx="1.5" fill="#a855f7" opacity=".25"/>
+          </svg>
+        </div>
+        <div class="industry-name">Healthcare &amp; Pharma</div>
+        <p class="industry-desc">We've run compliant performance campaigns across pharma brands, healthcare networks, and DTC health products. We know HIPAA, MLR review processes, and how to drive patient acquisition at scale.</p>
+        <div class="industry-services-label">Relevant Services</div>
+        <div class="industry-services">
+          <span class="industry-svc-tag">Performance Marketing</span>
+          <span class="industry-svc-tag">GEO</span>
+          <span class="industry-svc-tag">Analytics</span>
+          <span class="industry-svc-tag">Compliance-aware AI</span>
+        </div>
+      </div>
+
+      <!-- Automotive -->
+      <div class="industry-card">
+        <div class="industry-icon">
+          <svg viewBox="0 0 56 56" width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="24" width="40" height="16" rx="5" stroke="#a855f7" stroke-width="2"/>
+            <path d="M14 24 L18 14 L38 14 L42 24" stroke="#a855f7" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="18" cy="40" r="5" stroke="#a855f7" stroke-width="2"/>
+            <circle cx="38" cy="40" r="5" stroke="#a855f7" stroke-width="2"/>
+            <circle cx="18" cy="40" r="2" fill="#a855f7" opacity=".6"/>
+            <circle cx="38" cy="40" r="2" fill="#a855f7" opacity=".6"/>
+            <line x1="8" y1="30" x2="48" y2="30" stroke="#a855f7" stroke-width="1" opacity=".35"/>
+          </svg>
+        </div>
+        <div class="industry-name">Automotive</div>
+        <p class="industry-desc">Tier 1, 2, and 3 automotive campaigns at national scale. Inventory-aware bidding, VDP optimization, and AI-powered lead scoring.</p>
+        <div class="industry-services-label">Relevant Services</div>
+        <div class="industry-services">
+          <span class="industry-svc-tag">Performance Marketing</span>
+          <span class="industry-svc-tag">AdTech</span>
+          <span class="industry-svc-tag">Analytics</span>
+          <span class="industry-svc-tag">Digital Ops</span>
+        </div>
+      </div>
+
+      <!-- Retail & D2C -->
+      <div class="industry-card">
+        <div class="industry-icon">
+          <svg viewBox="0 0 56 56" width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 18 L14 10 L42 10 L46 18 L44 42 Q44 46 40 46 L16 46 Q12 46 12 42 Z" stroke="#a855f7" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M20 18 Q20 26 28 26 Q36 26 36 18" stroke="#a855f7" stroke-width="2" stroke-linecap="round"/>
+            <line x1="10" y1="18" x2="46" y2="18" stroke="#a855f7" stroke-width="1.5" opacity=".5"/>
+            <circle cx="21" cy="40" r="2" fill="#a855f7" opacity=".7"/>
+            <circle cx="28" cy="40" r="2" fill="#a855f7" opacity=".7"/>
+            <circle cx="35" cy="40" r="2" fill="#a855f7" opacity=".7"/>
+          </svg>
+        </div>
+        <div class="industry-name">Retail &amp; D2C</div>
+        <p class="industry-desc">Full-funnel performance from awareness to checkout. We build the attribution systems that make every dollar of ROAS visible.</p>
+        <div class="industry-services-label">Relevant Services</div>
+        <div class="industry-services">
+          <span class="industry-svc-tag">Performance Marketing</span>
+          <span class="industry-svc-tag">GEO</span>
+          <span class="industry-svc-tag">AdTech</span>
+          <span class="industry-svc-tag">Web Dev</span>
+        </div>
+      </div>
+
+      <!-- Financial Services -->
+      <div class="industry-card">
+        <div class="industry-icon">
+          <svg viewBox="0 0 56 56" width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="8,44 20,30 30,34 44,12" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="44" cy="12" r="4" stroke="#a855f7" stroke-width="2"/>
+            <circle cx="44" cy="12" r="1.5" fill="#a855f7"/>
+            <line x1="8" y1="46" x2="50" y2="46" stroke="#a855f7" stroke-width="1.5" opacity=".4"/>
+            <line x1="8" y1="10" x2="8" y2="46" stroke="#a855f7" stroke-width="1.5" opacity=".4"/>
+            <circle cx="20" cy="30" r="2.5" fill="#a855f7" opacity=".8"/>
+            <circle cx="30" cy="34" r="2.5" fill="#a855f7" opacity=".8"/>
+          </svg>
+        </div>
+        <div class="industry-name">Financial Services</div>
+        <p class="industry-desc">Compliant digital acquisition for fintech, insurance, and financial products. We navigate the regulations and still grow.</p>
+        <div class="industry-services-label">Relevant Services</div>
+        <div class="industry-services">
+          <span class="industry-svc-tag">Performance Marketing</span>
+          <span class="industry-svc-tag">Analytics</span>
+          <span class="industry-svc-tag">Marketing Transformation</span>
+          <span class="industry-svc-tag">CX</span>
+        </div>
+      </div>
+
+      <!-- Technology & SaaS -->
+      <div class="industry-card">
+        <div class="industry-icon">
+          <svg viewBox="0 0 56 56" width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="12" width="44" height="28" rx="4" stroke="#a855f7" stroke-width="2"/>
+            <line x1="14" y1="40" x2="14" y2="46" stroke="#a855f7" stroke-width="2" stroke-linecap="round"/>
+            <line x1="42" y1="40" x2="42" y2="46" stroke="#a855f7" stroke-width="2" stroke-linecap="round"/>
+            <line x1="10" y1="46" x2="46" y2="46" stroke="#a855f7" stroke-width="2" stroke-linecap="round"/>
+            <polyline points="14,30 20,24 26,28 34,20 42,22" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="12" y1="34" x2="44" y2="34" stroke="#a855f7" stroke-width="1" opacity=".3"/>
+          </svg>
+        </div>
+        <div class="industry-name">Technology &amp; SaaS</div>
+        <p class="industry-desc">From PLG motion to enterprise sales support. We build the demand-gen engine and the AI tools that run it.</p>
+        <div class="industry-services-label">Relevant Services</div>
+        <div class="industry-services">
+          <span class="industry-svc-tag">Agentic AI</span>
+          <span class="industry-svc-tag">GEO</span>
+          <span class="industry-svc-tag">Performance Marketing</span>
+          <span class="industry-svc-tag">Analytics</span>
+        </div>
+      </div>
+
+      <!-- Travel & Leisure -->
+      <div class="industry-card">
+        <div class="industry-icon">
+          <svg viewBox="0 0 56 56" width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="28" r="20" stroke="#a855f7" stroke-width="1.5" opacity=".5"/>
+            <ellipse cx="28" cy="28" rx="8" ry="20" stroke="#a855f7" stroke-width="1" opacity=".4"/>
+            <line x1="8" y1="28" x2="48" y2="28" stroke="#a855f7" stroke-width="1" opacity=".35"/>
+            <path d="M14 20 Q20 14 28 14" stroke="#a855f7" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
+            <path d="M16 38 C18 42 22 46 28 46 C34 46 38 42 40 38" stroke="#a855f7" stroke-width="1.5" stroke-linecap="round" opacity=".4"/>
+            <path d="M12 34 L30 26 L26 22 L30 18 L36 28" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="36" cy="28" r="2.5" fill="#a855f7" opacity=".8"/>
+          </svg>
+        </div>
+        <div class="industry-name">Travel &amp; Leisure</div>
+        <p class="industry-desc">Seasonal demand management, intent-based targeting, and booking funnel optimization across OTA and direct channels.</p>
+        <div class="industry-services-label">Relevant Services</div>
+        <div class="industry-services">
+          <span class="industry-svc-tag">Performance Marketing</span>
+          <span class="industry-svc-tag">AdTech</span>
+          <span class="industry-svc-tag">CX</span>
+          <span class="industry-svc-tag">Analytics</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY VERTICAL EXPERTISE MATTERS ── -->
+<section class="vertical-section">
+  <div class="container">
+    <div class="vertical-inner">
+      <div class="vertical-left">
+        <div class="vertical-eyebrow">Why It Matters</div>
+        <h2 class="vertical-h2">Why vertical expertise matters</h2>
+        <p class="vertical-body">Every industry has regulations, buying cycles, and data constraints that change how digital works. We've operated inside these industries, not just marketed to them. That difference is the entire gap between a generic agency and a team that gets your business in the first meeting.</p>
+      </div>
+      <div class="vertical-right">
+        <div class="vertical-points">
+          <div class="vertical-point">
+            <div class="vertical-point-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M9 2 L15 5 L15 11 Q15 15 9 17 Q3 15 3 11 L3 5 Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+                <polyline points="6,9 8,11 12,7" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="vertical-point-text">Industry-specific compliance knowledge</div>
+          </div>
+          <div class="vertical-point">
+            <div class="vertical-point-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <rect x="2" y="4" width="14" height="10" rx="2" stroke="#fff" stroke-width="1.5"/>
+                <line x1="5" y1="8" x2="8" y2="8" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="5" y1="11" x2="13" y2="11" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="vertical-point-text">Vertical-specific creative and messaging</div>
+          </div>
+          <div class="vertical-point">
+            <div class="vertical-point-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <polyline points="2,14 6,10 9,12 14,5 16,7" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="16" cy="5" r="1.5" fill="#fff"/>
+              </svg>
+            </div>
+            <div class="vertical-point-text">Known buyer journey patterns</div>
+          </div>
+          <div class="vertical-point">
+            <div class="vertical-point-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <circle cx="9" cy="7" r="3.5" stroke="#fff" stroke-width="1.5"/>
+                <path d="M4 16 Q4 12 9 12 Q14 12 14 16" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="14" cy="5" r="2" stroke="#fff" stroke-width="1.5"/>
+                <circle cx="4" cy="5" r="2" stroke="#fff" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div class="vertical-point-text">Built-in network of industry contacts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ── -->
+<section class="cta-section">
+  <div class="container" style="position:relative">
+    <h2 class="section-h2">Don't see your industry?</h2>
+    <p class="section-body">We take on select clients outside our core verticals when the problem is interesting enough.</p>
+    <div class="cta-btns">
+      <a class="btn-white" href="contact.html">Let's Talk</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="index.html" style="font-size:1.4rem">Web<span class="logo-accent">Everything</span></a>
+        <p class="footer-tagline">
+          AI-powered digital agency combining enterprise performance marketing, proprietary AdTech, and agentic AI systems. Built to win.
+        </p>
+        <div class="footer-social">
+          <a class="social-btn" href="#" title="LinkedIn">in</a>
+          <a class="social-btn" href="#" title="X / Twitter">𝕏</a>
+          <a class="social-btn" href="#" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-label">Services</div>
+        <a class="footer-link" href="services.html#ai-strategy">AI Strategy</a>
+        <a class="footer-link" href="services.html#performance-marketing">Performance Marketing</a>
+        <a class="footer-link" href="services.html#adtech-development">AdTech Development</a>
+        <a class="footer-link" href="services.html#agentic-ai">Agentic AI Systems</a>
+        <a class="footer-link" href="services.html#geo">GEO</a>
+        <a class="footer-link" href="services.html">All Services →</a>
+      </div>
+      <div>
+        <div class="footer-col-label">Company</div>
+        <a class="footer-link" href="about.html">About</a>
+        <a class="footer-link" href="insights.html">Insights</a>
+        <a class="footer-link" href="#">Case Studies</a>
+        <a class="footer-link" href="#">Careers</a>
+        <a class="footer-link" href="contact.html">Contact</a>
+      </div>
+      <div>
+        <div class="footer-col-label">Built On</div>
+        <a class="footer-link" href="#">Anthropic / Claude</a>
+        <a class="footer-link" href="#">Google Cloud</a>
+        <a class="footer-link" href="#">Cloudflare</a>
+        <a class="footer-link" href="#">Webflow</a>
+        <a class="footer-link" href="#">MCP Protocol</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Web Everything. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="accessibility.html">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

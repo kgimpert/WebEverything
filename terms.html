@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Terms & Conditions — Web Everything</title>
+  <meta name="description" content="Terms and Conditions governing the use of Web Everything's services. Operated by Kenny Gimpert II."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --p9:#2e0060;--p8:#4a0090;--p7:#6d28d9;--p6:#7c3aed;
+      --p5:#9333ea;--p4:#a855f7;--p3:#c084fc;--p2:#ddb6fe;
+      --glow:rgba(147,51,234,.35);--glows:rgba(147,51,234,.6);
+      --dark:#05050d;--dark2:#080814;--dark3:#0d0d1f;
+      --light:#ffffff;--light2:#f9f6ff;--light3:#ede8ff;
+      --tx-dark:#f0f0f8;--tx-light:#18102e;
+      --muted-dark:#9090b0;--muted-light:#5a4080;
+      --bd-dark:rgba(147,51,234,.2);--bd-light:rgba(109,40,217,.15);
+    }
+
+    html{scroll-behavior:smooth}
+    body{font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;overflow-x:hidden;line-height:1.65}
+
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      background:rgba(5,5,13,.92);backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--bd-dark);
+      transition:background .3s;
+    }
+    .nav-inner{
+      max-width:1280px;margin:0 auto;padding:0 2rem;
+      display:flex;align-items:center;justify-content:space-between;height:68px;
+    }
+    .nav-logo{
+      font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:800;
+      color:#fff;cursor:pointer;text-decoration:none;letter-spacing:-.02em;
+      line-height:1;white-space:nowrap;
+      transition:opacity .2s;
+    }
+    .nav-logo:hover{opacity:.85}
+    .nav-logo .logo-accent{color:var(--p4)}
+    .nav-links{display:flex;align-items:center;gap:.25rem}
+    .nav-link{
+      position:relative;padding:.5rem 1rem;font-size:.875rem;font-weight:500;
+      color:var(--muted-dark);cursor:pointer;transition:color .2s;
+      border-radius:8px;white-space:nowrap;
+    }
+    .nav-link:hover{color:var(--tx-dark)}
+    .nav-link.has-drop:after{content:'▾';margin-left:.3rem;font-size:.7em;opacity:.6}
+    .drop{
+      position:absolute;top:calc(100% + 8px);left:0;
+      background:rgba(8,8,20,.97);border:1px solid var(--bd-dark);
+      border-radius:14px;padding:1rem;min-width:260px;
+      opacity:0;pointer-events:none;transform:translateY(-8px);
+      transition:opacity .2s,transform .2s;
+    }
+    .nav-link:hover .drop,.nav-link:focus-within .drop{opacity:1;pointer-events:all;transform:translateY(0)}
+    .drop-item{
+      display:block;padding:.55rem .85rem;font-size:.82rem;color:var(--muted-dark);
+      cursor:pointer;border-radius:8px;transition:background .15s,color .15s;
+      text-decoration:none;white-space:nowrap;
+    }
+    .drop-item:hover{background:rgba(147,51,234,.12);color:var(--p3)}
+    .drop-divider{height:1px;background:var(--bd-dark);margin:.5rem 0}
+    .drop-label{padding:.3rem .85rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--p6)}
+    .nav-cta{
+      margin-left:.75rem;padding:.55rem 1.35rem;
+      background:linear-gradient(135deg,var(--p6),var(--p5));
+      color:#fff;font-size:.875rem;font-weight:600;border-radius:10px;
+      text-decoration:none;transition:opacity .2s,box-shadow .2s;
+      box-shadow:0 0 20px var(--glow);
+    }
+    .nav-cta:hover{opacity:.88;box-shadow:0 0 35px var(--glows)}
+    .nav-mobile-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem}
+    .nav-mobile-btn span{display:block;width:22px;height:2px;background:var(--tx-dark);border-radius:2px;transition:.3s}
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .nav-mobile-btn{display:flex}
+      .nav-cta{display:none}
+    }
+
+    /* ── CONTAINER ── */
+    .container{max-width:1200px;margin:0 auto;padding:0 2rem}
+
+    /* ── FOOTER ── */
+    footer{background:var(--dark);border-top:1px solid var(--bd-dark);padding:5rem 0 3rem}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:4rem}
+    .footer-brand .nav-logo{font-size:1.6rem;display:inline-flex;margin-bottom:1.25rem}
+    .footer-tagline{font-size:.875rem;color:var(--muted-dark);line-height:1.7;max-width:280px;margin-bottom:1.5rem}
+    .footer-social{display:flex;gap:.75rem}
+    .social-btn{
+      width:38px;height:38px;border-radius:10px;border:1px solid var(--bd-dark);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--muted-dark);font-size:.85rem;cursor:pointer;transition:background .2s,color .2s,border-color .2s;
+      text-decoration:none;
+    }
+    .social-btn:hover{background:rgba(147,51,234,.15);color:var(--p3);border-color:var(--p6)}
+    .footer-col-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--p5);margin-bottom:1.1rem}
+    .footer-link{display:block;font-size:.875rem;color:var(--muted-dark);margin-bottom:.6rem;text-decoration:none;transition:color .2s;cursor:pointer}
+    .footer-link:hover{color:var(--p3)}
+    .footer-bottom{border-top:1px solid var(--bd-dark);padding-top:2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .footer-copy{font-size:.8rem;color:var(--muted-dark)}
+    .footer-legal{display:flex;gap:1.5rem}
+    .footer-legal a{font-size:.8rem;color:var(--muted-dark);text-decoration:none;transition:color .2s}
+    .footer-legal a:hover{color:var(--p3)}
+    @media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;gap:3rem}}
+    @media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+
+    /* ── LEGAL PAGE STYLES ── */
+    .legal-hero{background:var(--dark);padding:8rem 2rem 4rem;border-bottom:1px solid var(--bd-dark)}
+    .legal-hero .eyebrow{color:var(--p4)}
+    .legal-hero h1{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;color:var(--tx-dark);margin-top:.75rem;line-height:1.1}
+    .legal-hero .meta{font-size:.85rem;color:var(--muted-dark);margin-top:1rem}
+    .legal-body{background:var(--light2);padding:5rem 0}
+    .legal-content{max-width:800px;margin:0 auto;padding:0 2rem}
+    .legal-content h2{font-size:1.35rem;font-weight:700;color:var(--tx-light);margin:2.5rem 0 .75rem;padding-bottom:.5rem;border-bottom:1px solid var(--bd-light)}
+    .legal-content h3{font-size:1.05rem;font-weight:700;color:var(--tx-light);margin:1.5rem 0 .5rem}
+    .legal-content p{font-size:.95rem;color:var(--muted-light);line-height:1.85;margin-bottom:1rem}
+    .legal-content ul,.legal-content ol{font-size:.95rem;color:var(--muted-light);line-height:1.85;margin-bottom:1rem;padding-left:1.5rem}
+    .legal-content li{margin-bottom:.4rem}
+    .legal-content a{color:var(--p6);text-decoration:underline}
+    .legal-content a:hover{color:var(--p4)}
+    .legal-toc{background:rgba(109,40,217,.06);border:1px solid var(--bd-light);border-radius:14px;padding:1.5rem 2rem;margin-bottom:3rem}
+    .legal-toc-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--p6);margin-bottom:1rem}
+    .legal-toc a{display:block;font-size:.875rem;color:var(--muted-light);text-decoration:none;padding:.25rem 0;transition:color .15s}
+    .legal-toc a:hover{color:var(--p5)}
+
+    /* eyebrow shared */
+    .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--p6);margin-bottom:1.25rem}
+  
+    .mobile-menu{
+      display:none;position:fixed;inset:0;background:rgba(5,5,13,.99);
+      z-index:101;flex-direction:column;align-items:flex-start;
+      justify-content:flex-start;padding:5rem 2.5rem 2.5rem;gap:0;
+      overflow-y:auto;
+    }
+    .nav-mobile-open .mobile-menu{display:flex}
+    .mobile-menu .m-link{
+      font-size:2rem;font-weight:800;color:var(--tx-dark);
+      text-decoration:none;padding:.55rem 0;letter-spacing:-.03em;
+      transition:color .2s;display:block;width:100%;
+      border-bottom:1px solid rgba(147,51,234,.1);
+    }
+    .mobile-menu .m-link:hover{color:var(--p4)}
+    .mobile-menu .m-section{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--p6);margin:1.25rem 0 .25rem}
+    .mobile-menu .m-sub{font-size:1rem;font-weight:500;color:var(--muted-dark);text-decoration:none;display:block;padding:.35rem 0;transition:color .2s}
+    .mobile-menu .m-sub:hover{color:var(--p3)}
+    .mobile-menu .m-cta{margin-top:2rem;padding:.85rem 2.2rem;background:linear-gradient(135deg,var(--p6),var(--p5));color:#fff;font-weight:700;font-size:1rem;border-radius:12px;text-decoration:none;display:inline-block;box-shadow:0 0 30px rgba(147,51,234,.35)}
+    .mobile-close{position:fixed;top:1.25rem;right:1.5rem;z-index:102;font-size:2rem;color:var(--tx-dark);cursor:pointer;background:none;border:none;line-height:1;padding:.25rem .5rem}
+    .nav-mobile-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem}
+    .nav-mobile-btn span{display:block;width:22px;height:2px;background:var(--tx-dark);border-radius:2px;transition:.3s}
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">Web<span class="logo-accent">Everything</span></a>
+    <div class="nav-links">
+      <div class="nav-link has-drop">
+        Services
+        <div class="drop">
+          <div class="drop-label">Performance</div>
+          <a class="drop-item" href="services.html#performance-marketing">Performance Marketing</a>
+          <a class="drop-item" href="services.html#adtech-development">AdTech Development</a>
+          <a class="drop-item" href="services.html#analytics-reporting">Analytics & Reporting</a>
+          <a class="drop-item" href="services.html#digital-operations">Digital Operations</a>
+          <div class="drop-divider"></div>
+          <div class="drop-label">AI & Strategy</div>
+          <a class="drop-item" href="services.html#ai-strategy-integration">AI Strategy & Integration</a>
+          <a class="drop-item" href="services.html#agentic-ai-systems">Agentic AI Systems</a>
+          <a class="drop-item" href="services.html#generative-engine-optimization">Generative Engine Optimization</a>
+          <a class="drop-item" href="services.html#marketing-transformation">Marketing Transformation</a>
+          <div class="drop-divider"></div>
+          <div class="drop-label">Growth & Intelligence</div>
+          <a class="drop-item" href="services.html#customer-experience">Customer Experience</a>
+          <a class="drop-item" href="services.html#market-intelligence">Market Intelligence</a>
+          <a class="drop-item" href="services.html#web-design-development">Web Design & Development</a>
+          <a class="drop-item" href="services.html#digital-data-transformation">Digital & Data Transformation</a>
+        </div>
+      </div>
+      <a class="nav-link" href="industries.html">Industries</a>
+      <a class="nav-link" href="insights.html">Insights</a>
+      <a class="nav-link" href="about.html">About</a>
+    </div>
+    <a class="nav-cta" href="contact.html">Start a Project</a>
+    <div class="nav-mobile-btn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+  <a class="m-link" href="index.html">Home</a>
+  <a class="m-link" href="services.html">Services</a>
+  <div class="m-section">Performance</div>
+  <a class="m-sub" href="services.html#performance-marketing">Performance Marketing</a>
+  <a class="m-sub" href="services.html#adtech">AdTech Development</a>
+  <a class="m-sub" href="services.html#analytics">Analytics &amp; Reporting</a>
+  <a class="m-sub" href="services.html#digital-ops">Digital Operations</a>
+  <div class="m-section">AI &amp; Automation</div>
+  <a class="m-sub" href="services.html#ai-strategy">AI Strategy</a>
+  <a class="m-sub" href="services.html#agentic-ai">Agentic AI Systems</a>
+  <a class="m-sub" href="services.html#geo">GEO</a>
+  <a class="m-sub" href="services.html#marketing-transformation">Marketing Transformation</a>
+  <a class="m-link" href="industries.html">Industries</a>
+  <a class="m-link" href="insights.html">Insights</a>
+  <a class="m-link" href="about.html">About</a>
+  <a class="m-cta" href="contact.html">Start a Project →</a>
+</div>
+
+<!-- ── HERO ── -->
+<div class="legal-hero">
+  <div class="container">
+    <div class="eyebrow">Legal</div>
+    <h1>Terms &amp; Conditions</h1>
+    <p class="meta">Effective date: April 1, 2026 &nbsp;·&nbsp; Web Everything, operated by Kenny Gimpert II</p>
+  </div>
+</div>
+
+<!-- ── BODY ── -->
+<div class="legal-body">
+  <div class="legal-content">
+
+    <!-- TOC -->
+    <div class="legal-toc">
+      <div class="legal-toc-title">On This Page</div>
+      <a href="#acceptance">1. Acceptance of Terms</a>
+      <a href="#services">2. Services Provided</a>
+      <a href="#client-obligations">3. Client Obligations</a>
+      <a href="#payment">4. Payment Terms</a>
+      <a href="#ip">5. Intellectual Property</a>
+      <a href="#confidentiality">6. Confidentiality</a>
+      <a href="#liability">7. Limitation of Liability</a>
+      <a href="#warranties">8. Warranties and Disclaimers</a>
+      <a href="#termination">9. Termination</a>
+      <a href="#governing-law">10. Governing Law</a>
+      <a href="#disputes">11. Dispute Resolution</a>
+      <a href="#changes">12. Changes to Terms</a>
+      <a href="#contact">13. Contact Information</a>
+    </div>
+
+    <p>Please read these Terms and Conditions ("Terms") carefully before engaging Web Everything for any services. By executing a Statement of Work, Master Service Agreement, or otherwise instructing Web Everything to begin work on your behalf, you agree to be bound by these Terms in their entirety.</p>
+
+    <h2 id="acceptance">1. Acceptance of Terms</h2>
+    <p>These Terms constitute a legally binding agreement between you (the "Client") and Web Everything, a Michigan-based digital agency operated by Kenny Gimpert II ("Web Everything," "we," "us," or "our"). By signing a proposal, statement of work, or any other engagement document, or by directing us to commence services, you acknowledge that you have read, understood, and agree to be bound by these Terms and any documents incorporated by reference, including any applicable Statement of Work ("SOW") or Master Service Agreement ("MSA").</p>
+    <p>If you are entering into these Terms on behalf of an organization, you represent that you have the authority to bind that organization to these Terms. If you do not have such authority, or if you do not agree to these Terms, you must not engage our services.</p>
+
+    <h2 id="services">2. Services Provided</h2>
+    <p>Web Everything provides a comprehensive suite of AI-powered digital services. The specific services engaged by each client are defined in individual Statements of Work. Our service offerings include, but are not limited to:</p>
+    <ol>
+      <li><strong>AI Strategy &amp; Integration</strong> — AI roadmap design, architecture, and deployment strategy built on Anthropic's Claude and related tooling.</li>
+      <li><strong>Performance Marketing</strong> — High-scale paid search and paid media management across Google Ads, Microsoft Ads, and associated platforms.</li>
+      <li><strong>AdTech Development</strong> — Custom advertising technology including direct API integrations, campaign automation, and proprietary performance logic.</li>
+      <li><strong>Agentic AI Systems</strong> — Design and deployment of autonomous AI agents powered by Claude and the MCP protocol for workflow automation.</li>
+      <li><strong>Generative Engine Optimization (GEO)</strong> — AI visibility strategy for ChatGPT, Perplexity, Google AI Overviews, and other large language model surfaces.</li>
+      <li><strong>Marketing Transformation</strong> — End-to-end modernization of marketing operations, martech consolidation, and AI-augmented team design.</li>
+      <li><strong>Customer Experience</strong> — Journey design, personalization architecture, and CX strategy backed by data and AI.</li>
+      <li><strong>Analytics &amp; Reporting</strong> — Data pipeline development, dashboard creation, and reporting frameworks using GA4, Looker Studio, and related tools.</li>
+      <li><strong>Digital &amp; Data Transformation</strong> — Data architecture, governance, AI-ready pipelines, and real-time decisioning infrastructure.</li>
+      <li><strong>Digital Operations</strong> — Full digital operations strategy and execution for growth-stage businesses across Webflow, Shopify, Stripe, and connected systems.</li>
+      <li><strong>Market Intelligence</strong> — Research-backed strategic positioning for domestic, international, and non-standard digital markets.</li>
+      <li><strong>Web Design &amp; Development</strong> — Performance-first web builds on Webflow and custom frameworks, designed for conversion and GEO from the first wireframe.</li>
+    </ol>
+    <p>The scope, deliverables, timeline, and pricing for each engagement are specified in the applicable SOW. In the event of any conflict between an SOW and these Terms, the SOW shall control with respect to the specific engagement, and these Terms shall control with respect to all other matters.</p>
+
+    <h2 id="client-obligations">3. Client Obligations</h2>
+    <p>Client agrees to cooperate fully with Web Everything to enable the delivery of services. Specific Client obligations include:</p>
+    <ul>
+      <li>Providing timely access to all necessary accounts, platforms, credentials, data, and personnel required for Web Everything to perform services.</li>
+      <li>Designating a primary point of contact with authority to make decisions and provide approvals on behalf of Client within timeframes specified in the applicable SOW.</li>
+      <li>Reviewing and providing written feedback or approval on deliverables within the timelines specified in the SOW. Feedback not provided within the specified period may be deemed approval, and project timelines may be adjusted accordingly.</li>
+      <li>Ensuring that all materials, data, and content provided to Web Everything are accurate, complete, and do not infringe any third-party intellectual property rights, privacy rights, or any applicable law or regulation.</li>
+      <li>Complying with all applicable laws and regulations in connection with Client's use of deliverables and services, including advertising laws, data protection regulations, and platform terms of service.</li>
+      <li>Not engaging any third party to perform services substantially similar to those covered in an active SOW with Web Everything without prior written notice, unless otherwise agreed.</li>
+    </ul>
+    <p>Client acknowledges that delays in fulfilling these obligations may result in project timeline extensions and that Web Everything shall not be responsible for missed deadlines caused by Client's failure to cooperate.</p>
+
+    <h2 id="payment">4. Payment Terms</h2>
+    <p>All fees are set forth in the applicable SOW or proposal. Unless otherwise specified in writing:</p>
+    <ul>
+      <li><strong>Project-based engagements</strong> are invoiced according to milestones defined in the SOW, with each invoice due within thirty (30) days of the invoice date ("Net 30").</li>
+      <li><strong>Retainer engagements</strong> are billed monthly in advance, with the first payment due prior to commencement of services. Subsequent retainer invoices are issued on the first business day of each calendar month.</li>
+      <li><strong>Ad spend and third-party costs</strong> — Any media budgets, platform fees, software licenses, or other pass-through costs are invoiced separately and are due within fifteen (15) days of invoice.</li>
+      <li><strong>Late payments</strong> accrue interest at the rate of one and one-half percent (1.5%) per month (18% per annum), calculated from the due date until the date of payment in full.</li>
+      <li>Web Everything reserves the right to suspend services upon ten (10) days' written notice if any invoice remains unpaid past its due date. Services will resume upon receipt of all outstanding amounts, including accrued interest.</li>
+      <li>All fees are stated in United States Dollars (USD) and are exclusive of any applicable sales, use, or similar taxes, which are Client's sole responsibility.</li>
+    </ul>
+    <p>Client agrees that it will not withhold or set off any amounts due under these Terms without Web Everything's prior written consent.</p>
+
+    <h2 id="ip">5. Intellectual Property</h2>
+    <h3>5.1 Client Ownership of Deliverables</h3>
+    <p>Upon receipt of full and final payment for all fees due under an engagement, Web Everything assigns to Client all right, title, and interest in and to the final deliverables specified in the applicable SOW, including all copyrights and other intellectual property rights therein, to the extent such deliverables constitute original works of authorship created specifically for Client.</p>
+    <h3>5.2 Web Everything Retained Rights</h3>
+    <p>Notwithstanding the foregoing, Web Everything retains all right, title, and interest in and to:</p>
+    <ul>
+      <li>All pre-existing intellectual property, including tools, frameworks, templates, methodologies, processes, software libraries, AI prompts, and know-how developed by Web Everything prior to or independently of the engagement ("Background IP").</li>
+      <li>Any general-purpose tools, automation frameworks, or AI system architectures developed during the engagement that are not specific to Client's brand, products, or data, and which Web Everything may wish to reuse or commercialize.</li>
+      <li>Web Everything's internal systems, proprietary AdTech, and platform integrations.</li>
+    </ul>
+    <p>To the extent any Background IP is incorporated into Client deliverables, Web Everything grants Client a perpetual, royalty-free, non-exclusive license to use such Background IP solely as incorporated in those deliverables.</p>
+    <h3>5.3 License to Client Materials</h3>
+    <p>Client grants Web Everything a limited, non-exclusive license to use Client's trademarks, brand materials, data, and content solely for the purpose of performing services under the applicable SOW.</p>
+
+    <h2 id="confidentiality">6. Confidentiality</h2>
+    <h3>6.1 Mutual Obligations</h3>
+    <p>Each party (the "Receiving Party") agrees to keep confidential all non-public information disclosed by the other party (the "Disclosing Party") that is designated as confidential or that reasonably should be understood to be confidential given the nature of the information and circumstances of disclosure ("Confidential Information"). Each party agrees to:</p>
+    <ul>
+      <li>Use the Disclosing Party's Confidential Information solely for the purpose of performing its obligations or exercising its rights under these Terms;</li>
+      <li>Disclose Confidential Information only to employees, contractors, and agents who have a need to know and who are bound by confidentiality obligations no less protective than those herein; and</li>
+      <li>Protect Confidential Information using at least the same degree of care used to protect its own confidential information, but in no event less than reasonable care.</li>
+    </ul>
+    <h3>6.2 Exceptions</h3>
+    <p>Confidentiality obligations do not apply to information that: (a) is or becomes publicly known through no fault of the Receiving Party; (b) was rightfully known to the Receiving Party prior to disclosure; (c) is independently developed by the Receiving Party without use of Confidential Information; or (d) is required to be disclosed by law or court order, provided that the Receiving Party gives the Disclosing Party prompt written notice and cooperates in seeking a protective order.</p>
+    <h3>6.3 Duration</h3>
+    <p>Confidentiality obligations survive the termination or expiration of the engagement for a period of three (3) years, except with respect to trade secrets, which shall be protected for as long as they remain trade secrets under applicable law.</p>
+
+    <h2 id="liability">7. Limitation of Liability</h2>
+    <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL WEB EVERYTHING, ITS PRINCIPALS, EMPLOYEES, OR CONTRACTORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING LOSS OF PROFITS, LOSS OF DATA, LOSS OF BUSINESS OPPORTUNITY, OR COST OF SUBSTITUTE SERVICES, ARISING OUT OF OR IN CONNECTION WITH THESE TERMS OR ANY ENGAGEMENT, EVEN IF WEB EVERYTHING HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+    <p>IN NO EVENT SHALL WEB EVERYTHING'S TOTAL CUMULATIVE LIABILITY ARISING OUT OF OR RELATED TO ANY ENGAGEMENT EXCEED THE TOTAL FEES PAID BY CLIENT TO WEB EVERYTHING IN THE THREE (3) CALENDAR MONTHS IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE CLAIM.</p>
+    <p>Some jurisdictions do not allow the exclusion or limitation of incidental or consequential damages, so some of the above limitations may not apply to you.</p>
+
+    <h2 id="warranties">8. Warranties and Disclaimers</h2>
+    <h3>8.1 Web Everything Warranties</h3>
+    <p>Web Everything represents and warrants that: (a) it has full authority to enter into these Terms and perform the services; (b) services will be performed in a professional and workmanlike manner consistent with industry standards; and (c) deliverables, as delivered, will not knowingly infringe the intellectual property rights of any third party.</p>
+    <h3>8.2 Disclaimers</h3>
+    <p>EXCEPT AS EXPRESSLY SET FORTH IN SECTION 8.1, WEB EVERYTHING PROVIDES SERVICES AND DELIVERABLES "AS IS" AND MAKES NO OTHER WARRANTIES, EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.</p>
+    <p>Web Everything does not warrant that services will be uninterrupted or error-free, that all defects will be corrected, or that any specific business results, performance improvements, or revenue outcomes will be achieved. Digital marketing, AI systems, and technology services involve inherent variability and are subject to platform policy changes, algorithm updates, and market conditions beyond our control.</p>
+    <h3>8.3 Client Warranties</h3>
+    <p>Client represents and warrants that: (a) it has full authority to enter into these Terms; (b) all materials and data provided to Web Everything are accurate and do not infringe any third-party rights; and (c) Client's use of deliverables will comply with all applicable laws and regulations.</p>
+
+    <h2 id="termination">9. Termination</h2>
+    <h3>9.1 Termination for Convenience</h3>
+    <p>Either party may terminate an engagement for convenience by providing thirty (30) days' prior written notice to the other party. Upon such termination, Client shall pay Web Everything for all services performed and expenses incurred through the effective date of termination, plus any non-cancellable commitments made by Web Everything on Client's behalf.</p>
+    <h3>9.2 Termination for Material Breach</h3>
+    <p>Either party may terminate an engagement immediately upon written notice if the other party commits a material breach of these Terms or the applicable SOW and fails to cure such breach within ten (10) business days after receiving written notice specifying the breach in reasonable detail.</p>
+    <h3>9.3 Termination for Non-Payment</h3>
+    <p>Web Everything may terminate any engagement immediately upon written notice if Client fails to make any payment when due and such failure continues for fifteen (15) days after Web Everything's written notice of non-payment.</p>
+    <h3>9.4 Effect of Termination</h3>
+    <p>Upon termination, each party shall return or destroy the other party's Confidential Information. Sections 5, 6, 7, 8, 10, and 11 of these Terms survive termination.</p>
+
+    <h2 id="governing-law">10. Governing Law</h2>
+    <p>These Terms and any disputes arising out of or relating to them or any engagement shall be governed by and construed in accordance with the laws of the State of Michigan, without regard to its conflict of law principles. The parties expressly exclude the application of the United Nations Convention on Contracts for the International Sale of Goods.</p>
+
+    <h2 id="disputes">11. Dispute Resolution</h2>
+    <h3>11.1 Good-Faith Negotiation</h3>
+    <p>Before initiating any formal dispute resolution proceeding, the parties agree to attempt to resolve any dispute, claim, or controversy arising out of or relating to these Terms or any engagement through good-faith negotiation. Either party may initiate this process by delivering written notice to the other describing the dispute in reasonable detail. The parties' senior representatives shall meet (in person or by video conference) within fifteen (15) business days of such notice to attempt to resolve the matter.</p>
+    <h3>11.2 Binding Arbitration</h3>
+    <p>If the parties are unable to resolve the dispute through good-faith negotiation within thirty (30) days of the initial written notice (or such longer period as the parties may agree in writing), the dispute shall be resolved by binding arbitration administered by the American Arbitration Association ("AAA") under its Commercial Arbitration Rules then in effect. The arbitration shall be conducted by a single arbitrator and shall take place in Detroit, Michigan. The arbitrator's award shall be final and binding and may be entered as a judgment in any court of competent jurisdiction.</p>
+    <h3>11.3 Exceptions</h3>
+    <p>Notwithstanding the foregoing, either party may seek injunctive or other equitable relief in any court of competent jurisdiction to prevent irreparable harm pending the outcome of arbitration, including in connection with the protection of intellectual property or Confidential Information.</p>
+    <h3>11.4 Class Action Waiver</h3>
+    <p>All disputes must be brought in the parties' individual capacities. Neither party may bring a claim as a plaintiff or class member in any purported class or representative proceeding.</p>
+
+    <h2 id="changes">12. Changes to Terms</h2>
+    <p>Web Everything reserves the right to modify these Terms at any time. When we make material changes, we will update the effective date at the top of this page and, where reasonably practicable, notify active clients by email at the address on file. Your continued engagement of Web Everything's services following the posting of revised Terms constitutes your acceptance of the changes. For ongoing engagements subject to a signed MSA or SOW, the version of these Terms in effect at the time of execution shall govern unless the parties agree in writing to apply updated Terms.</p>
+
+    <h2 id="contact">13. Contact Information</h2>
+    <p>For questions, concerns, or notices relating to these Terms, please contact us:</p>
+    <ul>
+      <li><strong>Email:</strong> <a href="mailto:hello@webeverything.io">hello@webeverything.io</a></li>
+      <li><strong>Company:</strong> Web Everything, operated by Kenny Gimpert II</li>
+      <li><strong>Location:</strong> Detroit, MI</li>
+    </ul>
+    <p>For legal notices required under these Terms, notices must be delivered by email with confirmation of receipt, or by certified mail to the address on file for the applicable party.</p>
+
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="index.html" style="font-size:1.4rem">Web<span class="logo-accent">Everything</span></a>
+        <p class="footer-tagline">
+          AI-powered digital agency combining enterprise performance marketing, proprietary AdTech, and agentic AI systems. Built to win.
+        </p>
+        <div class="footer-social">
+          <a class="social-btn" href="#" title="LinkedIn">in</a>
+          <a class="social-btn" href="#" title="X / Twitter">𝕏</a>
+          <a class="social-btn" href="#" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-label">Services</div>
+        <a class="footer-link" href="services.html#ai-strategy-integration">AI Strategy</a>
+        <a class="footer-link" href="services.html#performance-marketing">Performance Marketing</a>
+        <a class="footer-link" href="services.html#adtech-development">AdTech Development</a>
+        <a class="footer-link" href="services.html#agentic-ai-systems">Agentic AI Systems</a>
+        <a class="footer-link" href="services.html#generative-engine-optimization">GEO</a>
+        <a class="footer-link" href="services.html">All Services →</a>
+      </div>
+      <div>
+        <div class="footer-col-label">Company</div>
+        <a class="footer-link" href="about.html">About</a>
+        <a class="footer-link" href="insights.html">Insights</a>
+        <a class="footer-link" href="about.html#case-studies">Case Studies</a>
+        <a class="footer-link" href="about.html#careers">Careers</a>
+        <a class="footer-link" href="contact.html">Contact</a>
+      </div>
+      <div>
+        <div class="footer-col-label">Built On</div>
+        <a class="footer-link" href="#">Anthropic / Claude</a>
+        <a class="footer-link" href="#">Google Cloud</a>
+        <a class="footer-link" href="#">Cloudflare</a>
+        <a class="footer-link" href="#">Webflow</a>
+        <a class="footer-link" href="#">MCP Protocol</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Web Everything. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="accessibility.html">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
