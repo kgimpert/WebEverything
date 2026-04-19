@@ -57,9 +57,15 @@
       background:rgba(8,8,20,.97);border:1px solid var(--bd-dark);
       border-radius:14px;padding:1rem;min-width:260px;
       opacity:0;pointer-events:none;transform:translateY(-8px);
-      transition:opacity .2s,transform .2s;
+      transition:opacity .18s .15s,transform .18s .15s;
     }
-    .nav-link:hover .drop,.nav-link:focus-within .drop{opacity:1;pointer-events:all;transform:translateY(0)}
+    .drop::before{
+      content:'';position:absolute;top:-12px;left:0;right:0;height:12px;
+    }
+    .nav-link:hover .drop,.nav-link:focus-within .drop{
+      opacity:1;pointer-events:all;transform:translateY(0);
+      transition:opacity .12s 0s,transform .12s 0s;
+    }
     .drop-item{
       display:block;padding:.55rem .85rem;font-size:.82rem;color:var(--muted-dark);
       cursor:pointer;border-radius:8px;transition:background .15s,color .15s;

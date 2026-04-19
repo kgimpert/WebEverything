@@ -58,9 +58,15 @@
       background:rgba(8,8,20,.97);border:1px solid var(--bd-dark);
       border-radius:14px;padding:1rem;min-width:260px;
       opacity:0;pointer-events:none;transform:translateY(-8px);
-      transition:opacity .2s,transform .2s;
+      transition:opacity .18s .15s,transform .18s .15s;
     }
-    .nav-link:hover .drop,.nav-link:focus-within .drop{opacity:1;pointer-events:all;transform:translateY(0)}
+    .drop::before{
+      content:'';position:absolute;top:-12px;left:0;right:0;height:12px;
+    }
+    .nav-link:hover .drop,.nav-link:focus-within .drop{
+      opacity:1;pointer-events:all;transform:translateY(0);
+      transition:opacity .12s 0s,transform .12s 0s;
+    }
     .drop-item{
       display:block;padding:.55rem .85rem;font-size:.82rem;color:var(--muted-dark);
       cursor:pointer;border-radius:8px;transition:background .15s,color .15s;
@@ -523,7 +529,7 @@
 <section class="cat-purple" style="padding-bottom:5rem">
   <div class="container">
     <div class="cat-header">
-      <div class="eyebrow">Category 01</div>
+      <div class="eyebrow">Performance</div>
       <h2>Performance</h2>
       <p>Revenue-first systems built for scale. We engineer the full acquisition stack — from media strategy to proprietary AdTech infrastructure and real-time intelligence.</p>
     </div>
@@ -599,7 +605,7 @@
 <section class="cat-light" style="padding-bottom:5rem">
   <div class="container">
     <div class="cat-header">
-      <div class="eyebrow">Category 02</div>
+      <div class="eyebrow">AI &amp; Automation</div>
       <h2>AI &amp; Automation</h2>
       <p>Autonomous systems, AI visibility, and operating model transformation. We build the intelligent layer that makes your marketing scalable without adding headcount.</p>
     </div>
@@ -669,10 +675,10 @@
 <!-- ══════════════════════════════════════════
      CATEGORY 3: GROWTH & INTELLIGENCE  (dark)
 ═══════════════════════════════════════════ -->
-<section class="cat-dark" style="padding-bottom:5rem">
+<section class="cat-purple" style="padding-bottom:5rem">
   <div class="container">
     <div class="cat-header">
-      <div class="eyebrow">Category 03</div>
+      <div class="eyebrow">Growth &amp; Intelligence</div>
       <h2>Growth &amp; Intelligence</h2>
       <p>The infrastructure, intelligence, and execution layer that makes growth sustainable — from data architecture to web properties that win.</p>
     </div>
